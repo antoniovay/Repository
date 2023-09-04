@@ -5,14 +5,16 @@
 int main()
 {
     Fraction s, z;
-    s.numerator=1;
-    s.denominator=2;
-    z.numerator=1;
-    z.denominator=2;
-    Fraction a=s.SumFraction(z);
-    Fraction b=s.MultiFraction(z);
+    s.numerator = -1;
+    s.denominator = 2;
+    z.numerator = 1;
+    z.denominator = 2;
+    Fraction a = s.SumFraction(z);
+    Fraction b = s.MultiFraction(z);
+    Fraction c = s.DifFraction(z);
+    Fraction d = s.DivFraction(z);
     a.print();
-    std::cout << std::endl;
     b.print();
-    std::cout << std::endl;
+    c.print();
+    d.print();
 }
