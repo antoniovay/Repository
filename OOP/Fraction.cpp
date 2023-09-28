@@ -50,7 +50,7 @@ Fraction::Fraction(const int numerator, const int denomerator) {   // Конст
 
 
 
-Fraction Fraction::sumFraction(Fraction b) {   // Сумма дробей
+Fraction Fraction::sumFraction(Fraction b) const {   // Сумма дробей
     
     Fraction s;
     
@@ -63,7 +63,7 @@ Fraction Fraction::sumFraction(Fraction b) {   // Сумма дробей
 
 
 
-Fraction Fraction::difFraction(Fraction b) {   // Разность дробей
+Fraction Fraction::difFraction(Fraction b) const {   // Разность дробей
     
     Fraction s;
     
@@ -76,7 +76,7 @@ Fraction Fraction::difFraction(Fraction b) {   // Разность дробей
 
 
 
-Fraction Fraction::multiFraction(Fraction b) {   // Произведение дробей
+Fraction Fraction::multiFraction(Fraction b) const {   // Произведение дробей
     
     Fraction s;
     
@@ -89,7 +89,7 @@ Fraction Fraction::multiFraction(Fraction b) {   // Произведение д�
 
 
 
-Fraction Fraction::divFraction(Fraction b) {   // Частное дробей
+Fraction Fraction::divFraction(Fraction b) const {   // Частное дробей
     
     Fraction s;
     
@@ -143,7 +143,7 @@ Fraction Fraction::operator / (const Fraction b) { // Перегрузка ча�
 
 
 
-void Fraction::print() {   // Вывод дроби
+void Fraction::print() const {   // Вывод дроби
     
     std::cout << m_numerator << '/' << m_denominator << std::endl;
     
@@ -178,7 +178,7 @@ void Fraction::reduce() {   // Сокращение дроби
 
 
 
-int Fraction::getNumerator() {   // Получить числитель
+int Fraction::getNumerator() const {   // Получить числитель
     
     return m_numerator;
     
@@ -186,7 +186,7 @@ int Fraction::getNumerator() {   // Получить числитель
 
 
 
-int Fraction::getDenominator() {   // Получить знаменатель
+int Fraction::getDenominator() const {   // Получить знаменатель
     
     return m_denominator;
     
@@ -194,7 +194,7 @@ int Fraction::getDenominator() {   // Получить знаменатель
     
 
 
-void Fraction::setNumerator(int value) {   // Установить числитель
+void Fraction::setNumerator(const int value) {   // Установить числитель
     
     m_numerator = value;
     
@@ -202,7 +202,7 @@ void Fraction::setNumerator(int value) {   // Установить числит�
 
 
 
-void Fraction::setDenominator(int value) {   // Установить знаменатель
+void Fraction::setDenominator(const int value) {   // Установить знаменатель
     
     if (value == 0) {
         

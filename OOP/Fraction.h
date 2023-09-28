@@ -10,25 +10,25 @@ public:
     
     ~Fraction() = default;
     
-    Fraction sumFraction(Fraction b);  // Сумма дробей
-    Fraction difFraction(Fraction b);  // Разность дробей
-    Fraction multiFraction(Fraction b);  // Произведение дробей
-    Fraction divFraction(Fraction b);  // Частное дробей
+    Fraction sumFraction(Fraction b) const;     // Сумма дробей
+    Fraction difFraction(Fraction b) const;     // Разность дробей
+    Fraction multiFraction(Fraction b) const;   // Произведение дробей
+    Fraction divFraction(Fraction b) const;     // Частное дробей
     
     Fraction operator + (const Fraction b); // Перегрузка суммы
     Fraction operator - (const Fraction b); // Перегрузка разности
     Fraction operator * (const Fraction b); // Перегрузка произведения
     Fraction operator / (const Fraction b); // Перегрузка частного
     
-    void print();  // Вывод дроби
+    void print() const;  // Вывод дроби
     
     void reduce();  // Сокращение дроби
         
-    int getNumerator();  // Получить числитель
-    int getDenominator();  // Получить знаменатель
+    int getNumerator() const;  // Получить числитель
+    int getDenominator() const;  // Получить знаменатель
         
-    void setNumerator(int value);  // Установить числитель
-    void setDenominator(int value);  // Установить знаменатель
+    void setNumerator(const int value);  // Установить числитель
+    void setDenominator(const int value);  // Установить знаменатель
     
     void scan();
     
