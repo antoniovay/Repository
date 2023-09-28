@@ -7,6 +7,7 @@ public:
     
     Fraction();  // Конструктор по умолчанию без аргементов
     Fraction(const int numerator, const int denomerator);  // Конструктор по умолчанию с аргементами
+    Fraction(double b); // Конструктор double -> Fraction
     
     ~Fraction() = default;
     
@@ -15,10 +16,10 @@ public:
     Fraction multiFraction(Fraction b) const;   // Произведение дробей
     Fraction divFraction(Fraction b) const;     // Частное дробей
     
-    Fraction operator + (const Fraction b); // Перегрузка суммы
-    Fraction operator - (const Fraction b); // Перегрузка разности
-    Fraction operator * (const Fraction b); // Перегрузка произведения
-    Fraction operator / (const Fraction b); // Перегрузка частного
+    Fraction operator + (const Fraction b) const; // Перегрузка суммы
+    Fraction operator - (const Fraction b) const; // Перегрузка разности
+    Fraction operator * (const Fraction b) const; // Перегрузка произведения
+    Fraction operator / (const Fraction b) const; // Перегрузка частного
     
     void print() const;  // Вывод дроби
     
@@ -32,10 +33,10 @@ public:
     
     void scan();
     
-    bool operator == (const Fraction b); // Перегрузка равенства
-    bool operator != (const Fraction b); // Перегрузка неравенства
-    bool operator > (const Fraction b); // Перегрузка операции "больше"
-    bool operator < (const Fraction b); // Перегрузка операции "меньше"
+    bool operator == (const Fraction b) const; // Перегрузка равенства
+    bool operator != (const Fraction b) const; // Перегрузка неравенства
+    bool operator > (const Fraction b) const; // Перегрузка операции "больше"
+    bool operator < (const Fraction b) const; // Перегрузка операции "меньше"
     
     //Мои методы -------------------------------------------------------
     
@@ -44,9 +45,7 @@ public:
     Fraction & operator -- ();        // Перегрузка префиксного декремента
     Fraction operator -- (int value); // Перегрузка постфиксного декремента
     
-    Fraction(double b); // Конструктор double -> Fraction
-        
-        
+   
 private:
     
     int m_numerator;

@@ -13,7 +13,8 @@ int main()
     std::cout << std::endl;
     
     
-    Fraction s(1, 6), z(1, 6), r(0, 1);
+    Fraction s(1, 6), z(1, 6), r(0, 2);
+    
     
     std::cout << "Дробь ";
     r.print();

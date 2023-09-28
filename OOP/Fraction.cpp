@@ -111,7 +111,7 @@ Fraction Fraction::divFraction(Fraction b) const {   // Частное дроб�
 
 
 
-Fraction Fraction::operator + (const Fraction b) { // Перегрузка суммы
+Fraction Fraction::operator + (const Fraction b) const { // Перегрузка суммы
     
     return sumFraction(b);
     
@@ -119,7 +119,7 @@ Fraction Fraction::operator + (const Fraction b) { // Перегрузка су�
 
 
 
-Fraction Fraction::operator - (const Fraction b) { // Перегрузка разности
+Fraction Fraction::operator - (const Fraction b) const { // Перегрузка разности
     
     return difFraction(b);
     
@@ -127,7 +127,7 @@ Fraction Fraction::operator - (const Fraction b) { // Перегрузка ра�
 
 
 
-Fraction Fraction::operator * (const Fraction b) { // Перегрузка произведения
+Fraction Fraction::operator * (const Fraction b) const { // Перегрузка произведения
     
     return multiFraction(b);
     
@@ -135,7 +135,7 @@ Fraction Fraction::operator * (const Fraction b) { // Перегрузка пр�
 
 
 
-Fraction Fraction::operator / (const Fraction b) { // Перегрузка частного
+Fraction Fraction::operator / (const Fraction b) const { // Перегрузка частного
     
     return divFraction(b);
     
@@ -174,6 +174,12 @@ void Fraction::reduce() {   // Сокращение дроби
         
     }
     
+    else {
+        
+        m_denominator = 1;
+        
+    }
+    
 }
 
 
@@ -206,11 +212,13 @@ void Fraction::setDenominator(const int value) {   // Установить зн�
     
     if (value == 0) {
         
-        std::cout << "Ошибка: в методе setDenominator задаётся знаменатель = 0" << std::endl;
+        std::cerr << "Ошибка: в методе setDenominator задаётся знаменатель = 0" << std::endl;
         
     }
     
-    else m_denominator = value;
+    else 
+        
+        m_denominator = value;
     
 }
 
@@ -235,7 +243,7 @@ void Fraction::scan() {
 
 
 
-bool Fraction::operator == (const Fraction b) { // Перегрузка равенства
+bool Fraction::operator == (const Fraction b) const { // Перегрузка равенства
     
     return ( (m_numerator == b.m_numerator) && (m_denominator == b.m_denominator) );
     
@@ -243,7 +251,7 @@ bool Fraction::operator == (const Fraction b) { // Перегрузка раве
 
 
 
-bool Fraction::operator != (const Fraction b) { // Перегрузка неравенства
+bool Fraction::operator != (const Fraction b) const { // Перегрузка неравенства
     
     return !( (m_numerator == b.m_numerator) && (m_denominator == b.m_denominator) );
     
@@ -251,7 +259,7 @@ bool Fraction::operator != (const Fraction b) { // Перегрузка нера
 
 
 
-bool Fraction::operator > (const Fraction b) { // Перегрузка операции "больше"
+bool Fraction::operator > (const Fraction b) const { // Перегрузка операции "больше"
     
     return ( (m_numerator * b.m_denominator) > (b.m_numerator * m_denominator) );
     
@@ -259,7 +267,7 @@ bool Fraction::operator > (const Fraction b) { // Перегрузка опер�
 
 
 
-bool Fraction::operator < (const Fraction b) { // Перегрузка операции "меньше"
+bool Fraction::operator < (const Fraction b) const { // Перегрузка операции "меньше"
     
     return ( (m_numerator * b.m_denominator) < (b.m_numerator * m_denominator) );
     
