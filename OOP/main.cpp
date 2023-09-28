@@ -13,7 +13,15 @@ int main()
     std::cout << std::endl;
     
     
-    Fraction s(1, 6), z(1, 6);
+    Fraction s(1, 6), z(1, 6), r(0, 1);
+    
+    std::cout << "Дробь ";
+    r.print();
+    std::cout << " при сокращении превращается в ";
+    r.reduce();
+    r.print();
+    std::cout << std::endl;
+    
     
     std::cout << "Дробь s = ";
     s.print();
@@ -26,9 +34,6 @@ int main()
     Fraction c = s - z;
     Fraction b = s * z;
     Fraction d = s / z;
-    
-    
-    //b.reduce();
     
     
     std::cout << "Операции с дробями s и z:" << std::endl;

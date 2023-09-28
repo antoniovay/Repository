@@ -28,7 +28,6 @@ public:
     int getDenominator();  // Получить знаменатель
         
     void setNumerator(int value);  // Установить числитель
-    
     void setDenominator(int value);  // Установить знаменатель
     
     void scan();
@@ -50,7 +49,7 @@ public:
         
 private:
     
-    int numerator;
-    int denominator;
+    int m_numerator;
+    int m_denominator;
     
 };

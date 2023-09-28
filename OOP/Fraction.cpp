@@ -6,8 +6,8 @@
 
 Fraction::Fraction() {   // Конструктор по умолчанию без аргементов
     
-    numerator = 1;
-    denominator = 1;
+    m_numerator = 1;
+    m_denominator = 1;
     
 }
 
@@ -15,7 +15,7 @@ Fraction::Fraction() {   // Конструктор по умолчанию бе�
 
 Fraction::Fraction(const int numerator, const int denomerator) {   // Конструктор по умолчанию с аргементами
     
-    this -> numerator = numerator;
+    this -> m_numerator = numerator;
 
     //другие решения
 
@@ -34,7 +34,7 @@ Fraction::Fraction(const int numerator, const int denomerator) {   // Конст
     
     if (denomerator != 0) {
         
-        this -> denominator = denomerator;
+        this -> m_denominator = denomerator;
         
     }
     
@@ -42,7 +42,7 @@ Fraction::Fraction(const int numerator, const int denomerator) {   // Конст
         
         std::cerr << " В Fraction::Fraction ошибка: denominator = 0, будет исправлен на 1" << std::endl;
         
-        this -> denominator = 1;
+        this -> m_denominator = 1;
         
     }
 
@@ -54,8 +54,8 @@ Fraction Fraction::sumFraction(Fraction b) {   // Сумма дробей
     
     Fraction s;
     
-    s.numerator = numerator * b.denominator + denominator * b.numerator;
-    s.denominator = denominator * b.denominator;
+    s.m_numerator = m_numerator * b.m_denominator + m_denominator * b.m_numerator;
+    s.m_denominator = m_denominator * b.m_denominator;
     
     return s;
     
@@ -67,8 +67,8 @@ Fraction Fraction::difFraction(Fraction b) {   // Разность дробей
     
     Fraction s;
     
-    s.numerator = numerator * b.denominator - denominator * b.numerator;
-    s.denominator = denominator * b.denominator;
+    s.m_numerator = m_numerator * b.m_denominator - m_denominator * b.m_numerator;
+    s.m_denominator = m_denominator * b.m_denominator;
     
     return s;
     
@@ -80,8 +80,8 @@ Fraction Fraction::multiFraction(Fraction b) {   // Произведение д�
     
     Fraction s;
     
-    s.numerator = numerator * b.numerator;
-    s.denominator = denominator * b.denominator;
+    s.m_numerator = m_numerator * b.m_numerator;
+    s.m_denominator = m_denominator * b.m_denominator;
     
     return s;
     
@@ -93,16 +93,16 @@ Fraction Fraction::divFraction(Fraction b) {   // Частное дробей
     
     Fraction s;
     
-    if (b.numerator == 0) {
+    if (b.m_numerator == 0) {
         
-        s.numerator = 0; s.denominator = 0;
+        s.m_numerator = 0; s.m_denominator = 0;
         
     }
     
     else {
         
-        s.numerator = numerator * b.denominator;
-        s.denominator = denominator * b.numerator;
+        s.m_numerator = m_numerator * b.m_denominator;
+        s.m_denominator = m_denominator * b.m_numerator;
         
     }
     
@@ -145,7 +145,7 @@ Fraction Fraction::operator / (const Fraction b) { // Перегрузка ча�
 
 void Fraction::print() {   // Вывод дроби
     
-    std::cout << numerator << '/' << denominator << std::endl;
+    std::cout << m_numerator << '/' << m_denominator << std::endl;
     
 }
 
@@ -153,22 +153,26 @@ void Fraction::print() {   // Вывод дроби
 
 void Fraction::reduce() {   // Сокращение дроби
     
-    int a = numerator;
-    int b = denominator;
-    
-    while (a!=b) {
+    if (m_numerator != 0) {
         
-        if (a > b)
-            a = a - b;
-        else
-            b = b - a;
+        int a = m_numerator;
+        int b = m_denominator;
+        
+        while (a!=b) {
+            
+            if (a > b)
+                a = a - b;
+            else
+                b = b - a;
+            
+        }
+        
+        //std::cout << a;
+        
+        m_numerator = m_numerator/a;
+        m_denominator = m_denominator/a;
         
     }
-    
-    //std::cout << a;
-    
-    numerator = numerator/a;
-    denominator = denominator/a;
     
 }
 
@@ -176,7 +180,7 @@ void Fraction::reduce() {   // Сокращение дроби
 
 int Fraction::getNumerator() {   // Получить числитель
     
-    return numerator;
+    return m_numerator;
     
 }
 
@@ -184,7 +188,7 @@ int Fraction::getNumerator() {   // Получить числитель
 
 int Fraction::getDenominator() {   // Получить знаменатель
     
-    return denominator;
+    return m_denominator;
     
 }
     
@@ -192,7 +196,7 @@ int Fraction::getDenominator() {   // Получить знаменатель
 
 void Fraction::setNumerator(int value) {   // Установить числитель
     
-    numerator = value;
+    m_numerator = value;
     
 }
 
@@ -200,7 +204,13 @@ void Fraction::setNumerator(int value) {   // Установить числит�
 
 void Fraction::setDenominator(int value) {   // Установить знаменатель
     
-    denominator = value;
+    if (value == 0) {
+        
+        std::cout << "Ошибка: в методе setDenominator задаётся знаменатель = 0" << std::endl;
+        
+    }
+    
+    else m_denominator = value;
     
 }
 
@@ -209,15 +219,15 @@ void Fraction::setDenominator(int value) {   // Установить знаме�
 void Fraction::scan() {
     
     std::cout << "Введите числитель >> ";
-    std::cin >> numerator;
+    std::cin >> m_numerator;
     
     std::cout << "Введите знаменатель >> ";
-    std::cin >> denominator;
+    std::cin >> m_denominator;
     
-    while (denominator == 0) {
+    while (m_denominator == 0) {
         
         std::cout << "Ошибка: знаменатель равен нулю. Введите знаменатель снова >> ";
-        std::cin >> denominator;
+        std::cin >> m_denominator;
         
     }
     
@@ -227,7 +237,7 @@ void Fraction::scan() {
 
 bool Fraction::operator == (const Fraction b) { // Перегрузка равенства
     
-    return ( (numerator == b.numerator) && (denominator == b.denominator) );
+    return ( (m_numerator == b.m_numerator) && (m_denominator == b.m_denominator) );
     
 }
 
@@ -235,7 +245,7 @@ bool Fraction::operator == (const Fraction b) { // Перегрузка раве
 
 bool Fraction::operator != (const Fraction b) { // Перегрузка неравенства
     
-    return !( (numerator == b.numerator) && (denominator == b.denominator) );
+    return !( (m_numerator == b.m_numerator) && (m_denominator == b.m_denominator) );
     
 }
 
@@ -243,7 +253,7 @@ bool Fraction::operator != (const Fraction b) { // Перегрузка нера
 
 bool Fraction::operator > (const Fraction b) { // Перегрузка операции "больше"
     
-    return ( (numerator * b.denominator) > (b.numerator * denominator) );
+    return ( (m_numerator * b.m_denominator) > (b.m_numerator * m_denominator) );
     
 }
 
@@ -251,7 +261,7 @@ bool Fraction::operator > (const Fraction b) { // Перегрузка опер�
 
 bool Fraction::operator < (const Fraction b) { // Перегрузка операции "меньше"
     
-    return ( (numerator * b.denominator) < (b.numerator * denominator) );
+    return ( (m_numerator * b.m_denominator) < (b.m_numerator * m_denominator) );
     
 }
 
@@ -263,10 +273,10 @@ bool Fraction::operator < (const Fraction b) { // Перегрузка опер�
 
 Fraction & Fraction::operator ++ () { // Перегрузка префиксного инкремента
     
-    numerator ++;
-    if (denominator != -1) {
+    m_numerator ++;
+    if (m_denominator != -1) {
         
-        denominator++;
+        m_denominator++;
         
     }
     
@@ -290,10 +300,10 @@ Fraction Fraction::operator ++ (int value) { // Перегрузка постф�
 
 Fraction & Fraction::operator -- () { // Перегрузка префиксного декремента
     
-    numerator --;
-    if (denominator != 1) {
+    m_numerator --;
+    if (m_denominator != 1) {
         
-        denominator--;
+        m_denominator--;
         
     }
     
@@ -325,9 +335,9 @@ Fraction::Fraction(double b) { // Конструктор double -> Fraction
         
     }
     
-    this -> numerator = b;
+    this -> m_numerator = b;
     
-    this -> denominator = pow(10, count);
+    this -> m_denominator = pow(10, count);
     
     this -> reduce();
     
