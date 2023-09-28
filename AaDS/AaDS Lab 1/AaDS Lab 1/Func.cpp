@@ -8,7 +8,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <time.h>
-#include <iomanip>
 
 #include "Func.h"
 
@@ -26,7 +25,7 @@ void printMatrix(int** matr, int m, int n) { // Вывести матрицу
         
         for(j = 0; j < n; j++) {
             
-            printf("%4d ", matr[i][j]);
+            printf("%2d ", matr[i][j]);
             
         }
         
