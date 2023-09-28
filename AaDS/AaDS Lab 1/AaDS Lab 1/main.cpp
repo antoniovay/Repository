@@ -5,71 +5,139 @@
 //  Created by Antony Miroshnichenko on 18.09.2023.
 //
 
+
+
 #include <iostream>
 #include <time.h>
-using namespace std;
 
 #include "Func.h"
 
+
+
 int main()
 {
-    int const N = 5, A = 1, B = 10;
     
-    // Формируем матрицу N*N стооимостей маршрутов
-    int** matr = new int* [N];
-    for (int i = 0; i < N; i++)
-            matr[i] = new int[N];
+    //Объявляем переменные
+    
+    int** matrixOfPrice, numberOfCities, startingCity, * minWay, minWeight, minWeightHeuristic;
+    
+    int const MIN_PRICE = 1, MAX_PRICE = 10;
+    
+    double timeStraight, timeHeuristic;
+    
+    
+    //Вводим значения
+    
+    std::cout << "Введите количество городов >> ";
+    std::cin >> numberOfCities;
+    
+    std::cout << "Введите начальный город >> ";
+    std::cin >> startingCity;
+    
+    while ( (startingCity < 1) || (startingCity > numberOfCities) ) {
+        
+        std::cout << "Этот город не входит в число городов, попробуйте ввести начальный город снова >> ";
+        std::cin >> startingCity;
+        
+    }
+    
+    
+    
+    // Формируем матрицу стоимостей маршрутов
+    
+    matrixOfPrice = new int* [numberOfCities];
+    
+    for (int i = 0; i < numberOfCities; i++) {
+        
+        matrixOfPrice[i] = new int[numberOfCities];
+        
+    }
+    
+    
+    
+    // Формируем массив для путей
+    
+    minWay = new int [numberOfCities - 1];
+    
     
     
     // Формируем массив p
-    int* p = new int [N];
-    for (int i = 0; i < N; i++)
+    
+    int* p = new int [numberOfCities];
+    
+    for (int i = 0; i < numberOfCities; i++) {
+        
         p[i] = i + 1;
-    
-    
-    // Заполняем матрицу N*N стооимостей маршрутов
-    randMatr(matr, N, N, A, B);
-    //printMatr(matr, N, N);
-    
-    
-    // Заполняем массив p
-    for (int i = 0; i < N; i++)
-        cout << p[i] << " ";
-    cout << endl;
-    
-    
-    // Строим все возможные гамильтоновы циклы
-    for (int i = N - 2; i > 0; i--)
         
-        if (i > 0 && i < N - 1 && p[i] < p [i + 1])
-            
-            for (int j = N - 1; j > i; j--)
-                
-                if (j > i && j <= N - 1 && p[i] < p[j])
-                {
-                    swap(p[i], p[j]);
-                    
-                    for(int m = i + 1, n = N - 1; m <= n; m++, n--)
-                    {
-                        swap(p[m], p[n]);
-                        //cout << "m = " << m << endl;
-                        //cout << "n = " << n << endl;
-                    }
-                    i = N - 1;
-                    /* for (int i = 0; i < N; i++)
-                        cout << p[i] << " ";
-                    cout << endl; */
-                    
-                    
-                    
-                    
-                }
+    }
+    
+    
+    
+    // Заполняем матрицу numberOfCities*numberOfCities стооимостей маршрутов
+    
+    randomMatrix(matrixOfPrice, numberOfCities, numberOfCities, MIN_PRICE, MAX_PRICE);
+    
+    printMatrix(matrixOfPrice, numberOfCities, numberOfCities);
+    
+    
+    
+    // Реализация точного алгоритма
+    
+    clock_t start = clock();
+    
+    countMinWayStraightMethod(matrixOfPrice, minWay, numberOfCities, startingCity, MAX_PRICE);
+    
+    clock_t end = clock();
         
+    timeStraight = (double) (end - start) / CLOCKS_PER_SEC;
+    
+    
         
+    std::cout << std::endl << std::endl << "Точный алгоритм:" << std::endl << std::endl;
+    std::cout << "Путь с минимальной ценой - ";
+    
+    printMassive(minWay, numberOfCities + 1);
+    
+    minWeight = countWayCoast(matrixOfPrice, minWay, numberOfCities);
+    
+    std::cout << "Цена лучшего пути - " << minWeight << std::endl;
+        
+    std::cout << "Время работы алгоритма - " << timeStraight << "s" << std::endl;
+    
+    
+    
+    // Реализация эвристического алгоритма 3
+    
+    start = clock();
+    
+    countMinWayHeuristicMethod(matrixOfPrice, minWay, numberOfCities, MAX_PRICE);
+    
+    end = clock();
+    
+    timeHeuristic = (double)(end - start) / CLOCKS_PER_SEC;
+    
+    std::cout << std::endl << "Эвристический алгоритм 3:" << std::endl;
+    std::cout << "Путь с минимальной ценой - ";
+    
+    printMassive(minWay, numberOfCities + 1);
+    
+    minWeightHeuristic = countWayCoast(matrixOfPrice, minWay, numberOfCities);
+    
+    std::cout << "Цена лучшего пути - " << minWeightHeuristic << std::endl;
+    
+    std::cout << "Время работы алгоритма - " << timeHeuristic << "s" << std::endl;    
+    
+    
     // Очищаем динамические массивы
-    for (int i = 0; i < N; i++)
-        delete [] matr[i];
-    delete [] matr;
+    
+    for (int i = 0; i < numberOfCities; i++) {
+        
+        delete [] matrixOfPrice[i];
+        
+    }
+    
+    delete [] matrixOfPrice;
+    
     delete [] p;
     
 }
