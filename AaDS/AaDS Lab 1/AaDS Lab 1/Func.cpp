@@ -26,7 +26,7 @@ void printMatrix(int** matr, int m, int n) { // Вывести матрицу
         
         for(j = 0; j < n; j++) {
             
-            printf("%4d ", matr[i][j]);
+            printf("%2d ", matr[i][j]);
             
         }
         
@@ -273,7 +273,7 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
         
     }
         
-    
+    //int f = 0;
     int i = 1;
         
     while (i < numberOfCities) { // Проходов столько, сколько городов
@@ -303,6 +303,7 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
             
         }
         
+        //std::cout << indexMinElement << std::endl;
         
         // Зануляем строку и столбец минимального элемента и обратный путь
         
@@ -358,10 +359,11 @@ int findMinInLine(int** matrixOfPrice, int n, int line, int MAX_PRICE) {
             if (matrixOfPrice[line][i] < minNumber) {
                 
                 minNumber = matrixOfPrice[line][i];
+                
                 minIndex = i;
                 
             }
-            
+           
         }
         
     }

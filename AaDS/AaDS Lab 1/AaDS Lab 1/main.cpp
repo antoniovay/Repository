@@ -49,7 +49,7 @@ int main()
     
     for (int i = 0; i < numberOfCities; i++) {
         
-        matrixOfPrice[i] = new int[numberOfCities];
+        matrixOfPrice[i] = new int [numberOfCities];
         
     }
     
@@ -57,7 +57,7 @@ int main()
     
     // Формируем массив для путей
     
-    minWay = new int [numberOfCities - 1];
+    minWay = new int [numberOfCities + 1];
     
     
     
@@ -105,6 +105,9 @@ int main()
     std::cout << "Время работы алгоритма - " << timeStraight << "s" << std::endl;
     
     
+    //delete [] minWay;
+    //minWay = new int [numberOfCities + 1];
+    
     
     // Реализация эвристического алгоритма 3
     
@@ -139,5 +142,7 @@ int main()
     delete [] matrixOfPrice;
     
     delete [] p;
+    
+    delete [] minWay;
     
 }
