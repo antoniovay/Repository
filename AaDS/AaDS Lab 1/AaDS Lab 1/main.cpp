@@ -126,11 +126,38 @@ int main()
     timeHeuristic = (double)(end - start) / CLOCKS_PER_SEC;
     
     std::cout << std::endl << std::endl << "Эвристический алгоритм 3:" << std::endl << std::endl;
-    std::cout << "Путь с минимальной ценой - ";
+    std::cout << "Путь с минимальной ценой (начальный город - 1): ";
     
+    //Вывод массива с началом из 1 города
     printMassive(minWay, numberOfCities + 1);
     
     minWeightHeuristic = countWayCoast(matrixOfPrice, minWay, numberOfCities);
+    
+    
+    //Перестановка в соответствии с начальным городом
+    
+    if (startingCity != 1) {
+        
+        while (minWay[0] != startingCity - 1) {
+            
+            int c = minWay[0];
+            
+            for (int j = 0; j < numberOfCities - 1; j++) {
+                
+                minWay[j] = minWay[j + 1];
+                
+            }
+            
+            minWay[numberOfCities - 1] = c;
+            
+        }
+        
+        minWay[numberOfCities] = startingCity - 1;
+        
+        std::cout << "Путь с минимальной ценой (начальный город - " << startingCity << "): ";
+        printMassive(minWay, numberOfCities + 1);
+        
+    }
     
     std::cout << "Цена лучшего пути - " << minWeightHeuristic << std::endl;
     
