@@ -19,7 +19,7 @@ int main()
     
     //Объявляем переменные
     
-    int** matrixOfPrice, numberOfCities, startingCity, * minWay, minWeight, minWeightHeuristic;
+    int** matrixOfPrice, numberOfCities, startingCity, * minWay, * maxWay, minWeight, maxWeight, minWeightHeuristic;
     
     int const MIN_PRICE = 1, MAX_PRICE = 10;
     
@@ -58,6 +58,7 @@ int main()
     // Формируем массив для путей
     
     minWay = new int [numberOfCities + 1];
+    maxWay = new int [numberOfCities + 1];
     
     
     
@@ -85,7 +86,7 @@ int main()
     
     clock_t start = clock();
     
-    countMinWayStraightMethod(matrixOfPrice, minWay, numberOfCities, startingCity, MAX_PRICE);
+    countMinWayStraightMethod(matrixOfPrice, minWay, maxWay, numberOfCities, startingCity, MAX_PRICE);
     
     clock_t end = clock();
         
@@ -94,13 +95,18 @@ int main()
     
         
     std::cout << std::endl << std::endl << "Точный алгоритм:" << std::endl << std::endl;
-    std::cout << "Путь с минимальной ценой - ";
     
+    std::cout << "Путь с минимальной ценой - ";
     printMassive(minWay, numberOfCities + 1);
     
-    minWeight = countWayCoast(matrixOfPrice, minWay, numberOfCities);
+    std::cout << "Путь с максимальной ценой - ";
+    printMassive(maxWay, numberOfCities + 1);
     
+    minWeight = countWayCoast(matrixOfPrice, minWay, numberOfCities);
     std::cout << "Цена лучшего пути - " << minWeight << std::endl;
+    
+    maxWeight = countWayCoast(matrixOfPrice, maxWay, numberOfCities);
+    std::cout << "Цена худшего пути - " << maxWeight << std::endl;
         
     std::cout << "Время работы алгоритма - " << timeStraight << "s" << std::endl;
     
@@ -113,13 +119,13 @@ int main()
     
     start = clock();
     
-    countMinWayHeuristicMethod(matrixOfPrice, minWay, numberOfCities, MAX_PRICE);
+    countMinWayHeuristicMethod(matrixOfPrice, minWay, numberOfCities, MAX_PRICE, startingCity);
     
     end = clock();
     
     timeHeuristic = (double)(end - start) / CLOCKS_PER_SEC;
     
-    std::cout << std::endl << "Эвристический алгоритм 3:" << std::endl;
+    std::cout << std::endl << std::endl << "Эвристический алгоритм 3:" << std::endl << std::endl;
     std::cout << "Путь с минимальной ценой - ";
     
     printMassive(minWay, numberOfCities + 1);
@@ -130,6 +136,38 @@ int main()
     
     std::cout << "Время работы алгоритма - " << timeHeuristic << "s" << std::endl;    
     
+    
+    
+    
+    
+    //Отчет
+    std::cout << std::endl << std::endl << "Отчёт:" << std::endl;
+    
+    float quality, time;
+    
+    
+    quality = 100 - (float)(minWeightHeuristic - minWeight) / (float)(maxWeight - minWeight);
+    
+    std::cout << std::endl << "Качество эвристического алгоритма 3 относительно точного = " << quality << "%" << std::endl;
+    
+    
+    time = timeHeuristic - timeStraight;
+    
+    if (time < 0)
+        
+        std::cout << "Эвристический алгоритм быстрее точного на " << -time << "s" << std::endl;
+    
+    else if (time > 0)
+        
+        std::cout << "Точный алгоритм быстрее эвристического на " << time << "s" << std::endl;
+    
+    else
+        
+        std::cout << "Алгоритмы по времени работают одинаково" << std::endl;
+    
+    
+    
+    std::cout << std::endl << std::endl;
     
     // Очищаем динамические массивы
     

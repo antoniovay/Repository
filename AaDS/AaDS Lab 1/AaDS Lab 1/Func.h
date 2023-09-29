@@ -28,7 +28,7 @@ void swap (int &a, int &b);
 // Точный алгоритм //---------------------------------------------------------------------------------------------------------
 
 // Подсчет минимального пути точным алгоритмом с генерацией перестановок алгоритмом Дейкстры
-void countMinWayStraightMethod (int** matrixOfPrice, int* minWay, int numberOfCities, int startingCity, const int MAX);
+void countMinWayStraightMethod (int** matrixOfPrice, int* minWay, int* maxWay, int numberOfCities, int startingCity, const int MAX);
 
 // Подсчёт веса текущей перестановки
 int countWayCoast (int **matrixOfPrice, int *p, int numberOfCities);
@@ -36,6 +36,6 @@ int countWayCoast (int **matrixOfPrice, int *p, int numberOfCities);
 // Эвристический алгоритм //--------------------------------------------------------------------------------------------------
 
 // Подсчет минимального пути эвристическим алгоритмом 3
-void countMinWayHeuristicMethod (int** matrixOfPrice, int* answerArray, int numberOfCities, int MAX_PRICE);
+void countMinWayHeuristicMethod (int** matrixOfPrice, int* answerArray, int numberOfCities, int MAX_PRICE, int startingCity);
 
 int findMinInLine(int** matrixOfPrice, int n, int line, int MAX_PRICE);

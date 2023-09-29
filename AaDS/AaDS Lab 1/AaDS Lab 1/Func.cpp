@@ -85,7 +85,7 @@ void doCopyOfMatrix (int** matrixCopyFrom, int** matrixCopyTo, int m, int n) { /
 void printMassive (int* mas, int n) { // Вывести массив
     
     for (int i = 0; i < n; i++)
-            std::cout << mas[i] << ' ';
+            std::cout << mas[i] + 1 << ' ';
     
         std::cout << std::endl;
     
@@ -116,9 +116,9 @@ void swap (int &a, int &b) { // Поменять местами два элем�
 // Для точного алгоритма //-------------------------------------------------------------------------------------------------------------------------
 
 // Подсчет минимального пути точным алгоритмом с генерацией перестановок алгоритмом Дейкстры
-void countMinWayStraightMethod (int** matrixOfPrice, int* minWay, int numberOfCities, int startingCity, const int MAX_PRICE) {
+void countMinWayStraightMethod (int** matrixOfPrice, int* minWay, int* maxWay, int numberOfCities, int startingCity, const int MAX_PRICE) {
     
-    int* p, costOfWay, minWeight = numberOfCities * MAX_PRICE, pCount = 1;
+    int* p, costOfWay, minWeight = numberOfCities * MAX_PRICE, maxWeight = 0, pCount = 1;
     
     p = new int [numberOfCities + 1];
     
@@ -203,7 +203,7 @@ void countMinWayStraightMethod (int** matrixOfPrice, int* minWay, int numberOfCi
                     costOfWay = countWayCoast(matrixOfPrice, p, numberOfCities);
                     
                     
-                    if(costOfWay < minWeight) {
+                    if (costOfWay < minWeight) {
                         
                         minWeight = costOfWay;
                         
@@ -214,6 +214,15 @@ void countMinWayStraightMethod (int** matrixOfPrice, int* minWay, int numberOfCi
                     /* for (int i = 0; i < numberOfCities; i++)
                      std::cout << p[i] << " ";
                      std::cout << std::endl; */
+                    
+                    
+                    else if (costOfWay > maxWeight) {
+                        
+                        maxWeight = costOfWay;
+                        
+                        doCopyOfMassive(p, maxWay, numberOfCities + 1);
+                        
+                    }
                     
                 }
                 
@@ -244,7 +253,7 @@ int countWayCoast (int **matrixOfPrice, int *p, int numberOfCities) { // Под�
 // Для эвристического алгоритма 3 //----------------------------------------------------------------------------------------------------------------
 
 // Подсчет минимального пути эвристическим алгоритмом 3
-void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCities, int MAX_PRICE) {
+void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCities, int MAX_PRICE, int startingCity) {
     
     int indexMinElement = 0, currentLine = 0; // Начинаем с 1 города (1 элемент имеет индекс 0)
     
@@ -264,9 +273,7 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
     
     // Формируем массив для минимального пути
     
-    minWay[0] = 0;
-    
-    for (int i = 1; i <= numberOfCities + 1; i++) {
+    for (int i = 0; i <= numberOfCities + 1; i++) {
         
         minWay[i] = 0;
         
@@ -298,10 +305,10 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
         
         matrixOfPriceCopy[indexMinElement][currentLine] = 0; // Зануляем обратный путь
         
-        
+        /*
         std::cout << std::endl;
         printMatrix(matrixOfPriceCopy, numberOfCities, numberOfCities);
-        
+        */
         
         
         //Теперь записываем город в итоговый массив
