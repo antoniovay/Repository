@@ -246,7 +246,7 @@ int countWayCoast (int **matrixOfPrice, int *p, int numberOfCities) { // Под�
 // Подсчет минимального пути эвристическим алгоритмом 3
 void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCities, int MAX_PRICE) {
     
-    int indexMinElement = 1, currentLine = 0; // Начинаем с 1 города (1 элемент имеет индекс 0)
+    int indexMinElement = 0, currentLine = 0; // Начинаем с 1 города (1 элемент имеет индекс 0)
     
     
     // Делаем копию матрицы, т.к. мы будем её изменять
@@ -264,43 +264,25 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
     
     // Формируем массив для минимального пути
     
-    minWay[0] = 1;
+    minWay[0] = 0;
     
     for (int i = 1; i <= numberOfCities + 1; i++) {
         
         minWay[i] = 0;
         
     }
-        
-    //int f = 0;
+    
     int i = 1;
+    
+    for (int j = 0; j < numberOfCities; j++) {
+        
+        matrixOfPriceCopy[j][i - 1] = 0;
+        
+    }
         
     while (i < numberOfCities) { // Проходов столько, сколько городов
         
         indexMinElement = findMinInLine(matrixOfPriceCopy, numberOfCities, currentLine, MAX_PRICE); // Индекс минимального элемента
-        
-        int f = 0;
-        
-        for (int k = 0; k < numberOfCities; k++) {
-        
-            if (minWay[k] == indexMinElement) {
-                
-                f = 1;
-            
-            }
-            
-        }
-        
-        
-        // Проверяем, был ли этот элемент уже в массиве minWay (если да, то зануляем и ищем новый indexMinElement
-        
-        if (f == 1) {
-            
-            matrixOfPriceCopy[currentLine][indexMinElement] = 0;
-            
-            indexMinElement = findMinInLine(matrixOfPriceCopy, numberOfCities, currentLine, MAX_PRICE);
-            
-        }
         
         //std::cout << indexMinElement << std::endl;
         
@@ -314,12 +296,12 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
             
         }
         
-        matrixOfPriceCopy[currentLine][indexMinElement] = 0; // Зануляем обратный путь
+        matrixOfPriceCopy[indexMinElement][currentLine] = 0; // Зануляем обратный путь
         
-        /*
+        
         std::cout << std::endl;
         printMatrix(matrixOfPriceCopy, numberOfCities, numberOfCities);
-        */
+        
         
         
         //Теперь записываем город в итоговый массив
