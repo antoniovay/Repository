@@ -320,7 +320,8 @@ void countMinWayHeuristicMethod(int** matrixOfPrice, int* minWay, int numberOfCi
         i++;
         
     }
-
+    
+    
     
     // Очищаем использованную динамическую память
     

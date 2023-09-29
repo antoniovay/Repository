@@ -146,7 +146,7 @@ int main()
     float quality, time;
     
     
-    quality = 100 - (float)(minWeightHeuristic - minWeight) / (float)(maxWeight - minWeight);
+    quality = 100 - (float)(minWeightHeuristic - minWeight) / (float)(maxWeight - minWeight) * 100;
     
     std::cout << std::endl << "Качество эвристического алгоритма 3 относительно точного = " << quality << "%" << std::endl;
     

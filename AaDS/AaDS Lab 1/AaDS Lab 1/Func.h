@@ -39,3 +39,24 @@ int countWayCoast (int **matrixOfPrice, int *p, int numberOfCities);
 void countMinWayHeuristicMethod (int** matrixOfPrice, int* answerArray, int numberOfCities, int MAX_PRICE, int startingCity);
 
 int findMinInLine(int** matrixOfPrice, int n, int line, int MAX_PRICE);
+
+
+/*
+ 
+ while (minWay[0] == startingCity - 1) {
+         
+     int c = minWay[0];
+     
+     for (int j = 0; j < numberOfCities - 1; j++) {
+         
+         minWay[j] = minWay[j + 1];
+         
+     }
+     
+     minWay[numberOfCities] = c;
+     
+ }
+ 
+ minWay[numberOfCities] = startingCity;
+ 
+ */
