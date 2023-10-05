@@ -2,6 +2,7 @@
 //  main.cpp
 //  AaDS Lab 1
 //
+<<<<<<< Updated upstream
 //  Created by Antony Miroshnichenko on 18.09.2023.
 //
 
@@ -210,4 +211,21 @@ int main()
     
     delete [] minWay;
     
+=======
+//  Created by Antony Miroshnichenko on 15.09.2023.
+//
+
+#include <iostream>
+#include "Func.h"
+using namespace std;
+
+#define M 6
+#define N 6
+
+int main()
+{
+    int a[M][N] = {0};
+    RandMatr(a, M, N, 1, 100);
+    PrintMatr(a, M, N);
+>>>>>>> Stashed changes
 }

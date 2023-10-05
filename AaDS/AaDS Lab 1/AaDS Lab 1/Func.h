@@ -1,5 +1,6 @@
 #pragma once
 
+<<<<<<< Updated upstream
 
 // Функции для матриц //======================================================================================================
 
@@ -60,3 +61,7 @@ int findMinInLine(int** matrixOfPrice, int n, int line, int MAX_PRICE);
  minWay[numberOfCities] = startingCity;
  
  */
+=======
+void RandMatr(int matr[][100], int m, int n, int a, int b);
+void PrintMatr(int a[][100], int m, int n);
+>>>>>>> Stashed changes

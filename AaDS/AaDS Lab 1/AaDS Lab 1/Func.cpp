@@ -2,6 +2,7 @@
 //  Func.cpp
 //  AaDS Lab 1
 //
+<<<<<<< Updated upstream
 //  Created by Antony Miroshnichenko on 18.09.2023.
 //
 
@@ -360,3 +361,32 @@ int findMinInLine(int** matrixOfPrice, int n, int line, int MAX_PRICE) {
     return minIndex;
 }
 
+=======
+//  Created by Antony Miroshnichenko on 15.09.2023.
+//
+
+#include <iostream>
+#include "Func.h"
+using namespace std;
+
+//случайная матрица
+void RandMatr(int matr[][100], int m, int n, int a, int b)
+{
+    srand(time(0));
+    int i, j;
+    for(i=0; i<m; i++)
+    for(j=0; j<n; j++)
+    matr[i][j]=rand()%(b-a+1)+a;
+}
+
+//вывод матрицы
+void PrintMatr(int matr[][100], int m, int n)
+{
+    int i, j;
+    for(i=0; i<m; i++)
+    {
+        for(j=0; j<n; j++) cout << matr[i][j] << " ";
+        cout << endl;
+    }
+}
+>>>>>>> Stashed changes

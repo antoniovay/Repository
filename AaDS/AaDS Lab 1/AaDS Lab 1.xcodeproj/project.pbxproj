@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< Updated upstream
 		A08E63652AB8892D006E2094 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A08E63642AB8892D006E2094 /* main.cpp */; };
 		A08E636D2AB8894D006E2094 /* Func.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A08E636C2AB8894D006E2094 /* Func.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A08E635F2AB8892D006E2094 /* CopyFiles */ = {
+=======
+		A0F8A7292AB4076F00D6B792 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0F8A7282AB4076F00D6B792 /* main.cpp */; };
+		A0F8A7312AB407A400D6B792 /* Func.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0F8A7302AB407A400D6B792 /* Func.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A0F8A7232AB4076F00D6B792 /* CopyFiles */ = {
+>>>>>>> Stashed changes
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+<<<<<<< Updated upstream
 		A08E63612AB8892D006E2094 /* AaDS Lab 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AaDS Lab 1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A08E63642AB8892D006E2094 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A08E636B2AB88940006E2094 /* Func.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Func.h; sourceTree = "<group>"; };
@@ -32,6 +42,16 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		A08E635E2AB8892D006E2094 /* Frameworks */ = {
+=======
+		A0F8A7252AB4076F00D6B792 /* AaDS Lab 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AaDS Lab 1"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0F8A7282AB4076F00D6B792 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A0F8A72F2AB4078700D6B792 /* Func.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Func.h; sourceTree = "<group>"; };
+		A0F8A7302AB407A400D6B792 /* Func.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Func.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0F8A7222AB4076F00D6B792 /* Frameworks */ = {
+>>>>>>> Stashed changes
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +61,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< Updated upstream
 		A08E63582AB8892D006E2094 = {
 			isa = PBXGroup;
 			children = (
@@ -53,16 +74,39 @@
 			isa = PBXGroup;
 			children = (
 				A08E63612AB8892D006E2094 /* AaDS Lab 1 */,
+=======
+		A0F8A71C2AB4076F00D6B792 = {
+			isa = PBXGroup;
+			children = (
+				A0F8A7272AB4076F00D6B792 /* AaDS Lab 1 */,
+				A0F8A7262AB4076F00D6B792 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A0F8A7262AB4076F00D6B792 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0F8A7252AB4076F00D6B792 /* AaDS Lab 1 */,
+>>>>>>> Stashed changes
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< Updated upstream
 		A08E63632AB8892D006E2094 /* AaDS Lab 1 */ = {
 			isa = PBXGroup;
 			children = (
 				A08E63642AB8892D006E2094 /* main.cpp */,
 				A08E636B2AB88940006E2094 /* Func.h */,
 				A08E636C2AB8894D006E2094 /* Func.cpp */,
+=======
+		A0F8A7272AB4076F00D6B792 /* AaDS Lab 1 */ = {
+			isa = PBXGroup;
+			children = (
+				A0F8A7282AB4076F00D6B792 /* main.cpp */,
+				A0F8A72F2AB4078700D6B792 /* Func.h */,
+				A0F8A7302AB407A400D6B792 /* Func.cpp */,
+>>>>>>> Stashed changes
 			);
 			path = "AaDS Lab 1";
 			sourceTree = "<group>";
@@ -70,6 +114,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+<<<<<<< Updated upstream
 		A08E63602AB8892D006E2094 /* AaDS Lab 1 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A08E63682AB8892D006E2094 /* Build configuration list for PBXNativeTarget "AaDS Lab 1" */;
@@ -77,6 +122,15 @@
 				A08E635D2AB8892D006E2094 /* Sources */,
 				A08E635E2AB8892D006E2094 /* Frameworks */,
 				A08E635F2AB8892D006E2094 /* CopyFiles */,
+=======
+		A0F8A7242AB4076F00D6B792 /* AaDS Lab 1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0F8A72C2AB4076F00D6B792 /* Build configuration list for PBXNativeTarget "AaDS Lab 1" */;
+			buildPhases = (
+				A0F8A7212AB4076F00D6B792 /* Sources */,
+				A0F8A7222AB4076F00D6B792 /* Frameworks */,
+				A0F8A7232AB4076F00D6B792 /* CopyFiles */,
+>>>>>>> Stashed changes
 			);
 			buildRules = (
 			);
@@ -84,24 +138,40 @@
 			);
 			name = "AaDS Lab 1";
 			productName = "AaDS Lab 1";
+<<<<<<< Updated upstream
 			productReference = A08E63612AB8892D006E2094 /* AaDS Lab 1 */;
+=======
+			productReference = A0F8A7252AB4076F00D6B792 /* AaDS Lab 1 */;
+>>>>>>> Stashed changes
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
+<<<<<<< Updated upstream
 		A08E63592AB8892D006E2094 /* Project object */ = {
+=======
+		A0F8A71D2AB4076F00D6B792 /* Project object */ = {
+>>>>>>> Stashed changes
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+<<<<<<< Updated upstream
 					A08E63602AB8892D006E2094 = {
+=======
+					A0F8A7242AB4076F00D6B792 = {
+>>>>>>> Stashed changes
 						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
+<<<<<<< Updated upstream
 			buildConfigurationList = A08E635C2AB8892D006E2094 /* Build configuration list for PBXProject "AaDS Lab 1" */;
+=======
+			buildConfigurationList = A0F8A7202AB4076F00D6B792 /* Build configuration list for PBXProject "AaDS Lab 1" */;
+>>>>>>> Stashed changes
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +179,52 @@
 				en,
 				Base,
 			);
+<<<<<<< Updated upstream
 			mainGroup = A08E63582AB8892D006E2094;
 			productRefGroup = A08E63622AB8892D006E2094 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				A08E63602AB8892D006E2094 /* AaDS Lab 1 */,
+=======
+			mainGroup = A0F8A71C2AB4076F00D6B792;
+			productRefGroup = A0F8A7262AB4076F00D6B792 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0F8A7242AB4076F00D6B792 /* AaDS Lab 1 */,
+>>>>>>> Stashed changes
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+<<<<<<< Updated upstream
 		A08E635D2AB8892D006E2094 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A08E63652AB8892D006E2094 /* main.cpp in Sources */,
 				A08E636D2AB8894D006E2094 /* Func.cpp in Sources */,
+=======
+		A0F8A7212AB4076F00D6B792 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0F8A7292AB4076F00D6B792 /* main.cpp in Sources */,
+				A0F8A7312AB407A400D6B792 /* Func.cpp in Sources */,
+>>>>>>> Stashed changes
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+<<<<<<< Updated upstream
 		A08E63662AB8892D006E2094 /* Debug */ = {
+=======
+		A0F8A72A2AB4076F00D6B792 /* Debug */ = {
+>>>>>>> Stashed changes
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,7 +282,11 @@
 			};
 			name = Debug;
 		};
+<<<<<<< Updated upstream
 		A08E63672AB8892D006E2094 /* Release */ = {
+=======
+		A0F8A72B2AB4076F00D6B792 /* Release */ = {
+>>>>>>> Stashed changes
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +337,11 @@
 			};
 			name = Release;
 		};
+<<<<<<< Updated upstream
 		A08E63692AB8892D006E2094 /* Debug */ = {
+=======
+		A0F8A72D2AB4076F00D6B792 /* Debug */ = {
+>>>>>>> Stashed changes
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -249,7 +349,11 @@
 			};
 			name = Debug;
 		};
+<<<<<<< Updated upstream
 		A08E636A2AB8892D006E2094 /* Release */ = {
+=======
+		A0F8A72E2AB4076F00D6B792 /* Release */ = {
+>>>>>>> Stashed changes
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -260,25 +364,45 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+<<<<<<< Updated upstream
 		A08E635C2AB8892D006E2094 /* Build configuration list for PBXProject "AaDS Lab 1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A08E63662AB8892D006E2094 /* Debug */,
 				A08E63672AB8892D006E2094 /* Release */,
+=======
+		A0F8A7202AB4076F00D6B792 /* Build configuration list for PBXProject "AaDS Lab 1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0F8A72A2AB4076F00D6B792 /* Debug */,
+				A0F8A72B2AB4076F00D6B792 /* Release */,
+>>>>>>> Stashed changes
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+<<<<<<< Updated upstream
 		A08E63682AB8892D006E2094 /* Build configuration list for PBXNativeTarget "AaDS Lab 1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A08E63692AB8892D006E2094 /* Debug */,
 				A08E636A2AB8892D006E2094 /* Release */,
+=======
+		A0F8A72C2AB4076F00D6B792 /* Build configuration list for PBXNativeTarget "AaDS Lab 1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0F8A72D2AB4076F00D6B792 /* Debug */,
+				A0F8A72E2AB4076F00D6B792 /* Release */,
+>>>>>>> Stashed changes
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
+<<<<<<< Updated upstream
 	rootObject = A08E63592AB8892D006E2094 /* Project object */;
+=======
+	rootObject = A0F8A71D2AB4076F00D6B792 /* Project object */;
+>>>>>>> Stashed changes
 }
