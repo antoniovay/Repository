@@ -58,7 +58,7 @@ void fillTAB (int* TAB, std::string pattern) { // Заполнение табл�
 
 
 
-// Нахождение всех перестаановок в диапазоне
+// Нахождение всех перестановок в диапазоне
 void getOccurrences (std::vector<int> &listOfOccurrences, const std::string text, const std::string pattern, int* TAB, const int leftEdge, const int rightEdge) {
     
     if (pattern.size() == 0)
@@ -135,7 +135,7 @@ void getOccurrences (std::vector<int> &listOfOccurrences, const std::string text
 // Функция получения индекса первого вхождения подстроки в тексте
 int searchBMFirstOccurrence (const std::string text, const std::string pattern) {
     
-    int start = 0, stop = (int) pattern.size();
+    int leftEdge = 0, rightEdge = (int) pattern.size();
     
     int TAB[256] = {0};
     
@@ -143,12 +143,12 @@ int searchBMFirstOccurrence (const std::string text, const std::string pattern) 
     
     std::vector<int> listOfOccurrences;
     
-    while (listOfOccurrences.size() < 1 && stop < text.size() && stop != 0) {
+    while (listOfOccurrences.size() < 1 && rightEdge < text.size() && rightEdge != 0) {
         
-        getOccurrences(listOfOccurrences, text, pattern, TAB, start, stop);
+        getOccurrences(listOfOccurrences, text, pattern, TAB, leftEdge, rightEdge);
         
-        start = stop;
-        stop += stop;
+        leftEdge = rightEdge;
+        rightEdge += rightEdge;
         
     }
     
