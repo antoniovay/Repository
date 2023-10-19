@@ -22,6 +22,16 @@ class Array {
     
 public:
     
+    template <typename IT, typename AT>
+    
+    class TemplateIterator;
+    
+    using Iterator = TemplateIterator<ItemType, Array>;
+    using ConstIterator = TemplateIterator<const ItemType, const Array>;
+
+    
+public:
+    
     Array (const int size = 10, const ItemType &value = ItemType()); // Конструктор по умолчанию (заполнение одним числом)
     Array (const int size, const ItemType* array); // Конструктор по умолчанию (заполнение массивом)
     Array (const Array &other); // Конструктор копирования
@@ -57,12 +67,24 @@ public:
     Array &operator = (Array &&other); // Оператор присваивания по перемещению
     
     const ItemType &operator [] (const int index) const; // Перегрузка []
+    
+    Iterator begin(); // Итератор на начало
+    Iterator end(); // Итератор на конец
+    
+    ConstIterator begin() const; // Константный итератор на начало
+    ConstIterator end() const; // Константный итератор на конец
+    
+    Iterator insertInArrayBeforeIterator (Iterator iter, const ItemType& value);
+    Iterator removeFromArrayInRange (const Iterator begin, const Iterator end);
 
     Array operator + (const Array &other) const; // Сложение массивов (конкатенация) +
     Array &operator += (const Array &other); // Сложение массивов (конкатенация) +=
     
     bool operator == (const Array object) const; // Сравнение ==
     bool operator != (const Array object) const; // Сравнение !=
+    
+    Array<ItemType> operator + (const ItemType& value) const; // Добавление элемента в конец массива
+    Array<ItemType> &operator += (const ItemType& value); // Добавление элемента в конец массива
     
     
 private:
@@ -74,15 +96,34 @@ private:
 
 
 
+template <typename ItemType>
+template <typename IT, typename AT>
+
+class Array<ItemType>::TemplateIterator {
+    
+public:
+    
+    TemplateIterator(AT *array = nullptr, const int pos = 0);
+
+
+private:
+    AT *m_array;
+    int m_pos = -1;
+};
 
 
 
-template <typename Type>
-
-std::ostream &operator << (std::ostream &stream, const Array<Type> &arr);
 
 
 
-template <typename Type>
 
-std::istream &operator >> (std::istream &stream, Array<Type> &arr);
+
+template <typename ItemType>
+
+std::ostream &operator << (std::ostream &stream, const Array<ItemType> &arr);
+
+
+
+template <typename ItemType>
+
+std::istream &operator >> (std::istream &stream, Array<ItemType> &arr);

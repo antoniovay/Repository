@@ -25,7 +25,7 @@ int main() {
     //std::cout << arr << std::endl;
     
     
-    char  s[10] = "qwertyuio";
+    const char  s[10] = "qwertyuio";
     
     //Array<std::string> str(10, s);
         

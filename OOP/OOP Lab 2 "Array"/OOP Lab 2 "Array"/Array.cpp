@@ -18,6 +18,8 @@
 
 
 
+
+
 // Конструктор по умолчанию (заполнение одним числом)
 
 template <typename ItemType>
@@ -52,6 +54,8 @@ Array <ItemType>::Array (const int size, const ItemType &value) {
 }
 
 
+ 
+ 
 
 // Конструктор по умолчанию (заполнение массивом)
 
@@ -489,6 +493,96 @@ void Array<ItemType>::sortArray() const {
 
 
 
+template <typename ItemType> typename
+
+Array<ItemType>::Iterator Array<ItemType>::begin() {
+    
+    return Iterator(this, 0);
+    
+}
+
+
+
+template <typename ItemType> typename
+
+Array<ItemType>::Iterator Array<ItemType>::end() {
+    
+    return Iterator(this, m_size);
+    
+}
+
+
+
+template <typename ItemType> typename
+
+Array<ItemType>::ConstIterator Array<ItemType>::begin() const {
+    
+    return ConstIterator(this, 0);
+    
+}
+
+
+
+template <typename ItemType> typename
+
+Array<ItemType>::ConstIterator Array<ItemType>::end() const {
+    
+    return ConstIterator(this, m_size);
+}
+
+
+
+template <typename ItemType> typename
+
+Array<ItemType>::Iterator Array<ItemType>::insertInArrayBeforeIterator(Iterator iter, const ItemType& value) {
+    
+    insertInArray(iter.m_pos, value);
+    
+    iter.m_pos++;
+    
+    return iter;
+    
+}
+
+
+
+template <typename ItemType> typename
+
+Array<ItemType>::Iterator Array<ItemType>::removeFromArrayInRange (const Iterator begin, const Iterator end) {
+    
+    assert(end.m_pos >= begin.m_pos);
+    
+    Array updatedArray(m_size + begin.m_pos - end.m_pos, -1);
+    
+    Iterator iterOfUpdatedArray = updatedArray.begin();
+    
+    for (auto iter = this->begin(); iter != this->end(); iter++) {
+        
+        if (iter.m_pos < begin.m_pos || iter.m_pos >= end.m_pos) {
+            
+            (*iterOfUpdatedArray) = (*this)[iter.m_pos];
+            
+            iterOfUpdatedArray++;
+            
+        }
+        
+        else {
+            
+            iter += end.m_pos - begin.m_pos - 1;
+            
+        }
+        
+    }
+    
+    swap(updatedArray);
+    
+    return iterOfUpdatedArray;
+    
+}
+
+
+
+
 
 
 // Перегрузки //-----
@@ -603,9 +697,9 @@ template <typename ItemType>
 
 Array<ItemType> &Array<ItemType>::operator += (const Array &other) {
     
-    Array tmp = *this + other;
+    Array res = *this + other;
     
-    swap(tmp);
+    swap(res);
     
     return *this;
     
@@ -651,6 +745,61 @@ bool Array<ItemType>::operator != (const Array other) const {
     return !(*this == other);
     
 }
+
+
+
+// Добавление элемента в конец массива
+
+template <typename ItemType>
+
+Array<ItemType> Array<ItemType>::operator + (const ItemType& value) const {
+    
+    Array updatedArray(m_size + 1, 0);
+    
+    for (int i = 0; i < m_size - 1; i++) {
+        
+        updatedArray.m_array[i] = m_array[i];
+        
+    }
+    
+    updatedArray.m_array[m_size] = value;
+    
+    return updatedArray;
+    
+}
+
+
+
+// Добавление элемента в конец массива
+
+template <typename ItemType>
+
+Array<ItemType> &Array<ItemType>::operator += (const ItemType& value) {
+    
+    *this = *this + value;
+    
+    return *this;
+    
+}
+
+
+
+
+
+
+
+
+// Функции класса TemplateIterator //-----------------------------------------------------------------------------------------------------------------
+
+
+
+template <typename ItemType>
+template <typename IT, typename AT>
+
+Array<ItemType>::TemplateIterator<IT, AT>::TemplateIterator(AT *array, const int pos)
+    : m_array(array), m_pos(pos)
+{}
+
 
 
 
