@@ -66,7 +66,8 @@ public:
     Array &operator = (const Array &other); // Оператор присваивания
     Array &operator = (Array &&other); // Оператор присваивания по перемещению
     
-    const ItemType &operator [] (const int index) const; // Перегрузка []
+    ItemType &operator [] (const int index); // Перегрузка []
+    const ItemType &operator [] (const int index) const; // Перегрузка [] для const
     
     Iterator begin(); // Итератор на начало
     Iterator end(); // Итератор на конец
@@ -103,7 +104,27 @@ class Array<ItemType>::TemplateIterator {
     
 public:
     
+    friend class Array;
+    
     TemplateIterator(AT *array = nullptr, const int pos = 0);
+    
+    
+    bool hasNext() const;
+    
+    IT &operator * ();
+    
+    IT &operator [] (const int offset);
+    
+    TemplateIterator &operator = (const int &value);
+    
+    TemplateIterator &operator ++ ();
+    TemplateIterator operator ++ (int);
+    
+    TemplateIterator &operator -- ();
+    TemplateIterator operator -- (int);
+    
+    bool operator == (const TemplateIterator &other) const;
+    bool operator != (const TemplateIterator &other) const;
 
 
 private:

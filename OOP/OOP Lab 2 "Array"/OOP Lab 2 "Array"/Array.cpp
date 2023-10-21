@@ -649,6 +649,20 @@ Array<ItemType> &Array<ItemType>::operator = (Array &&other) {
 
 template <typename ItemType>
 
+ItemType &Array<ItemType>::operator [] (const int index) {
+    
+    assert(index >= 0 && index < m_size); // Остановка программы при неправильном индексе
+    
+    return m_array[index];
+    
+}
+
+
+
+// Перегрузка [] для const
+
+template <typename ItemType>
+
 const ItemType &Array<ItemType>::operator [] (const int index) const {
     
     assert(index >= 0 && index < m_size); // Остановка программы при неправильном индексе
@@ -800,6 +814,138 @@ Array<ItemType>::TemplateIterator<IT, AT>::TemplateIterator(AT *array, const int
     : m_array(array), m_pos(pos)
 {}
 
+
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+bool Array<ItemType>::TemplateIterator<IT, AT>::hasNext() const {
+    
+    return (m_pos < m_array->size());
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+IT &Array<ItemType>::TemplateIterator<IT, AT>::operator * () {
+    
+    return m_array->operator[](m_pos);
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+IT &Array<ItemType>::TemplateIterator<IT, AT>::operator [] (const int index) {
+    
+    return *(operator[](index));
+    
+}
+
+
+
+template <typename ItemType>
+template <typename IT, typename AT> typename
+Array<ItemType>:: template TemplateIterator<IT, AT> &Array<ItemType>::TemplateIterator<IT, AT>::operator = (const int &value) {
+    
+    m_pos = value;
+    return *this;
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+Array<ItemType>::TemplateIterator<IT, AT> &Array<ItemType>::TemplateIterator<IT, AT>::operator ++ () {
+    
+    ++m_pos;
+    
+    return *this;
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+Array<ItemType>::TemplateIterator<IT, AT> Array<ItemType>::TemplateIterator<IT, AT>::operator ++ (int) {
+    
+    Array<ItemType>::TemplateIterator<IT, AT> old(*this);
+    
+    ++m_pos;
+    
+    return old;
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+Array<ItemType>::TemplateIterator<IT, AT> &Array<ItemType>::TemplateIterator<IT, AT>::operator -- () {
+    
+    --m_pos;
+    
+    return *this;
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+Array<ItemType>::TemplateIterator<IT, AT> Array<ItemType>::TemplateIterator<IT, AT>::operator -- (int) {
+    
+    Array<ItemType>::TemplateIterator<IT, AT> old(*this);
+    
+    --m_pos;
+    
+    return old;
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+bool Array<ItemType>::TemplateIterator<IT, AT>::operator == (const TemplateIterator &other) const {
+    
+    return (m_array == other.m_array && m_pos == other.m_pos);
+    
+}
+
+
+
+template <typename ItemType>
+
+template <typename IT, typename AT>
+
+bool Array<ItemType>::TemplateIterator<IT, AT>::operator != (const TemplateIterator &other) const {
+    
+    return !( operator==(other) );
+    
+}
 
 
 
