@@ -160,7 +160,7 @@ void Array<ItemType>::swap(Array &other) {
 
 template <typename ItemType>
 
-int Array<ItemType>::searchInArray (const int value) {
+int Array<ItemType>::search (const int value) {
     
     for (int i = 0; i < m_size; i++) {
         
@@ -226,7 +226,7 @@ void Array<ItemType>::resize(int size) {
 
 template <typename ItemType>
 
-bool Array<ItemType>::insertInArray (const int index, const ItemType& value) {
+bool Array<ItemType>::insert (const int index, const ItemType& value) {
     
     
     if (index < 0 || index > m_size) {
@@ -275,7 +275,7 @@ bool Array<ItemType>::insertInArray (const int index, const ItemType& value) {
 
 template <typename ItemType>
 
-bool Array<ItemType>::removeFromArrayIndex (const int index) {
+bool Array<ItemType>::removeAtIndex (const int index) {
     
     
     if (index < 0 || index > m_size) {
@@ -323,7 +323,7 @@ bool Array<ItemType>::removeFromArrayIndex (const int index) {
 
 template <typename ItemType>
 
-bool Array<ItemType>::removeFromArrayValue (const ItemType& value) {
+bool Array<ItemType>::removeAtValue (const ItemType& value) {
     
     
     ItemType* updatedArray = new ItemType [m_size - 1];
@@ -378,7 +378,7 @@ bool Array<ItemType>::removeFromArrayValue (const ItemType& value) {
 
 template <typename ItemType>
 
-bool Array<ItemType>::removeFromArrayValueAll (const ItemType& value) {
+bool Array<ItemType>::removeAtValueAll (const ItemType& value) {
     
     int flag = 0;
         
@@ -387,7 +387,7 @@ bool Array<ItemType>::removeFromArrayValueAll (const ItemType& value) {
             
             if (m_array[i] == value) {
                 
-                flag = removeFromArrayIndex(i);
+                flag = removeAtIndex(i);
                 
                 i--;
                 
@@ -475,7 +475,7 @@ ItemType Array<ItemType>::minElement() const {
 
 template <typename ItemType>
 
-void Array<ItemType>::sortArray() const {
+void Array<ItemType>::sort() const {
     
     for (int i = 0; i < m_size - 1; i++) {
         
@@ -534,9 +534,9 @@ Array<ItemType>::ConstIterator Array<ItemType>::end() const {
 
 template <typename ItemType> typename
 
-Array<ItemType>::Iterator Array<ItemType>::insertInArrayBeforeIterator(Iterator iter, const ItemType& value) {
+Array<ItemType>::Iterator Array<ItemType>::insertBeforeIterator(Iterator iter, const ItemType& value) {
     
-    insertInArray(iter.m_pos, value);
+    insert(iter.m_pos, value);
     
     iter.m_pos++;
     
@@ -548,7 +548,7 @@ Array<ItemType>::Iterator Array<ItemType>::insertInArrayBeforeIterator(Iterator 
 
 template <typename ItemType> typename
 
-Array<ItemType>::Iterator Array<ItemType>::removeFromArrayInRange (const Iterator begin, const Iterator end) {
+Array<ItemType>::Iterator Array<ItemType>::removeInRange (const Iterator begin, const Iterator end) {
     
     assert(end.m_pos >= begin.m_pos);
     

@@ -44,21 +44,21 @@ public:
     
     void swap (Array &other); // Поменять местами два массива
     
-    int searchInArray (const int value);
+    int search (const int value);
     
     int size() const; // Узнать размер массива
     void resize (int size); // Изменение размера массива
     
-    bool insertInArray (const int index, const ItemType& value); // Вставка элемента в массив (по индексу)
+    bool insert (const int index, const ItemType& value); // Вставка элемента в массив (по индексу)
     
-    bool removeFromArrayIndex (const int index); // Удаление элемента из массива по индексу (аналогично вставке)
-    bool removeFromArrayValue (const ItemType& value); // Удаление элемента из массива по значению (первое вхождение)
-    bool removeFromArrayValueAll (const ItemType& value); // Удаление элементов из массива по значению (все)
+    bool removeAtIndex (const int index); // Удаление элемента из массива по индексу (аналогично вставке)
+    bool removeAtValue (const ItemType& value); // Удаление элемента из массива по значению (первое вхождение)
+    bool removeAtValueAll (const ItemType& value); // Удаление элементов из массива по значению (все)
     
     ItemType maxElement() const; // Найти максимальный элемент
     ItemType minElement() const; // Найти минимальный элемент
     
-    void sortArray() const; // Сортировка массива
+    void sort() const; // Сортировка массива
     
     
     // Перегрузки //-----
@@ -75,8 +75,8 @@ public:
     ConstIterator begin() const; // Константный итератор на начало
     ConstIterator end() const; // Константный итератор на конец
     
-    Iterator insertInArrayBeforeIterator (Iterator iter, const ItemType& value);
-    Iterator removeFromArrayInRange (const Iterator begin, const Iterator end);
+    Iterator insertBeforeIterator (Iterator iter, const ItemType& value);
+    Iterator removeInRange (const Iterator begin, const Iterator end);
 
     Array operator + (const Array &other) const; // Сложение массивов (конкатенация) +
     Array &operator += (const Array &other); // Сложение массивов (конкатенация) +=
