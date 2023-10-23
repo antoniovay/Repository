@@ -16,7 +16,7 @@
 
 // Вывод массива
 
-void printArray (int array[], int size) {
+void printArray (int *array, int size) {
     
     if (size > 100) {
         
@@ -64,7 +64,7 @@ void randomArray (int *array, int size, int a, int b) {
 
 // Сортировка Шелла с выбором длин промежутков по Шеллу
 
-void shellSort (int array[], int size) {
+void shellSort (int *array, int size) {
     
     
     for (int gap = size / 2; gap > 0; gap /= 2) {

@@ -18,7 +18,7 @@ int main() {
     
     double time;
     
-    int size;
+    int* arr, size;
     
     std::cout << "Введите желаемый размер массива >> ";
     
@@ -26,7 +26,8 @@ int main() {
     
     std::cout << std::endl;
     
-    int arr[size];
+    
+    arr = new int [size];
     
     randomArray(arr, size, 1, 1000);
     
@@ -73,4 +74,5 @@ int main() {
     
     
     std::cout << "Время работы алгоритма - " << time << "s" << std::endl;
+    
 }
