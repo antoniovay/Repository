@@ -18,61 +18,74 @@ int main() {
     
     double time;
     
-    int* arr, size;
+    int* arr;
     
-    std::cout << "Введите желаемый размер массива >> ";
+    for (int type = 1; type <=3; type++)
     
-    std::cin >> size;
-    
-    std::cout << std::endl;
-    
-    
-    arr = new int [size];
-    
-    randomArray(arr, size, 1, 1000);
-    
-    
-    
-    std::cout << "Массив до сортировки: ";
-    
-    printArray(arr, size);
-    
-    
-    
-    clock_t start = clock();
-    
-    shellSort(arr, size);
-            
-    clock_t end = clock();
+        for (int size = 10000; size < 1000001; size *= 10)
         
-    time = (double) (end - start) / CLOCKS_PER_SEC;
-    
-    
-    
-    std::cout << std::endl << "Массив после сортировки: ";
-    
-    printArray(arr, size);
-    
-    std::cout << std::endl;
-    
-    
-    
-    if (orderCheck(arr, size) == true) {
+            for (int range = 10; range < 100001; range *= 100)
         
-        std::cout << "Массив упорядочен" << std::endl;
+                for (int i = 1; i < 4; i++) {
         
-    }
-    
-    else {
+                    arr = new int [size];
+                    
+                    randomArray(arr, size, -range, range);
         
-        std::cout << "Массив не упорядочен" << std::endl;
+                    std::cout << "Массив до сортировки: ";
         
-    }
-    
-    std::cout << std::endl;
-    
-    
-    
-    std::cout << "Время работы алгоритма - " << time << "s" << std::endl;
+                    printArray(arr, size);
+        
+        
+        
+                    clock_t start = clock();
+                   
+                    switch (type) {
+                            
+                        case 1: shellSort(arr, size); break;
+                            
+                        case 2: shellSortKnut(arr, size); break;
+                            
+                        case 3: shellSort2MMinus1(arr, size); break;
+                    
+                        default: break;
+                            
+                    }
+        
+                    clock_t end = clock();
+                    
+                    time = (double) (end - start) / CLOCKS_PER_SEC;
+                    
+                    
+                    
+                    std::cout << std::endl << "Массив после сортировки: ";
+                    
+                    printArray(arr, size);
+                    
+                    std::cout << std::endl;
+                    
+                    
+                    
+                    if (orderCheck(arr, size) == true) {
+                        
+                        std::cout << "Массив упорядочен" << std::endl;
+                        
+                    }
+                    
+                    else {
+                        
+                        std::cout << "Массив не упорядочен" << std::endl;
+                        
+                    }
+                    
+                    std::cout << std::endl;
+                    
+                    
+                    
+                    std::cout << "Время работы алгоритма - " << time << "s" << std::endl << std::endl;
+                    
+                    delete [] arr;
+        
+               }
     
 }

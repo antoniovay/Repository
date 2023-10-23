@@ -73,6 +73,48 @@ void shellSort (int *array, int size) {
         sort(array, size, gap);
         
     }
+    
+    std::cout << std::endl << "Выполнена сортировка shellSort" << std::endl;
+}
+
+
+
+// Сортировка Шелла с выбором длин промежутков по Кнуту
+
+void shellSortKnut(int *array, int size) {
+    
+    int gap = 1;
+    
+    while (gap < size / 3) {
+        
+        sort(array, size, gap);
+        
+        gap = gap * 3 + 1;
+        
+    }
+    
+    std::cout << std::endl << "Выполнена сортировка shellSortKnut" << std::endl;
+    
+}
+
+
+
+// Сортировка Шелла с выбором длин промежутков по 2 ^ m - 1
+
+void shellSort2MMinus1(int *array, int size) {
+    
+    int gap;
+    
+    for (int m = 1; pow(2, m) < size; m++) {
+        
+        gap = pow(2, m) - 1;
+        
+        sort(array, size, gap);
+        
+    }
+    
+    std::cout << std::endl << "Выполнена сортировка shellSort2MMinus1" << std::endl;
+    
 }
 
 
