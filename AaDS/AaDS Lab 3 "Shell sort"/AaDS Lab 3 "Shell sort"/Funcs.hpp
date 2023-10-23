@@ -17,3 +17,5 @@ void printArray (int arr[], int n);
 void randomArray (int *mas, int n, int a, int b);
 
 void shellSort (int arr[], int n);
+
+bool orderCheck (int *array, int size);

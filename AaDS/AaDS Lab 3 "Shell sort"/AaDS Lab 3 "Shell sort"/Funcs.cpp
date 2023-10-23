@@ -14,15 +14,23 @@
 
 
 
-void printArray (int arr[], int n) {
+void printArray (int array[], int size) {
+    
+    if (size > 100) {
+        
+        std::cout << "Массив не выыеден из-за слишком большого размера" << std::endl;
+        
+        return;
+        
+    }
     
     std::cout << "[";
     
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < size; i++) {
         
-        std::cout << arr[i];
+        std::cout << array[i];
         
-        if (i < n - 1) {
+        if (i < size - 1) {
             
             std::cout << ", ";
             
@@ -36,13 +44,13 @@ void printArray (int arr[], int n) {
 
 
 
-void randomArray (int *mas, int n, int a, int b) {
+void randomArray (int *array, int size, int a, int b) {
     
     srand(time(0));
     
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < size; i++) {
         
-        mas[i] = rand() % (b - a + 1) + a;
+        array[i] = rand() % (b - a + 1) + a;
         
     }
     
@@ -50,29 +58,50 @@ void randomArray (int *mas, int n, int a, int b) {
 
 
 
-void shellSort (int arr[], int size) {
+void shellSort (int array[], int size) {
     
     
     for (int gap = size / 2; gap > 0; gap /= 2) {
         
         
-        for (int i = gap; i < size; i += 1) {
+        for (int i = gap; i < size; i++) {
             
-            int temp = arr[i];
+            int temp = array[i];
             
             int j;
             
-            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+            for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
                 
-                arr[j] = arr[j - gap];
+                array[j] = array[j - gap];
                 
             }
             
             
-            arr[j] = temp;
+            array[j] = temp;
             
 
         }
         
     }
+}
+
+
+
+// Проверка на упорядоченность
+
+bool orderCheck (int *array, int size) {
+    
+    for (int i = 0; i < size - 1; i++) {
+        
+        if (array[i] > array[i + 1]) {
+            
+            return false;
+            
+        }
+        
+    }
+    
+    
+    return true;
+    
 }
