@@ -14,6 +14,8 @@
 
 
 
+// Вывод массива
+
 void printArray (int array[], int size) {
     
     if (size > 100) {
@@ -44,6 +46,8 @@ void printArray (int array[], int size) {
 
 
 
+// Генерация случайного массива
+
 void randomArray (int *array, int size, int a, int b) {
     
     srand(time(0));
@@ -58,31 +62,43 @@ void randomArray (int *array, int size, int a, int b) {
 
 
 
+// Сортировка Шелла с выбором длин промежутков по Шеллу
+
 void shellSort (int array[], int size) {
     
     
     for (int gap = size / 2; gap > 0; gap /= 2) {
         
         
-        for (int i = gap; i < size; i++) {
-            
-            int temp = array[i];
-            
-            int j;
-            
-            for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
-                
-                array[j] = array[j - gap];
-                
-            }
-            
-            
-            array[j] = temp;
-            
-
-        }
+        sort(array, size, gap);
         
     }
+}
+
+
+
+// Собственно сортировка
+
+void sort (int *array, int size, int gap) {
+    
+    for (int i = gap; i < size; i++) {
+        
+        int temp = array[i];
+        
+        int j;
+        
+        for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
+            
+            array[j] = array[j - gap];
+            
+        }
+        
+        
+        array[j] = temp;
+        
+
+    }
+    
 }
 
 

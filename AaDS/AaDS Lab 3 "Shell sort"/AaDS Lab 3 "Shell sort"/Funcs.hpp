@@ -12,10 +12,15 @@
 #include <iostream>
 
 
-void printArray (int arr[], int n);
 
-void randomArray (int *mas, int n, int a, int b);
+void printArray (int array[], int size); // Вывод массива
 
-void shellSort (int arr[], int n);
+void randomArray (int *array, int size, int a, int b); // Генерация случайного массива
 
-bool orderCheck (int *array, int size);
+
+void shellSort (int array[], int size); // Сортировка Шелла с выбором длин промежутков по Шеллу
+
+void sort (int *array, int size, int gap); // Собственно сортировка
+
+
+bool orderCheck (int *array, int size); // Проверка на упорядоченность
