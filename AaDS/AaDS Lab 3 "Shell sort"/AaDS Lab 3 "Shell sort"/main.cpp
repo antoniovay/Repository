@@ -18,21 +18,29 @@ int main() {
     
     double time;
     
-    int n = 1000000, arr[n];
+    int size;
     
-    randomArray(arr, n, 1, 1000);
+    std::cout << "Введите желаемый размер массива >> ";
+    
+    std::cin >> size;
+    
+    std::cout << std::endl;
+    
+    int arr[size];
+    
+    randomArray(arr, size, 1, 1000);
     
     
     
     std::cout << "Массив до сортировки: ";
     
-    printArray(arr, n);
+    printArray(arr, size);
     
     
     
     clock_t start = clock();
     
-    shellSort(arr, n);
+    shellSort(arr, size);
             
     clock_t end = clock();
         
@@ -42,13 +50,13 @@ int main() {
     
     std::cout << std::endl << "Массив после сортировки: ";
     
-    printArray(arr, n);
+    printArray(arr, size);
     
     std::cout << std::endl;
     
     
     
-    if (orderCheck(arr, n) == true) {
+    if (orderCheck(arr, size) == true) {
         
         std::cout << "Массив упорядочен" << std::endl;
         
