@@ -36,9 +36,9 @@ int main() {
                     
                     randomArray(arr, size, -range, range);
                     
-                    std::cout << "Массив до сортировки: ";
+                    //std::cout << "Массив до сортировки: ";
                     
-                    printArray(arr, size);
+                    //printArray(arr, size);
                     
                     
                     
@@ -64,11 +64,11 @@ int main() {
                     
                     
                     
-                    std::cout << std::endl << "Массив после сортировки: ";
+                    //std::cout << std::endl << "Массив после сортировки: ";
                     
-                    printArray(arr, size);
+                    //printArray(arr, size);
                     
-                    std::cout << std::endl;
+                    //std::cout << std::endl;
                     
                     
                     
@@ -94,7 +94,7 @@ int main() {
                     
                 }
                 
-                std::cout << std::endl << std::endl << "Среднее время работы - " << avgTime/3 << "s" << std::endl << std::endl;
+                std::cout << std::endl << std::endl << "Среднее время работы - " << avgTime/3 << "s" << std::endl << std::endl << std::endl;
                 
             }
     
