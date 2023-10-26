@@ -26,9 +26,9 @@ int main() {
         
             for (int range = 10; range < 100001; range *= 100) {
                 
-                std::cout << "Выполняется сортировка методом массивов размера " << size << " c элементами в диапазоне [" << -range << "; " << range << "]" ;
+                std::cout << std::endl << "-----//Выполняется сортировка методом " << typeOfAlgorythm(type) << " массивов размера " << size << " c элементами в диапазоне [" << -range << "; " << range << "]//-----" << std::endl << std::endl << std::endl << std::endl;
                 
-                int avgTime;
+                double avgTime = 0;
                 
                 for (int i = 1; i < 4; i++) {
                     
@@ -59,6 +59,8 @@ int main() {
                     clock_t end = clock();
                     
                     time = (double) (end - start) / CLOCKS_PER_SEC;
+                    
+                    avgTime += time;
                     
                     
                     
@@ -91,6 +93,8 @@ int main() {
                     delete [] arr;
                     
                 }
+                
+                std::cout << std::endl << std::endl << "Среднее время работы - " << avgTime/3 << "s" << std::endl << std::endl;
                 
             }
     

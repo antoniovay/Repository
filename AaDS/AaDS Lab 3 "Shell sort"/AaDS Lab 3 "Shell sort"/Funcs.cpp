@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <string>
 
 #include "Funcs.hpp"
 
@@ -74,7 +75,7 @@ void shellSort (int *array, int size) {
         
     }
     
-    std::cout << std::endl << "Выполнена сортировка shellSort" << std::endl;
+    //std::cout << std::endl << "Выполнена сортировка shellSort" << std::endl;
 }
 
 
@@ -93,7 +94,7 @@ void shellSortKnut(int *array, int size) {
         
     }
     
-    std::cout << std::endl << "Выполнена сортировка shellSortKnut" << std::endl;
+    //std::cout << std::endl << "Выполнена сортировка shellSortKnut" << std::endl;
     
 }
 
@@ -113,7 +114,7 @@ void shellSort2MMinus1(int *array, int size) {
         
     }
     
-    std::cout << std::endl << "Выполнена сортировка shellSort2MMinus1" << std::endl;
+    //std::cout << std::endl << "Выполнена сортировка shellSort2MMinus1" << std::endl;
     
 }
 
@@ -122,6 +123,7 @@ void shellSort2MMinus1(int *array, int size) {
 // Собственно сортировка
 
 void sort (int *array, int size, int gap) {
+    
     
     for (int i = gap; i < size; i++) {
         
@@ -140,7 +142,6 @@ void sort (int *array, int size, int gap) {
         
 
     }
-    
 }
 
 
@@ -166,3 +167,16 @@ bool orderCheck (int *array, int size) {
 
 
 
+std::string typeOfAlgorythm (const int &type) {
+    
+    switch (type) {
+            
+        case 1: return "shellSort"; break;
+        case 2: return "shellSortKnut"; break;
+        case 3: return "shellSort2MMinus1"; break;
+            
+        default: return 0; break;
+            
+    }
+    
+}

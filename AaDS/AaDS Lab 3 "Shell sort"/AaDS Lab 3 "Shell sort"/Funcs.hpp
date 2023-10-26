@@ -28,3 +28,5 @@ void sort (int *array, int size, int gap); // Собственно сортир�
 
 
 bool orderCheck (int *array, int size); // Проверка на упорядоченность
+
+std::string typeOfAlgorythm (const int &number);
