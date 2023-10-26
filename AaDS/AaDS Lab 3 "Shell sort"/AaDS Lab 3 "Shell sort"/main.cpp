@@ -24,22 +24,26 @@ int main() {
     
         for (int size = 10000; size < 1000001; size *= 10)
         
-            for (int range = 10; range < 100001; range *= 100)
-        
+            for (int range = 10; range < 100001; range *= 100) {
+                
+                std::cout << "Выполняется сортировка методом массивов размера " << size << " c элементами в диапазоне [" << -range << "; " << range << "]" ;
+                
+                int avgTime;
+                
                 for (int i = 1; i < 4; i++) {
-        
+                    
                     arr = new int [size];
                     
                     randomArray(arr, size, -range, range);
-        
+                    
                     std::cout << "Массив до сортировки: ";
-        
+                    
                     printArray(arr, size);
-        
-        
-        
+                    
+                    
+                    
                     clock_t start = clock();
-                   
+                    
                     switch (type) {
                             
                         case 1: shellSort(arr, size); break;
@@ -47,11 +51,11 @@ int main() {
                         case 2: shellSortKnut(arr, size); break;
                             
                         case 3: shellSort2MMinus1(arr, size); break;
-                    
+                            
                         default: break;
                             
                     }
-        
+                    
                     clock_t end = clock();
                     
                     time = (double) (end - start) / CLOCKS_PER_SEC;
@@ -82,10 +86,12 @@ int main() {
                     
                     
                     
-                    std::cout << "Время работы алгоритма - " << time << "s" << std::endl << std::endl;
+                    std::cout << "Время работы алгоритма - " << time << "s" << std::endl << std::endl << std::endl << std::endl;
                     
                     delete [] arr;
-        
-               }
+                    
+                }
+                
+            }
     
 }
