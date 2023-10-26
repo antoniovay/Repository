@@ -20,16 +20,16 @@ int main() {
     
     int mas[10] = {0};
     
-    //Array<int> arr(10, mas);
+    Array<int> arr(10, mas);
     
-    //std::cout << arr << std::endl;
+    std::cout << arr << std::endl;
     
     
     const char  s[10] = "qwertyuio";
     
-    //Array<std::string> str(10, s);
+    Array<std::string> str(10, s);
         
-    //std::cout << str << std::endl;
+    std::cout << str << std::endl;
     
     
 }
