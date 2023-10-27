@@ -106,9 +106,9 @@ void shellSort2MMinus1(int *array, int size) {
     
     int gap;
     
-    for (int m = 1; pow(2, m) < size; m++) {
+    for (int m = 2; m < size; m *= 2) {
         
-        gap = pow(2, m) - 1;
+        gap = m - 1;
         
         sort(array, size, gap);
         
