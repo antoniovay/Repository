@@ -16,9 +16,27 @@
 
 int main() {
     
-    double time;
     
-    int* arr;
+    std::cout << "Тест:" << std::endl;
+    
+    std::vector<int> test;
+    
+    randomVector(test, 10, -10, 10);
+    
+    printVector(test);
+    
+    shellSort(test);
+    
+    printVector(test);
+    
+    std::cout << std::endl;
+    
+    
+    
+    
+    
+    
+    double time;
     
     for (int type = 1; type <=3; type++)
     
@@ -32,13 +50,13 @@ int main() {
                 
                 for (int i = 1; i < 4; i++) {
                     
-                    arr = new int [size];
-                    
-                    randomArray(arr, size, -range, range);
+                    std::vector<int> array;
+                                        
+                    randomVector(array, size, -range, range);
                     
                     //std::cout << "Массив до сортировки: ";
                     
-                    //printArray(arr, size);
+                    //printVector(array);
                     
                     
                     
@@ -46,11 +64,11 @@ int main() {
                     
                     switch (type) {
                             
-                        case 1: shellSort(arr, size); break;
+                        case 1: shellSort(array); break;
                             
-                        case 2: shellSortKnut(arr, size); break;
+                        case 2: shellSortKnut(array); break;
                             
-                        case 3: shellSort2MMinus1(arr, size); break;
+                        case 3: shellSort2MMinus1(array); break;
                             
                         default: break;
                             
@@ -66,13 +84,13 @@ int main() {
                     
                     //std::cout << std::endl << "Массив после сортировки: ";
                     
-                    //printArray(arr, size);
+                    //printVector(array);
                     
                     //std::cout << std::endl;
                     
                     
                     
-                    if (orderCheck(arr, size) == true) {
+                    if (orderCheck(array) == true) {
                         
                         std::cout << "Массив упорядочен" << std::endl;
                         
@@ -89,8 +107,6 @@ int main() {
                     
                     
                     std::cout << "Время работы алгоритма - " << time << "s" << std::endl << std::endl << std::endl << std::endl;
-                    
-                    delete [] arr;
                     
                 }
                 

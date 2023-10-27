@@ -13,20 +13,20 @@
 
 
 
-void printArray (int *array, int size); // Вывод массива
+void printVector (std::vector<int> array); // Вывод массива
 
-void randomArray (int *array, int size, int a, int b); // Генерация случайного массива
-
-
-void shellSort (int *array, int size); // Сортировка Шелла с выбором длин промежутков по Шеллу
-
-void shellSortKnut(int *array, int size); // Сортировка Шелла с выбором длин промежутков по Кнуту
-
-void shellSort2MMinus1(int *array, int size); // Сортировка Шелла с выбором длин промежутков по 2 ^ m - 1
-
-void sort (int *array, int size, int gap); // Собственно сортировка
+void randomVector (std::vector<int>& array, int size, int a, int b); // Генерация случайного массива
 
 
-bool orderCheck (int *array, int size); // Проверка на упорядоченность
+void shellSort (std::vector<int>& array); // Сортировка Шелла с выбором длин промежутков по Шеллу
+
+void shellSortKnut(std::vector<int>& array); // Сортировка Шелла с выбором длин промежутков по Кнуту
+
+void shellSort2MMinus1(std::vector<int>& array); // Сортировка Шелла с выбором длин промежутков по 2 ^ m - 1
+
+void sort (std::vector<int>& array, int gap); // Собственно сортировка
+
+
+bool orderCheck (const std::vector<int> array); // Проверка на упорядоченность
 
 std::string typeOfAlgorythm (const int &number);

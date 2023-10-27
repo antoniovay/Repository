@@ -10,38 +10,31 @@
 #include <iostream>
 #include <time.h>
 #include <string>
+#include <vector>
 
 #include "Funcs.hpp"
 
 
 
-// Вывод массива
+// Вывод вектора
 
-void printArray (int *array, int size) {
-    
-    if (size > 100) {
-        
-        std::cout << "Массив не выыеден из-за слишком большого размера" << std::endl;
-        
-        return;
-        
-    }
+void printVector (const std::vector<int> vectorOfOccurrences) { // Вывод вектора
     
     std::cout << "[";
     
-    for (int i = 0; i < size; i++) {
+    for (auto it = vectorOfOccurrences.begin(); it != vectorOfOccurrences.end(); it++) {
         
-        std::cout << array[i];
-        
-        if (i < size - 1) {
+        if ( it != vectorOfOccurrences.begin() ) {
             
             std::cout << ", ";
             
         }
         
+        std::cout << *it;
+        
     }
     
-    std::cout << "]" << std::endl;
+    std::cout << "];" << std::endl;
     
 }
 
@@ -49,13 +42,13 @@ void printArray (int *array, int size) {
 
 // Генерация случайного массива
 
-void randomArray (int *array, int size, int a, int b) {
+void randomVector (std::vector<int>& array, int size, int a, int b) {
     
     srand(time(0));
     
     for (int i = 0; i < size; i++) {
         
-        array[i] = rand() % (b - a + 1) + a;
+        array.push_back( rand() % (b - a + 1) + a );
         
     }
     
@@ -65,13 +58,13 @@ void randomArray (int *array, int size, int a, int b) {
 
 // Сортировка Шелла с выбором длин промежутков по Шеллу
 
-void shellSort (int *array, int size) {
+void shellSort (std::vector<int>& array) {
     
     
-    for (int gap = size / 2; gap > 0; gap /= 2) {
+    for (int gap = array.size() / 2; gap > 0; gap /= 2) {
         
         
-        sort(array, size, gap);
+        sort(array, gap);
         
     }
     
@@ -82,13 +75,13 @@ void shellSort (int *array, int size) {
 
 // Сортировка Шелла с выбором длин промежутков по Кнуту
 
-void shellSortKnut(int *array, int size) {
+void shellSortKnut(std::vector<int>& array) {
     
     int gap = 1;
     
-    while (gap < size / 3) {
+    while (gap < array.size() / 3) {
         
-        sort(array, size, gap);
+        sort(array, gap);
         
         gap = gap * 3 + 1;
         
@@ -102,15 +95,15 @@ void shellSortKnut(int *array, int size) {
 
 // Сортировка Шелла с выбором длин промежутков по 2 ^ m - 1
 
-void shellSort2MMinus1(int *array, int size) {
+void shellSort2MMinus1(std::vector<int>& array) {
     
     int gap;
     
-    for (int m = 2; m < size; m *= 2) {
+    for (int m = 2; m < array.size(); m *= 2) {
         
         gap = m - 1;
         
-        sort(array, size, gap);
+        sort(array, gap);
         
     }
     
@@ -122,10 +115,10 @@ void shellSort2MMinus1(int *array, int size) {
 
 // Собственно сортировка
 
-void sort (int *array, int size, int gap) {
+void sort (std::vector<int>& array, int gap) {
     
     
-    for (int i = gap; i < size; i++) {
+    for (int i = gap; i < array.size(); i++) {
         
         int temp = array[i];
         
@@ -148,11 +141,11 @@ void sort (int *array, int size, int gap) {
 
 // Проверка на упорядоченность
 
-bool orderCheck (int *array, int size) {
+bool orderCheck (std::vector<int> array) {
     
-    for (int i = 0; i < size - 1; i++) {
+    for (auto i = array.begin(); i < array.end() - 1; i++) {
         
-        if (array[i] > array[i + 1]) {
+        if (*i > *(i + 1)) {
             
             return false;
             
