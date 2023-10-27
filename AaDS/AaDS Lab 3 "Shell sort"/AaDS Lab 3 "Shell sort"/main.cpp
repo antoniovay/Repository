@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <algorithm>
 
 #include "Funcs.hpp"
 
@@ -32,6 +33,15 @@ int main() {
     std::cout << std::endl;
     
     
+    
+    
+    typedef void (*algoritm)(std::vector<int>& array);
+    
+    algoritm typeOfAlg[3];
+    
+    typeOfAlg[0] = shellSort;
+    typeOfAlg[1] = shellSortKnut;
+    typeOfAlg[2] = shellSort2MMinus1;
     
     
     
@@ -62,17 +72,7 @@ int main() {
                     
                     clock_t start = clock();
                     
-                    switch (type) {
-                            
-                        case 1: shellSort(array); break;
-                            
-                        case 2: shellSortKnut(array); break;
-                            
-                        case 3: shellSort2MMinus1(array); break;
-                            
-                        default: break;
-                            
-                    }
+                    typeOfAlg[type](array);
                     
                     clock_t end = clock();
                     
