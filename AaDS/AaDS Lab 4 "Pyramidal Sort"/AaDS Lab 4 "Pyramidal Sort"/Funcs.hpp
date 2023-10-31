@@ -5,9 +5,24 @@
 //  Created by Antony Miroshnichenko on 28.10.2023.
 //
 
-#ifndef Funcs_hpp
-#define Funcs_hpp
 
-#include <stdio.h>
 
-#endif /* Funcs_hpp */
+#pragma once
+
+#include <iostream>
+#include <vector>
+
+
+
+void printVector (std::vector<int> array); // Вывод массива
+
+void randomVector (std::vector<int>& array, int size, int a, int b); // Генерация случайного массива
+
+bool orderCheck (const std::vector<int> array); // Проверка на упорядоченность
+
+
+void sift1 (std::vector<int>& array, int i);
+
+void sift2 (std::vector<int>& array, int i);
+
+void pyramidalSort (std::vector<int>& array);

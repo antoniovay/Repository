@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A0A8D0132AED46F80017E999 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0A8D0122AED46F80017E999 /* main.cpp */; };
+		A0A8D01B2AED47190017E999 /* Funcs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0A8D0192AED47190017E999 /* Funcs.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		A0A8D00F2AED46F80017E999 /* AaDS Lab 4 "Pyramidal Sort" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AaDS Lab 4 \"Pyramidal Sort\""; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A8D0122AED46F80017E999 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A0A8D0192AED47190017E999 /* Funcs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Funcs.cpp; sourceTree = "<group>"; };
+		A0A8D01A2AED47190017E999 /* Funcs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Funcs.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				A0A8D0122AED46F80017E999 /* main.cpp */,
+				A0A8D0192AED47190017E999 /* Funcs.cpp */,
+				A0A8D01A2AED47190017E999 /* Funcs.hpp */,
 			);
 			path = "AaDS Lab 4 \"Pyramidal Sort\"";
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0A8D0132AED46F80017E999 /* main.cpp in Sources */,
+				A0A8D01B2AED47190017E999 /* Funcs.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
