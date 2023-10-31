@@ -81,9 +81,14 @@ void shellSortKnut(std::vector<int>& array) {
     
     while (gap < array.size() / 3) {
         
-        sort(array, gap);
         
         gap = gap * 3 + 1;
+        
+    }
+    
+    for (; gap > 0; gap /= 3) {
+        
+        sort(array, gap);
         
     }
     
@@ -97,11 +102,19 @@ void shellSortKnut(std::vector<int>& array) {
 
 void shellSort2MMinus1(std::vector<int>& array) {
     
-    int gap;
+    int gap = 1;
     
-    for (int m = 2; m < array.size(); m *= 2) {
+    while ( gap < array.size() ) {
         
-        gap = m - 1;
+        gap *= 2;
+        
+    }
+    
+    gap /= 2;
+    
+    gap--;
+    
+    for (; gap > 0; gap /= 2) {
         
         sort(array, gap);
         

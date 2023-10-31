@@ -48,7 +48,7 @@ int main() {
     
     double time;
     
-    for (int type = 1; type <=3; type++)
+    for (int type = 1; type <= 3; type++)
     
         for (int size = 10000; size < 1000001; size *= 10)
         
@@ -72,7 +72,14 @@ int main() {
                     
                     clock_t start = clock();
                     
-                    typeOfAlg[type](array);
+                    switch (type) {
+                            
+                        case 1: shellSort(array); break;
+                        case 2: shellSortKnut(array); break;
+                        case 3: shellSort2MMinus1(array); break;
+                        default: break;
+                            
+                    }
                     
                     clock_t end = clock();
                     
