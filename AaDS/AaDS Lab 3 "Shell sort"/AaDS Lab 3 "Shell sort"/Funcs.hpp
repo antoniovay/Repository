@@ -13,6 +13,11 @@
 
 
 
+std::string createNameOfFile(int size, int range);
+
+void printVectorToFile (const std::vector<int> array, const std::string name); // Записать вектор в файл
+
+
 void printVector (std::vector<int> array); // Вывод массива
 
 void randomVector (std::vector<int>& array, int size, int a, int b); // Генерация случайного массива

@@ -70,6 +70,12 @@ int main() {
                     
                     
                     
+                        
+                    printVectorToFile(array, createNameOfFile(size, range));
+               
+                    
+                    
+                    
                     clock_t start = clock();
                     
                     switch (type) {

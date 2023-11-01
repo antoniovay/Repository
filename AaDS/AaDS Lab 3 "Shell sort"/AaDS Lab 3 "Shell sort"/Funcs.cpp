@@ -11,20 +11,69 @@
 #include <time.h>
 #include <string>
 #include <vector>
+#include <assert.h>
 
 #include "Funcs.hpp"
 
 
 
+// Создать файл
+
+std::string createNameOfFile(int size, int range) {
+    
+    std::string fileName = "array_";
+    
+    
+    fileName += std::to_string(size);
+    
+    fileName += "_";
+    
+    fileName += std::to_string(range);
+    
+    fileName += ".txt";
+    
+
+    return fileName;
+    
+}
+
+
+
+// Записать вектор в файл
+
+void printVectorToFile (const std::vector<int> array, const std::string name) {
+    
+    char* fileName = new char [name.length() + 1];
+    
+    std::strcpy(fileName, name.c_str());
+    
+    FILE *f = fopen (fileName, "w");
+    
+    assert(f != NULL);
+    
+    for (auto it = array.begin(); it != array.end(); ++it) {
+        
+        fprintf(f, "%d ", *it);
+        
+    }
+    
+    delete [] fileName;
+    
+    fclose (f);
+    
+}
+
+
+
 // Вывод вектора
 
-void printVector (const std::vector<int> vectorOfOccurrences) { // Вывод вектора
+void printVector (const std::vector<int> array) { // Вывод вектора
     
     std::cout << "[";
     
-    for (auto it = vectorOfOccurrences.begin(); it != vectorOfOccurrences.end(); it++) {
+    for (auto it = array.begin(); it != array.end(); it++) {
         
-        if ( it != vectorOfOccurrences.begin() ) {
+        if ( it != array.begin() ) {
             
             std::cout << ", ";
             
