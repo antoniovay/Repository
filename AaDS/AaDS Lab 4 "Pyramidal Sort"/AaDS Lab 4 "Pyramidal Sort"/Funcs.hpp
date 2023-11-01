@@ -21,8 +21,6 @@ void randomVector (std::vector<int>& array, int size, int a, int b); // Гене
 bool orderCheck (const std::vector<int> array); // Проверка на упорядоченность
 
 
-void sift1 (std::vector<int>& array, int i);
-
-void sift2 (std::vector<int>& array, int i);
+void sift1 (std::vector<int>& array, int size, int i);
 
 void heapSort (std::vector<int>& array);

@@ -77,11 +77,9 @@ bool orderCheck (std::vector<int> array) {
 
 // Просеивание i-го элемента массива array (с обменом на каждом шаге)
 
-void sift1 (std::vector<int>& array, int i) {
+void sift1 (std::vector<int>& array, int size, int i) {
     
     int j = 2*i + 1;
-    
-    int size = array.size();
     
     
     while (i < size) {
@@ -95,7 +93,7 @@ void sift1 (std::vector<int>& array, int i) {
             }
             
             
-            if (array[j] < array[i]) {
+            if (array[j] > array[i]) {
                 
                 std::swap(array[i], array[j]);
                 
@@ -131,7 +129,7 @@ void heapSort (std::vector<int>& array) {
     
     for (int i = size/2 - 1; i >= 0; i--) {
         
-        sift1(array, i);
+        sift1(array, size, i);
         
     }
     
@@ -140,7 +138,7 @@ void heapSort (std::vector<int>& array) {
         
         std::swap(array[0], array[i]);
         
-        sift1(array, i);
+        sift1(array, i, 0);
         
     }
     
