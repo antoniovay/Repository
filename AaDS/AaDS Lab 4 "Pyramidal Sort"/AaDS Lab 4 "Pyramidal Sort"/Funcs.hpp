@@ -25,4 +25,4 @@ void sift1 (std::vector<int>& array, int i);
 
 void sift2 (std::vector<int>& array, int i);
 
-void pyramidalSort (std::vector<int>& array);
+void heapSort (std::vector<int>& array);

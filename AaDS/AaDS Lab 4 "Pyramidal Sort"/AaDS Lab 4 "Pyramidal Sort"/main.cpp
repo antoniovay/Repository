@@ -26,7 +26,7 @@ int main() {
     printVector(array);
     
     
-    pyramidalSort(array);
+    heapSort(array);
     
     
     std::cout << std::endl << "Массив после сортировки: ";

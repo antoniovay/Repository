@@ -84,78 +84,54 @@ void sift1 (std::vector<int>& array, int i) {
     int size = array.size();
     
     
-    while (j < size) {
+    while (i < size) {
         
-        if (j + 1 < size && array[j + 1] > array[j]) {
+        if (j < size) {
             
-            j++;
+            if (j + 1 < size && array[j + 1] > array[j]) {
+                    
+                j++;
+                    
+            }
             
-        }
-        
-        
-        if (array[j] > array[i]) {
             
-            std::swap(array[i], array[j]);
+            if (array[j] < array[i]) {
+                
+                std::swap(array[i], array[j]);
+                
+                i = j; j = 2*i + 1;
+                
+            }
             
-            i = j; j = 2*i + 1;
-            
-        }
-        
-    }
-}
-
-
-
-// Просеивание i-го элемента массива array (без обмена на каждом шаге)
-
-void sift2 (std::vector<int>& array, int i) {
-    
-    int j = 2*i + 1, x = array[i], f = 1;
-    
-    int size = array.size();
-    
-    
-    while (j < size && f ) {
-        
-        if (j + 1 < size && array[j + 1] > array[j]) {
-            
-            j++;
-            
-        }
-            
-        
-        if (array[j] > x) {
-            
-            array[i] = array[j];
-            
-            i = j; j = 2*i + 1;
+            else {
+                
+                i += size;
+                
+            }
             
         }
         
         else {
             
-            f = 0;
+            i += size;
             
         }
-            
+        
     }
-    
-    array[i] = x;
-    
 }
 
 
 
 //
 
-void pyramidalSort (std::vector<int>& array) {
+void heapSort (std::vector<int>& array) {
     
     int size = array.size();
     
     
     for (int i = size/2 - 1; i >= 0; i--) {
         
-        sift2(array, i);
+        sift1(array, i);
         
     }
     
@@ -164,7 +140,7 @@ void pyramidalSort (std::vector<int>& array) {
         
         std::swap(array[0], array[i]);
         
-        sift2(array, i);
+        sift1(array, i);
         
     }
     
