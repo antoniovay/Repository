@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
 #include "Funcs.hpp"
 
@@ -38,6 +39,63 @@ void printVector (const std::vector<int> vectorOfOccurrences) { // Вывод в
 
 
 
+// Считать вектор из файла
+
+void scanVectorFromFile(std::vector<int>& array, const std::string& name) {
+    
+    char* fileName = new char [name.length() + 1];
+    
+    FILE *f;
+    
+    
+    std::strcpy(fileName, name.c_str());
+    
+    f = fopen (fileName, "r");
+    
+    assert(f != NULL);
+    
+    {
+        
+        int x;
+        
+        while (fscanf (f, "%d", &x) != EOF) {
+            
+            array.push_back(x);
+            
+        }
+        
+    }
+    
+    fclose (f);
+    
+    delete [] fileName;
+    
+}
+
+
+
+// Сгенерировать имя файла
+
+std::string createNameOfFile(int size, int range) {
+    
+    std::string fileName = "array_";
+    
+    
+    fileName += std::to_string(size);
+    
+    fileName += "_";
+    
+    fileName += std::to_string(range);
+    
+    fileName += ".txt";
+    
+
+    return fileName;
+    
+}
+
+
+
 // Генерация случайного массива
 
 void randomVector (std::vector<int>& array, int size, int a, int b) {
@@ -56,20 +114,20 @@ void randomVector (std::vector<int>& array, int size, int a, int b) {
 
 // Проверка на упорядоченность
 
-bool orderCheck (std::vector<int> array) {
+void orderCheck (std::vector<int> array) {
     
     for (auto i = array.begin(); i < array.end() - 1; i++) {
         
         if (*i > *(i + 1)) {
             
-            return false;
+            std::cout << "Массив не упорядочен" << std::endl;
             
         }
         
     }
     
     
-    return true;
+    std::cout << "Массив упорядочен" << std::endl;
     
 }
 
