@@ -16,7 +16,9 @@
 
 int main() {
     
+    BV x(10, 0);
     
+    std::cout << x;
     
     
     

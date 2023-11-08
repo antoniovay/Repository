@@ -16,22 +16,25 @@
 class BV
 {
     
+    friend std::istream &operator >> (std::istream &stream, BV& bv);
+    friend std::ostream &operator << (std::ostream &stream, BV& bv);
+    
     
 public:
     
     // Конструкторы
     
-    BV (const int size = 10); // Конструктор по умолчанию
+    BV (const int length = 10); // Конструктор по умолчанию
     
-    BV (const int size, const int value); // Конструктор с параметром (размер и значение - одно и то же для всех разрядов)
-    BV (const int size, const char* array); // Конструктор с параметром (из массива const char *)
+    BV (const int length, const int value); // Конструктор с параметром (размер и значение - одно и то же для всех разрядов)
+    BV (const int length, const char* array); // Конструктор с параметром (из массива const char *)
     
     BV (const BV &bv); // Конструктор копирования
     
     
     ~BV() { // Деструктор
         
-        delete [] m_bv;
+        delete [] m_cells;
         
     }
     
@@ -44,9 +47,13 @@ public:
     void swap (BV &bv); // Обмен содержимого с другим вектором
     
     void inverse (); // Инверсия всех компонент вектора
+    
     void inverse (const int i); // Инверсия i-ой компоненты
     
     void set (const int i, const bool x); // Установка в 0/1 i-ой компоненты
+    
+    
+    
     void setAfterK (const int i, const bool x); // Установка в 0/1 k компонент, начиная с i-ой
     void setAll (const bool x); // Установка в 0/1 всех компонент вектора
     
@@ -81,8 +88,13 @@ public:
     
 private:
     
-    unsigned char* m_bv;
-    int m_size;
+    uint8_t* m_cells = nullptr;
+    
+    uint8_t m_unsignificantRankCount = 0;
+    
+    int m_length = 0;
+    int m_cellCount = 0;
+    
     
 };
 
@@ -91,26 +103,71 @@ private:
 
 std::istream &operator >> (std::istream &stream, BV& bv) { // Потоковый ввод
     
-    for (int i = 0; i < bv.length(); i++) {
-        
-        stream >> bv[i];
-        
-    }
+    char* string = new char [bv.m_length];
     
-    return stream;
+        for (int i = 0; i < bv.m_length; ++i) {
+            
+            stream >> string[i];
+            
+        }
+        
+        for (unsigned int i = 0; i < bv.m_length; ++i) {
+            
+            if (string[i] != '0')
+                
+                bv.set(i, 1);
+            
+            else
+            
+                bv.set(i, 0);
+            
+        }
+        
+        delete [] string;
+    
+        return stream;
+    
 }
 
 
 
 std::ostream &operator << (std::ostream &stream, BV& bv) { // Потоковый вывод
     
-    for (int i = 0; i < bv.length(); i++) {
+    for (int i = 0; i < bv.m_cellCount; ++i) {
         
-        stream << bv[i];
+            stream << "[";
         
-    }
+            for (uint8_t j = 1 << 7; j > 0; j >>= 1) {
+                
+                if (bv.m_cells[i] & j) {
+                    
+                    stream << "1";
+                    
+                    if ((j >> 1) > 0)
+                        
+                        stream << " ";
+                    
+                }
+                
+                else {
+                    
+                    stream << "0";
+                    
+                    if ((j >> 1) > 0)
+                        
+                        stream << " ";
+                    
+                }
+                
+            }
+        
+            stream << "] ";
+        
+        }
     
-    return stream;
+        stream << std::endl;
+        
+        return stream;
     
     
 }
