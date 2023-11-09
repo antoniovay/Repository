@@ -17,21 +17,24 @@
 
 BV::BV (const int length) {
     
-    m_length = length;
-    
     m_cellCount = length / 8 + (length % 8 != 0);
     
-    m_unsignificantRankCount = m_cellCount * 8 - length;
+    
+    m_cells = new uint8_t [m_cellCount];
     
     
-    m_cells = new uint8_t [m_length];
-    
-    
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < m_cellCount; i++) {
         
         m_cells[i] = 0;
         
     }
+    
+    
+    m_unsignificantRankCount = m_cellCount * 8 - length;
+    
+    
+    m_length = length;
+    
     
     m_cells[m_cellCount - 1] >>= m_unsignificantRankCount;
     m_cells[m_cellCount - 1] <<= m_unsignificantRankCount;
@@ -42,21 +45,23 @@ BV::BV (const int length) {
 
 BV::BV (const int length, const int value) {
     
-    m_length = length;
-    
     m_cellCount = length / 8 + (length % 8 != 0);
-    
-    m_unsignificantRankCount = m_cellCount * 8 - length;
     
     
     m_cells = new uint8_t [m_cellCount];
     
     
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < m_cellCount; i++) {
         
         m_cells[i] = value;
         
     }
+    
+    
+    m_unsignificantRankCount = m_cellCount * 8 - length;
+    
+    
+    m_length = length;
     
     
     m_cells[m_cellCount - 1] >>= m_unsignificantRankCount;
@@ -68,28 +73,24 @@ BV::BV (const int length, const int value) {
 
 BV::BV (const int length, const char* array) {
     
-    assert(strlen(array) >= 0);
-        
+    assert (strlen(array) >= 0);
+    
     m_length = (int) strlen(array);
     
     m_cellCount = m_length / 8 + (m_length % 8 != 0);
     
-    m_unsignificantRankCount = (m_cellCount * 8) - m_length;
     
     m_cells = new uint8_t [m_cellCount];
     
     
-    for (int i = 0; i < m_length; ++i) {
+    for (int i = 0; i < m_cellCount; i++) {
         
-        if (array[i] != '0')
-            
-            set(i, 1);
-        
-        else
-            
-            set(i, 0);
+        m_cells[i] = array[i];
         
     }
+    
+    
+    m_unsignificantRankCount = (m_cellCount * 8) - m_length;
     
 }
 
@@ -97,20 +98,22 @@ BV::BV (const int length, const char* array) {
 
 BV::BV (const BV &other) {
     
-    m_length = other.m_length;
-    
-    m_cellCount = other.m_cellCount;
-    
-    m_unsignificantRankCount = other.m_unsignificantRankCount;
-    
     m_cells = new uint8_t [other.m_cellCount];
     
     
-    for (int i = 0; i < m_cellCount; ++i) {
+    for (int i = 0; i < m_cellCount; i++) {
         
         m_cells[i] = other.m_cells[i];
         
     }
+    
+    
+    m_unsignificantRankCount = other.m_unsignificantRankCount;
+    
+    
+    m_length = other.m_length;
+    
+    m_cellCount = other.m_cellCount;
     
 }
 
@@ -211,7 +214,44 @@ void BV::set (const int i, const bool x) {
 
 void BV::setAfterK (const int k, const bool x) {
     
+    assert(k >= 0 && k < m_length);
     
+    int currentUnit = k / 8, currentI = k % 8;
+    
+    uint8_t mask = 1;
+    
+    mask <<= 7 - currentI;
+    
+    for (; mask <= 128; mask >>= 1) {
+        
+        if (x) {
+            
+            m_cells[currentUnit] |= mask;
+        }
+        
+        else {
+            
+            m_cells[currentUnit] &= ~mask;
+            
+        }
+        
+    }
+    
+    for (int i = currentUnit; i < m_cellCount; i++) {
+        
+        if (x) {
+            
+            m_cells[i] = 255;
+            
+        }
+        
+        else {
+            
+            m_cells[i] = 0;
+            
+        }
+        
+    }
     
 }
 
@@ -282,13 +322,111 @@ int BV::weight () {
 
 int BV::operator [] (const int i) {
     
-    return m_cells[0];
+    assert(i >= 0 && i < m_length);
+    
+    int currentUnit = i / 8, currentI = i % 8;
+    
+    uint8_t mask = 1;
+    
+    mask <<= 7 - currentI;
+    
+    if (m_cells[i] & mask)
+        
+        return 1;
+    
+    else return 0;
     
 }
 
 
 
-BV BV::&operator & (const BV &other) {
+BV BV::operator & (const BV &other) {
+    
+    assert (m_length == other.m_length);
+        
+    BV result(*this);
+        
+        
+    for (int i = 0; i < m_cellCount; i++) {
+        
+        result.m_cells[i] = m_cells[i] & other.m_cells[i];
+        
+    }
+    
+    
+    return result;
+    
+}
+
+
+
+BV &BV::operator &= (const BV &other) {
+    
+    *this = *this & other;
+        
+    return *this;
+    
+}
+
+
+
+BV BV::operator | (const BV &other) {
+    
+    assert(m_length == other.m_length);
+        
+    BV result(other);
+    
+    for (int i = 0; i < m_cellCount; i++) {
+        
+        result.m_cells[i] = m_cells[i] | other.m_cells[i];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+BV &BV::operator |= (const BV &other) {
+    
+    *this = *this | other;
+        
+    return *this;
+    
+}
+
+
+
+BV BV::operator ^ (const BV &other) {
+    
+    assert(m_length == other.m_length);
+        
+    BV result(other);
+    
+    for(int i = 0; i < m_cellCount; i++) {
+        
+        result.m_cells[i] = m_cells[i] ^ other.m_cells[i];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+BV &BV::operator ^= (const BV &other) {
+    
+    *this = *this ^ other;
+        
+    return *this;
+    
+}
+
+
+
+BV BV::operator << (const int value) {
     
     
     
@@ -296,7 +434,7 @@ BV BV::&operator & (const BV &other) {
 
 
 
-BV BV::&operator &= (const BV &other) {
+BV &BV::operator <<= (const int value) {
     
     
     
@@ -304,55 +442,7 @@ BV BV::&operator &= (const BV &other) {
 
 
 
-BV BV::&operator | (const BV &other) {
-    
-    
-    
-}
-
-
-
-BV BV::&operator |= (const BV &other) {
-    
-    
-    
-}
-
-
-
-BV BV::&operator ^ (const BV &other) {
-    
-    
-    
-}
-
-
-
-BV BV::&operator ^= (const BV &other) {
-    
-    
-    
-}
-
-
-
-BV BV::&operator << (const BV &other) {
-    
-    
-    
-}
-
-
-
-BV BV::&operator <<= (const BV &other) {
-    
-    
-    
-}
-
-
-
-BV BV::&operator >> (const BV &other) {
+BV BV::operator >> (const int value) {
     
     
     
@@ -361,7 +451,7 @@ BV BV::&operator >> (const BV &other) {
 
 
 
-BV BV::&operator >>= (const BV &other) {
+BV &BV::operator >>= (const int value) {
     
     
     
@@ -369,17 +459,56 @@ BV BV::&operator >>= (const BV &other) {
 
 
 
-BV BV::&operator ~ () {
+BV BV::operator ~ () {
     
+    BV result (*this);
+        
+    for (int i = 0; i < m_cellCount; i++) {
+        
+        result.m_cells[i] = ~result.m_cells[i];
+        
+    }
     
+    return result;
     
 }
 
 
 
-BV BV::&operator = (const BV &other) {
+BV &BV::operator = (const BV &other) {
     
+    if (this != &other) {
+        
+        
+        delete [] m_cells;
+        
+        m_cells = new uint8_t [other.m_cellCount];
     
+        
+        for (int i = 0; i < m_cellCount; i++) {
+            
+            m_cells[i] = other.m_cells[i];
+            
+        }
+        
+        
+        m_unsignificantRankCount = other.m_unsignificantRankCount;
+        
+        
+        m_length = other.m_length;
+        
+        m_cellCount = other.m_cellCount;
+        
+        
+        
+        
+            
+        
+        
+        }
+    
+        
+        return *this;
     
 }
 

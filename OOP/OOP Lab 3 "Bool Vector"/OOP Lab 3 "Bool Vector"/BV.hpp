@@ -65,22 +65,22 @@ public:
     
     int operator [] (const int i); // Получение компоненты
     
-    BV &operator & (const BV &other);  // Побитовое умножение &
+    BV operator & (const BV &other);  // Побитовое умножение &
     BV &operator &= (const BV &other); // Побитовое умножение &=
     
-    BV &operator | (const BV &other); // Побитовое сложение |
+    BV operator | (const BV &other); // Побитовое сложение |
     BV &operator |= (const BV &other); // Побитовое сложение |=
     
-    BV &operator ^ (const BV &other); // Побитовое исключающее ИЛИ ^
+    BV operator ^ (const BV &other); // Побитовое исключающее ИЛИ ^
     BV &operator ^= (const BV &other); // Побитовое исключающее ИЛИ ^=
     
-    BV &operator << (const BV &other); // Побитовый сдвиг <<
-    BV &operator <<= (const BV &other); // Побитовый сдвиг <<=
+    BV operator << (const int value); // Побитовый сдвиг <<
+    BV &operator <<= (const int value); // Побитовый сдвиг <<=
     
-    BV &operator >> (const BV &other); // Побитовый сдвиг >>
-    BV &operator >>= (const BV &other); // Побитовый сдвиг >>=
+    BV operator >> (const int value); // Побитовый сдвиг >>
+    BV &operator >>= (const int value); // Побитовый сдвиг >>=
     
-    BV &operator ~ (); // Побитовая инверсия
+    BV operator ~ (); // Побитовая инверсия
     
     BV &operator = (const BV &other); // Оператор присваивания
     
