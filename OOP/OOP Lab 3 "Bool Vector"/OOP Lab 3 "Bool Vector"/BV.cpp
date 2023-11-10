@@ -445,19 +445,64 @@ BV &BV::operator ^= (const BV &other) {
     
 }
 
-/*
+
 
 BV BV::operator << (const int value) {
     
+    BV result(*this);
     
+    result <<= value;
+    
+    return result;
     
 }
 
 
 
-BV &BV::operator <<= (const int value) {
+BV &BV::operator <<= (int value) {
     
+    assert (value >= 0 && value <= m_length);
     
+        
+    if (value >= 8) {
+        
+        for (int i = 0; i < m_cellCount - value / 8; i++) {
+            
+            m_cells[i] = m_cells[i + value / 8];
+            
+        }
+        
+        for (int i = 1; i <= value / 8; i++) {
+            
+            m_cells[m_cellCount - i] = 0;
+            
+        }
+        
+        value = value % 8;
+        
+    }
+    
+
+    if (value > 0) {
+        
+        uint8_t mask;
+        
+        for (int i = 0; i < m_cellCount; i++) {
+            
+            m_cells[i] <<= value;
+            
+            mask = m_cells[i + 1];
+            
+            mask >>= (8 - value);
+            
+            m_cells[i] |= mask;
+            
+        }
+        
+    }
+
+
+    return *this;
     
 }
 
@@ -465,20 +510,69 @@ BV &BV::operator <<= (const int value) {
 
 BV BV::operator >> (const int value) {
     
+    BV result(*this);
     
+    result >>= value;
+
+    return result;
+    
+}
+
+
+
+
+BV &BV::operator >>= (int value) {
+    
+    assert (value >= 0 && value <= m_length);
+        
+    
+    if (value >= 8) {
+        
+        for (int i = m_cellCount - 1; i >= 1; i--) {
+            
+            m_cells[i] = m_cells[i - value / 8];
+            
+        }
+        
+        for(int i = 0; i < value / 8; i++) {
+            
+            m_cells[i] = 0;
+            
+        }
+        
+        value = value % 8;
+        
+    }
+    
+    
+    if (value > 0) {
+        
+        uint8_t mask;
+        
+        for(int i = m_cellCount - 1; i >= 0; i--) {
+            
+            m_cells[i] >>= value;
+            
+            mask = m_cells[i - 1];
+            
+            mask <<= (8 - value);
+            
+            m_cells[i] |= mask;
+            
+        }
+        
+    }
+    
+    
+    m_cells[m_cellCount - 1] >>= m_unsignificantRankCount;
+    m_cells[m_cellCount - 1] <<= m_unsignificantRankCount;
+    
+    
+    return *this;
     
 }
 
 
-
-
-BV &BV::operator >>= (const int value) {
-    
-    
-    
-}
-
-*/
 
 BV BV::operator ~ () {
     
