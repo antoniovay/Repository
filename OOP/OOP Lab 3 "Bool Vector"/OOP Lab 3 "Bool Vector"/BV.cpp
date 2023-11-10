@@ -320,6 +320,8 @@ int BV::weight () {
 // Перегрузки
 
 
+
+/*
 int BV::operator [] (const int i) {
     
     assert(i >= 0 && i < m_length);
@@ -335,6 +337,25 @@ int BV::operator [] (const int i) {
         return 1;
     
     else return 0;
+    
+}
+*/
+
+
+
+BV::BoolRank BV::operator [] (const int i) {
+    
+    assert(i >= 0 && i < m_length);
+    
+    return BoolRank (m_cells + i / 8, i % 8);
+    
+}
+
+const BV::BoolRank BV::operator [] (const int i) const {
+    
+    assert(i >= 0 && i < m_length);
+    
+    return BoolRank (m_cells + i / 8, i % 8);
     
 }
 
@@ -424,7 +445,7 @@ BV &BV::operator ^= (const BV &other) {
     
 }
 
-
+/*
 
 BV BV::operator << (const int value) {
     
@@ -457,7 +478,7 @@ BV &BV::operator >>= (const int value) {
     
 }
 
-
+*/
 
 BV BV::operator ~ () {
     
@@ -517,3 +538,97 @@ BV &BV::operator = (const BV &other) {
 
 
 
+// Класс BoolRank //----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+BV::BoolRank& BV::BoolRank::operator = (const bool value) {
+    
+    if (value) {
+        
+        *m_cell |= m_mask;
+        
+    }
+    
+    else {
+        
+        *m_cell &= ~m_mask;
+        
+    }
+    
+    return *this;
+    
+}
+
+
+
+BV::BoolRank& BV::BoolRank::operator = (const BV::BoolRank &other) {
+    
+    return *this = (bool) other;
+    
+}
+
+
+
+bool BV::BoolRank::operator | (const bool value) const {
+    
+    return (bool) *this | value;
+    
+}
+
+
+
+bool BV::BoolRank::operator & (const bool value) const {
+    
+    return (bool) *this & value;
+    
+}
+
+
+
+bool BV::BoolRank::operator ~ () const {
+    
+    return !this->operator bool();
+    
+}
+
+
+
+bool BV::BoolRank::operator ^ (const bool value) const {
+    
+    return (bool) *this ^ value;
+    
+}
+
+
+
+bool BV::BoolRank::operator == (const bool value) const {
+    
+    return (bool) *this == value;
+    
+}
+
+
+
+bool BV::BoolRank::operator == (const BV::BoolRank &other) const {
+    
+    return (*this == (bool) other);
+    
+}
+
+
+
+BV::BoolRank::operator bool() const {
+    
+    if (m_mask & *m_cell) {
+        
+        return true;
+    
+    }
+    
+    else {
+        
+        return false;
+        
+    }
+}

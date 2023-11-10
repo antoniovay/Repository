@@ -13,12 +13,19 @@
 
 
 
+
+
+// Класс BV //----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 class BV
 {
     
     friend std::istream &operator >> (std::istream &stream, BV& bv);
     friend std::ostream &operator << (std::ostream &stream, BV& bv);
     
+    class BoolRank;
     
 public:
     
@@ -63,7 +70,9 @@ public:
     
     // Перегрузки
     
-    int operator [] (const int i); // Получение компоненты
+    //int operator [] (const int i); // Получение компоненты
+    BoolRank operator [] (const int i); // Получение компоненты
+    const BoolRank operator [] (const int i) const; // Получение компоненты
     
     BV operator & (const BV &other);  // Побитовое умножение &
     BV &operator &= (const BV &other); // Побитовое умножение &=
@@ -98,6 +107,56 @@ private:
     
 };
 
+
+
+
+// Класс BoolRank //----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+class BV::BoolRank 
+{
+    
+public:
+    
+    BoolRank(uint8_t* cell, const int& maskPos) {
+        
+        m_cell = cell;
+        
+        m_mask >>= maskPos;
+        
+    }
+    
+    BoolRank& operator = (const bool value);
+    BoolRank& operator = (const BoolRank& other);
+    
+    bool operator | (const bool value) const;
+    
+    bool operator & (const bool value) const;
+    
+    bool operator ~ () const;
+    
+    bool operator ^ (const bool value) const;
+    
+    bool operator == (const bool value) const;
+    bool operator == (const BoolRank& other) const;
+    
+    operator bool() const;
+    
+    
+private:
+    
+    
+    uint8_t* m_cell = nullptr;
+    uint8_t m_mask = 1 << 7;
+    
+};
+
+
+
+
+
+// Потоковые ввод и вывод //--------------------------------------------------------------------------------------------------------------------------
 
 
 
