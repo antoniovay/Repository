@@ -26,4 +26,4 @@ void orderCheck (const std::vector<int> array); // Проверка на упо�
 
 
 
-void hoareSort(std::vector<int>& array, int l, int r); // Сортировка Хоара 3
+void hoareSort(std::vector<int>& array, int l, int r); // Сортировка Хоара_3

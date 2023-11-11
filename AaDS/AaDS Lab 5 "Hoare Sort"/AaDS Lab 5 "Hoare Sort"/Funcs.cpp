@@ -140,42 +140,44 @@ void orderCheck (std::vector<int> array) {
 
 
 
-
+// Сортировка Хоара_3
 
 void hoareSort(std::vector<int>& array, int l, int r) {
     
-    int i = 0, j = 0;
     
-    int x = array[(l + r) / 2];
-    
-    while (i < j) {
+    if (l < r) {
         
-        i = l, j = r;
+        int i = l, j = r;
         
-        while (i <= j) {
+        int x = array[(l + r) / 2];
+        
+        while (i < j) {
             
-            while (array[i] < x)
+            while (i <= j) {
                 
-                i++;
-            
-            while (array[j] > x)
+                while (array[i] < x)
+                    
+                    i++;
                 
-                j--;
-            
-            if (i <= j) {
+                while (array[j] > x)
+                    
+                    j--;
                 
-                std::swap(array[i], array[j]);
-                
-                i++;
-                j--;
+                if (i <= j) {
+                    
+                    std::swap(array[i], array[j]);
+                    
+                    i++;
+                    j--;
+                    
+                }
                 
             }
             
+            hoareSort(array, l, j);
+            hoareSort(array, i, r);
+            
         }
         
-        hoareSort(array, l, j);
-        hoareSort(array, i, r);
-        
     }
-    
 }
