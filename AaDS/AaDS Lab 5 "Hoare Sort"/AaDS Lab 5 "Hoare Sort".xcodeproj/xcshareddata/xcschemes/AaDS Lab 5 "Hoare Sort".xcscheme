@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1500"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A02304E62AF9DE2A007E0207"
+               BuildableName = "AaDS Lab 5 &quot;Hoare Sort&quot;"
+               BlueprintName = "AaDS Lab 5 &quot;Hoare Sort&quot;"
+               ReferencedContainer = "container:AaDS Lab 5 &quot;Hoare Sort&quot;.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/antonymiroshnichenko/Desktop/workSpace/&#x41a;&#x443;&#x440;&#x441; 2/&#x41e;&#x442;&#x447;&#x435;&#x308;&#x442;&#x44b; &#x43f;&#x43e; &#x410;&#x438;&#x421;&#x414;/&#x41e;&#x442;&#x447;&#x435;&#x442; &#x43f;&#x43e; 3 &#x43b;&#x430;&#x431;&#x435;/Files"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES"
+      viewDebuggingEnabled = "No">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A02304E62AF9DE2A007E0207"
+            BuildableName = "AaDS Lab 5 &quot;Hoare Sort&quot;"
+            BlueprintName = "AaDS Lab 5 &quot;Hoare Sort&quot;"
+            ReferencedContainer = "container:AaDS Lab 5 &quot;Hoare Sort&quot;.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A02304E62AF9DE2A007E0207"
+            BuildableName = "AaDS Lab 5 &quot;Hoare Sort&quot;"
+            BlueprintName = "AaDS Lab 5 &quot;Hoare Sort&quot;"
+            ReferencedContainer = "container:AaDS Lab 5 &quot;Hoare Sort&quot;.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

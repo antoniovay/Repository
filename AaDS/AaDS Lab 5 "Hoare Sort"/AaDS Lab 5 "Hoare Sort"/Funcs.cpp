@@ -122,14 +122,16 @@ void orderCheck (std::vector<int> array) {
         
         if (*i > *(i + 1)) {
             
-            std::cout << "Массив не упорядочен" << std::endl;
+            //std::cout << "Массив не упорядочен" << std::endl;
+            
+            assert(*i <= *(i + 1));
             
         }
         
     }
     
     
-    std::cout << "Массив упорядочен" << std::endl;
+    //std::cout << "Массив упорядочен" << std::endl;
     
 }
 
