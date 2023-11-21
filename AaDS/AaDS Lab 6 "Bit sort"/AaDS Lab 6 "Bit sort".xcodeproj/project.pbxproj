@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A04F87712AFA03BD00DE60A8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A04F87702AFA03BD00DE60A8 /* main.cpp */; };
-		A04F87792AFA03CC00DE60A8 /* BoolVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A04F87772AFA03CC00DE60A8 /* BoolVector.cpp */; };
+		A0F5B8B82B06198E007D32C5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0F5B8B72B06198E007D32C5 /* main.cpp */; };
+		A0F5B8C02B0619AF007D32C5 /* Funcs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0F5B8BE2B0619AF007D32C5 /* Funcs.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A04F876B2AFA03BD00DE60A8 /* CopyFiles */ = {
+		A0F5B8B22B06198E007D32C5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,14 +24,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A04F876D2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Lab 3 \"Bool Vector\""; sourceTree = BUILT_PRODUCTS_DIR; };
-		A04F87702AFA03BD00DE60A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A04F87772AFA03CC00DE60A8 /* BoolVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoolVector.cpp; sourceTree = "<group>"; };
-		A04F87782AFA03CC00DE60A8 /* BoolVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoolVector.hpp; sourceTree = "<group>"; };
+		A0F5B8B42B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AaDS Lab 6 \"Bit sort\""; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0F5B8B72B06198E007D32C5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A0F5B8BE2B0619AF007D32C5 /* Funcs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Funcs.cpp; sourceTree = "<group>"; };
+		A0F5B8BF2B0619AF007D32C5 /* Funcs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Funcs.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A04F876A2AFA03BD00DE60A8 /* Frameworks */ = {
+		A0F5B8B12B06198E007D32C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,67 +41,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A04F87642AFA03BD00DE60A8 = {
+		A0F5B8AB2B06198E007D32C5 = {
 			isa = PBXGroup;
 			children = (
-				A04F876F2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */,
-				A04F876E2AFA03BD00DE60A8 /* Products */,
+				A0F5B8B62B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */,
+				A0F5B8B52B06198E007D32C5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A04F876E2AFA03BD00DE60A8 /* Products */ = {
+		A0F5B8B52B06198E007D32C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A04F876D2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */,
+				A0F5B8B42B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A04F876F2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */ = {
+		A0F5B8B62B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */ = {
 			isa = PBXGroup;
 			children = (
-				A04F87702AFA03BD00DE60A8 /* main.cpp */,
-				A04F87772AFA03CC00DE60A8 /* BoolVector.cpp */,
-				A04F87782AFA03CC00DE60A8 /* BoolVector.hpp */,
+				A0F5B8B72B06198E007D32C5 /* main.cpp */,
+				A0F5B8BE2B0619AF007D32C5 /* Funcs.cpp */,
+				A0F5B8BF2B0619AF007D32C5 /* Funcs.hpp */,
 			);
-			path = "OOP Lab 3 \"Bool Vector\"";
+			path = "AaDS Lab 6 \"Bit sort\"";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A04F876C2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */ = {
+		A0F5B8B32B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A04F87742AFA03BD00DE60A8 /* Build configuration list for PBXNativeTarget "OOP Lab 3 "Bool Vector"" */;
+			buildConfigurationList = A0F5B8BB2B06198E007D32C5 /* Build configuration list for PBXNativeTarget "AaDS Lab 6 "Bit sort"" */;
 			buildPhases = (
-				A04F87692AFA03BD00DE60A8 /* Sources */,
-				A04F876A2AFA03BD00DE60A8 /* Frameworks */,
-				A04F876B2AFA03BD00DE60A8 /* CopyFiles */,
+				A0F5B8B02B06198E007D32C5 /* Sources */,
+				A0F5B8B12B06198E007D32C5 /* Frameworks */,
+				A0F5B8B22B06198E007D32C5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "OOP Lab 3 \"Bool Vector\"";
-			productName = "OOP Lab 3 \"Bool Vector\"";
-			productReference = A04F876D2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */;
+			name = "AaDS Lab 6 \"Bit sort\"";
+			productName = "AaDS Lab 6 \"Bit sort\"";
+			productReference = A0F5B8B42B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A04F87652AFA03BD00DE60A8 /* Project object */ = {
+		A0F5B8AC2B06198E007D32C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					A04F876C2AFA03BD00DE60A8 = {
+					A0F5B8B32B06198E007D32C5 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
-			buildConfigurationList = A04F87682AFA03BD00DE60A8 /* Build configuration list for PBXProject "OOP Lab 3 "Bool Vector"" */;
+			buildConfigurationList = A0F5B8AF2B06198E007D32C5 /* Build configuration list for PBXProject "AaDS Lab 6 "Bit sort"" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +109,30 @@
 				en,
 				Base,
 			);
-			mainGroup = A04F87642AFA03BD00DE60A8;
-			productRefGroup = A04F876E2AFA03BD00DE60A8 /* Products */;
+			mainGroup = A0F5B8AB2B06198E007D32C5;
+			productRefGroup = A0F5B8B52B06198E007D32C5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A04F876C2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */,
+				A0F5B8B32B06198E007D32C5 /* AaDS Lab 6 "Bit sort" */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A04F87692AFA03BD00DE60A8 /* Sources */ = {
+		A0F5B8B02B06198E007D32C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A04F87712AFA03BD00DE60A8 /* main.cpp in Sources */,
-				A04F87792AFA03CC00DE60A8 /* BoolVector.cpp in Sources */,
+				A0F5B8B82B06198E007D32C5 /* main.cpp in Sources */,
+				A0F5B8C02B0619AF007D32C5 /* Funcs.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A04F87722AFA03BD00DE60A8 /* Debug */ = {
+		A0F5B8B92B06198E007D32C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -193,7 +193,7 @@
 			};
 			name = Debug;
 		};
-		A04F87732AFA03BD00DE60A8 /* Release */ = {
+		A0F5B8BA2B06198E007D32C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,7 +247,7 @@
 			};
 			name = Release;
 		};
-		A04F87752AFA03BD00DE60A8 /* Debug */ = {
+		A0F5B8BC2B06198E007D32C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -255,7 +255,7 @@
 			};
 			name = Debug;
 		};
-		A04F87762AFA03BD00DE60A8 /* Release */ = {
+		A0F5B8BD2B06198E007D32C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -266,25 +266,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A04F87682AFA03BD00DE60A8 /* Build configuration list for PBXProject "OOP Lab 3 "Bool Vector"" */ = {
+		A0F5B8AF2B06198E007D32C5 /* Build configuration list for PBXProject "AaDS Lab 6 "Bit sort"" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A04F87722AFA03BD00DE60A8 /* Debug */,
-				A04F87732AFA03BD00DE60A8 /* Release */,
+				A0F5B8B92B06198E007D32C5 /* Debug */,
+				A0F5B8BA2B06198E007D32C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A04F87742AFA03BD00DE60A8 /* Build configuration list for PBXNativeTarget "OOP Lab 3 "Bool Vector"" */ = {
+		A0F5B8BB2B06198E007D32C5 /* Build configuration list for PBXNativeTarget "AaDS Lab 6 "Bit sort"" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A04F87752AFA03BD00DE60A8 /* Debug */,
-				A04F87762AFA03BD00DE60A8 /* Release */,
+				A0F5B8BC2B06198E007D32C5 /* Debug */,
+				A0F5B8BD2B06198E007D32C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A04F87652AFA03BD00DE60A8 /* Project object */;
+	rootObject = A0F5B8AC2B06198E007D32C5 /* Project object */;
 }

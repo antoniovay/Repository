@@ -19,11 +19,11 @@
 
 
 
-class BV
+class BoolVector
 {
     
-    friend std::istream &operator >> (std::istream &stream, BV& bv);
-    friend std::ostream &operator << (std::ostream &stream, BV& bv);
+    friend std::istream &operator >> (std::istream &stream, BoolVector& bv);
+    friend std::ostream &operator << (std::ostream &stream, BoolVector& bv);
     
     class BoolRank;
     
@@ -31,15 +31,15 @@ public:
     
     // Конструкторы
     
-    BV (const int length = 10); // Конструктор по умолчанию
+    BoolVector (const int length = 10); // Конструктор по умолчанию
     
-    BV (const int length, const int value); // Конструктор с параметром (размер и значение - одно и то же для всех разрядов)
-    BV (const int length, const char* array); // Конструктор с параметром (из массива const char *)
+    BoolVector (const int length, const int value); // Конструктор с параметром (размер и значение - одно и то же для всех разрядов)
+    BoolVector (const int length, const char* array); // Конструктор с параметром (из массива const char *)
     
-    BV (const BV &bv); // Конструктор копирования
+    BoolVector (const BoolVector &bv); // Конструктор копирования
     
     
-    ~BV() { // Деструктор
+    ~BoolVector() { // Деструктор
         
         delete [] m_cells;
         
@@ -51,7 +51,7 @@ public:
     
     int length (); // Длина (кол-во битов вектора)
     
-    void swap (BV &bv); // Обмен содержимого с другим вектором
+    void swap (BoolVector &bv); // Обмен содержимого с другим вектором
     
     void inverse (); // Инверсия всех компонент вектора
     
@@ -74,24 +74,24 @@ public:
     BoolRank operator [] (const int i); // Получение компоненты
     const BoolRank operator [] (const int i) const; // Получение компоненты
     
-    BV operator & (const BV &other);  // Побитовое умножение &
-    BV &operator &= (const BV &other); // Побитовое умножение &=
+    BoolVector operator & (const BoolVector &other);  // Побитовое умножение &
+    BoolVector &operator &= (const BoolVector &other); // Побитовое умножение &=
     
-    BV operator | (const BV &other); // Побитовое сложение |
-    BV &operator |= (const BV &other); // Побитовое сложение |=
+    BoolVector operator | (const BoolVector &other); // Побитовое сложение |
+    BoolVector &operator |= (const BoolVector &other); // Побитовое сложение |=
     
-    BV operator ^ (const BV &other); // Побитовое исключающее ИЛИ ^
-    BV &operator ^= (const BV &other); // Побитовое исключающее ИЛИ ^=
+    BoolVector operator ^ (const BoolVector &other); // Побитовое исключающее ИЛИ ^
+    BoolVector &operator ^= (const BoolVector &other); // Побитовое исключающее ИЛИ ^=
     
-    BV operator << (const int value); // Побитовый сдвиг <<
-    BV &operator <<= (const int value); // Побитовый сдвиг <<=
+    BoolVector operator << (const int value); // Побитовый сдвиг <<
+    BoolVector &operator <<= (const int value); // Побитовый сдвиг <<=
     
-    BV operator >> (const int value); // Побитовый сдвиг >>
-    BV &operator >>= (const int value); // Побитовый сдвиг >>=
+    BoolVector operator >> (const int value); // Побитовый сдвиг >>
+    BoolVector &operator >>= (const int value); // Побитовый сдвиг >>=
     
-    BV operator ~ (); // Побитовая инверсия
+    BoolVector operator ~ (); // Побитовая инверсия
     
-    BV &operator = (const BV &other); // Оператор присваивания
+    BoolVector &operator = (const BoolVector &other); // Оператор присваивания
     
     
     
@@ -114,7 +114,7 @@ private:
 
 
 
-class BV::BoolRank 
+class BoolVector::BoolRank 
 {
     
 public:
@@ -160,7 +160,7 @@ private:
 
 
 
-std::istream &operator >> (std::istream &stream, BV& bv) { // Потоковый ввод
+std::istream &operator >> (std::istream &stream, BoolVector& bv) { // Потоковый ввод
     
     char* string = new char [bv.m_length];
     
@@ -190,7 +190,7 @@ std::istream &operator >> (std::istream &stream, BV& bv) { // Потоковый
 
 
 
-std::ostream &operator << (std::ostream &stream, BV& bv) { // Потоковый вывод
+std::ostream &operator << (std::ostream &stream, BoolVector& bv) { // Потоковый вывод
     
     for (int i = 0; i < bv.m_cellCount; ++i) {
         

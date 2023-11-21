@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A04F87712AFA03BD00DE60A8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A04F87702AFA03BD00DE60A8 /* main.cpp */; };
-		A04F87792AFA03CC00DE60A8 /* BoolVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A04F87772AFA03CC00DE60A8 /* BoolVector.cpp */; };
+		A0C98C212B0CE19E00D266B6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0C98C202B0CE19E00D266B6 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A04F876B2AFA03BD00DE60A8 /* CopyFiles */ = {
+		A0C98C1B2B0CE19E00D266B6 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,14 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A04F876D2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Lab 3 \"Bool Vector\""; sourceTree = BUILT_PRODUCTS_DIR; };
-		A04F87702AFA03BD00DE60A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A04F87772AFA03CC00DE60A8 /* BoolVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoolVector.cpp; sourceTree = "<group>"; };
-		A04F87782AFA03CC00DE60A8 /* BoolVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoolVector.hpp; sourceTree = "<group>"; };
+		A0C98C1D2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Lab 4 \"Bool Matrix\""; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C98C202B0CE19E00D266B6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A04F876A2AFA03BD00DE60A8 /* Frameworks */ = {
+		A0C98C1A2B0CE19E00D266B6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,67 +38,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A04F87642AFA03BD00DE60A8 = {
+		A0C98C142B0CE19E00D266B6 = {
 			isa = PBXGroup;
 			children = (
-				A04F876F2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */,
-				A04F876E2AFA03BD00DE60A8 /* Products */,
+				A0C98C1F2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */,
+				A0C98C1E2B0CE19E00D266B6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A04F876E2AFA03BD00DE60A8 /* Products */ = {
+		A0C98C1E2B0CE19E00D266B6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A04F876D2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */,
+				A0C98C1D2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A04F876F2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */ = {
+		A0C98C1F2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */ = {
 			isa = PBXGroup;
 			children = (
-				A04F87702AFA03BD00DE60A8 /* main.cpp */,
-				A04F87772AFA03CC00DE60A8 /* BoolVector.cpp */,
-				A04F87782AFA03CC00DE60A8 /* BoolVector.hpp */,
+				A0C98C202B0CE19E00D266B6 /* main.cpp */,
 			);
-			path = "OOP Lab 3 \"Bool Vector\"";
+			path = "OOP Lab 4 \"Bool Matrix\"";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A04F876C2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */ = {
+		A0C98C1C2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A04F87742AFA03BD00DE60A8 /* Build configuration list for PBXNativeTarget "OOP Lab 3 "Bool Vector"" */;
+			buildConfigurationList = A0C98C242B0CE19E00D266B6 /* Build configuration list for PBXNativeTarget "OOP Lab 4 "Bool Matrix"" */;
 			buildPhases = (
-				A04F87692AFA03BD00DE60A8 /* Sources */,
-				A04F876A2AFA03BD00DE60A8 /* Frameworks */,
-				A04F876B2AFA03BD00DE60A8 /* CopyFiles */,
+				A0C98C192B0CE19E00D266B6 /* Sources */,
+				A0C98C1A2B0CE19E00D266B6 /* Frameworks */,
+				A0C98C1B2B0CE19E00D266B6 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "OOP Lab 3 \"Bool Vector\"";
-			productName = "OOP Lab 3 \"Bool Vector\"";
-			productReference = A04F876D2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */;
+			name = "OOP Lab 4 \"Bool Matrix\"";
+			productName = "OOP Lab 4 \"Bool Matrix\"";
+			productReference = A0C98C1D2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A04F87652AFA03BD00DE60A8 /* Project object */ = {
+		A0C98C152B0CE19E00D266B6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					A04F876C2AFA03BD00DE60A8 = {
+					A0C98C1C2B0CE19E00D266B6 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
-			buildConfigurationList = A04F87682AFA03BD00DE60A8 /* Build configuration list for PBXProject "OOP Lab 3 "Bool Vector"" */;
+			buildConfigurationList = A0C98C182B0CE19E00D266B6 /* Build configuration list for PBXProject "OOP Lab 4 "Bool Matrix"" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +104,29 @@
 				en,
 				Base,
 			);
-			mainGroup = A04F87642AFA03BD00DE60A8;
-			productRefGroup = A04F876E2AFA03BD00DE60A8 /* Products */;
+			mainGroup = A0C98C142B0CE19E00D266B6;
+			productRefGroup = A0C98C1E2B0CE19E00D266B6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A04F876C2AFA03BD00DE60A8 /* OOP Lab 3 "Bool Vector" */,
+				A0C98C1C2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A04F87692AFA03BD00DE60A8 /* Sources */ = {
+		A0C98C192B0CE19E00D266B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A04F87712AFA03BD00DE60A8 /* main.cpp in Sources */,
-				A04F87792AFA03CC00DE60A8 /* BoolVector.cpp in Sources */,
+				A0C98C212B0CE19E00D266B6 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A04F87722AFA03BD00DE60A8 /* Debug */ = {
+		A0C98C222B0CE19E00D266B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -193,7 +187,7 @@
 			};
 			name = Debug;
 		};
-		A04F87732AFA03BD00DE60A8 /* Release */ = {
+		A0C98C232B0CE19E00D266B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,7 +241,7 @@
 			};
 			name = Release;
 		};
-		A04F87752AFA03BD00DE60A8 /* Debug */ = {
+		A0C98C252B0CE19E00D266B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -255,7 +249,7 @@
 			};
 			name = Debug;
 		};
-		A04F87762AFA03BD00DE60A8 /* Release */ = {
+		A0C98C262B0CE19E00D266B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -266,25 +260,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A04F87682AFA03BD00DE60A8 /* Build configuration list for PBXProject "OOP Lab 3 "Bool Vector"" */ = {
+		A0C98C182B0CE19E00D266B6 /* Build configuration list for PBXProject "OOP Lab 4 "Bool Matrix"" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A04F87722AFA03BD00DE60A8 /* Debug */,
-				A04F87732AFA03BD00DE60A8 /* Release */,
+				A0C98C222B0CE19E00D266B6 /* Debug */,
+				A0C98C232B0CE19E00D266B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A04F87742AFA03BD00DE60A8 /* Build configuration list for PBXNativeTarget "OOP Lab 3 "Bool Vector"" */ = {
+		A0C98C242B0CE19E00D266B6 /* Build configuration list for PBXNativeTarget "OOP Lab 4 "Bool Matrix"" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A04F87752AFA03BD00DE60A8 /* Debug */,
-				A04F87762AFA03BD00DE60A8 /* Release */,
+				A0C98C252B0CE19E00D266B6 /* Debug */,
+				A0C98C262B0CE19E00D266B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A04F87652AFA03BD00DE60A8 /* Project object */;
+	rootObject = A0C98C152B0CE19E00D266B6 /* Project object */;
 }

@@ -11,11 +11,11 @@
 #include <vector>
 #include <assert.h>
 
-#include "BV.hpp"
+#include "BoolVector.hpp"
 
 
 
-BV::BV (const int length) {
+BoolVector::BoolVector (const int length) {
     
     m_cellCount = length / 8 + (length % 8 != 0);
     
@@ -43,7 +43,7 @@ BV::BV (const int length) {
 
 
 
-BV::BV (const int length, const int value) {
+BoolVector::BoolVector (const int length, const int value) {
     
     m_cellCount = length / 8 + (length % 8 != 0);
     
@@ -71,7 +71,7 @@ BV::BV (const int length, const int value) {
 
 
 
-BV::BV (const int length, const char* array) {
+BoolVector::BoolVector (const int length, const char* array) {
     
     assert (strlen(array) >= 0);
     
@@ -96,7 +96,7 @@ BV::BV (const int length, const char* array) {
 
 
 
-BV::BV (const BV &other) {
+BoolVector::BoolVector (const BoolVector &other) {
     
     m_cells = new uint8_t [other.m_cellCount];
     
@@ -125,7 +125,7 @@ BV::BV (const BV &other) {
 
 
 
-int BV::length () {
+int BoolVector::length () {
     
     return m_length;
     
@@ -133,7 +133,7 @@ int BV::length () {
 
 
 
-void BV::swap (BV &bv) {
+void BoolVector::swap (BoolVector &bv) {
     
     std::swap (m_length, bv.m_length);
     std::swap (m_cellCount, bv.m_cellCount);
@@ -144,7 +144,7 @@ void BV::swap (BV &bv) {
 
 
 
-void BV::inverse () {
+void BoolVector::inverse () {
     
     for (int i = 0; i < m_cellCount; i++) {
         
@@ -160,7 +160,7 @@ void BV::inverse () {
 
 
 
-void BV::inverse (const int i) {
+void BoolVector::inverse (const int i) {
     
     assert(i >= 0 && i < m_length);
     
@@ -186,7 +186,7 @@ void BV::inverse (const int i) {
 
 
 
-void BV::set (const int i, const bool x) {
+void BoolVector::set (const int i, const bool x) {
     
     assert(i >= 0 && i < m_length);
     
@@ -212,7 +212,7 @@ void BV::set (const int i, const bool x) {
 
 
 
-void BV::setAfterK (const int k, const bool x) {
+void BoolVector::setAfterK (const int k, const bool x) {
     
     assert(k >= 0 && k < m_length);
     
@@ -257,7 +257,7 @@ void BV::setAfterK (const int k, const bool x) {
 
 
 
-void BV::setAll (const bool x) {
+void BoolVector::setAll (const bool x) {
     
     uint8_t mask = 0;
     
@@ -281,7 +281,7 @@ void BV::setAll (const bool x) {
 
 
 
-int BV::weight () {
+int BoolVector::weight () {
     
     uint8_t mask;
     
@@ -343,7 +343,7 @@ int BV::operator [] (const int i) {
 
 
 
-BV::BoolRank BV::operator [] (const int i) {
+BoolVector::BoolRank BoolVector::operator [] (const int i) {
     
     assert(i >= 0 && i < m_length);
     
@@ -351,7 +351,7 @@ BV::BoolRank BV::operator [] (const int i) {
     
 }
 
-const BV::BoolRank BV::operator [] (const int i) const {
+const BoolVector::BoolRank BoolVector::operator [] (const int i) const {
     
     assert(i >= 0 && i < m_length);
     
@@ -361,11 +361,11 @@ const BV::BoolRank BV::operator [] (const int i) const {
 
 
 
-BV BV::operator & (const BV &other) {
+BoolVector BoolVector::operator & (const BoolVector &other) {
     
     assert (m_length == other.m_length);
         
-    BV result(*this);
+    BoolVector result(*this);
         
         
     for (int i = 0; i < m_cellCount; i++) {
@@ -381,7 +381,7 @@ BV BV::operator & (const BV &other) {
 
 
 
-BV &BV::operator &= (const BV &other) {
+BoolVector &BoolVector::operator &= (const BoolVector &other) {
     
     *this = *this & other;
         
@@ -391,11 +391,11 @@ BV &BV::operator &= (const BV &other) {
 
 
 
-BV BV::operator | (const BV &other) {
+BoolVector BoolVector::operator | (const BoolVector &other) {
     
     assert(m_length == other.m_length);
         
-    BV result(other);
+    BoolVector result(other);
     
     for (int i = 0; i < m_cellCount; i++) {
         
@@ -409,7 +409,7 @@ BV BV::operator | (const BV &other) {
 
 
 
-BV &BV::operator |= (const BV &other) {
+BoolVector &BoolVector::operator |= (const BoolVector &other) {
     
     *this = *this | other;
         
@@ -419,11 +419,11 @@ BV &BV::operator |= (const BV &other) {
 
 
 
-BV BV::operator ^ (const BV &other) {
+BoolVector BoolVector::operator ^ (const BoolVector &other) {
     
     assert(m_length == other.m_length);
         
-    BV result(other);
+    BoolVector result(other);
     
     for(int i = 0; i < m_cellCount; i++) {
         
@@ -437,7 +437,7 @@ BV BV::operator ^ (const BV &other) {
 
 
 
-BV &BV::operator ^= (const BV &other) {
+BoolVector &BoolVector::operator ^= (const BoolVector &other) {
     
     *this = *this ^ other;
         
@@ -447,9 +447,9 @@ BV &BV::operator ^= (const BV &other) {
 
 
 
-BV BV::operator << (const int value) {
+BoolVector BoolVector::operator << (const int value) {
     
-    BV result(*this);
+    BoolVector result(*this);
     
     result <<= value;
     
@@ -459,7 +459,7 @@ BV BV::operator << (const int value) {
 
 
 
-BV &BV::operator <<= (int value) {
+BoolVector &BoolVector::operator <<= (int value) {
     
     assert (value >= 0 && value <= m_length);
     
@@ -508,9 +508,9 @@ BV &BV::operator <<= (int value) {
 
 
 
-BV BV::operator >> (const int value) {
+BoolVector BoolVector::operator >> (const int value) {
     
-    BV result(*this);
+    BoolVector result(*this);
     
     result >>= value;
 
@@ -521,7 +521,7 @@ BV BV::operator >> (const int value) {
 
 
 
-BV &BV::operator >>= (int value) {
+BoolVector &BoolVector::operator >>= (int value) {
     
     assert (value >= 0 && value <= m_length);
         
@@ -574,9 +574,9 @@ BV &BV::operator >>= (int value) {
 
 
 
-BV BV::operator ~ () {
+BoolVector BoolVector::operator ~ () {
     
-    BV result (*this);
+    BoolVector result (*this);
         
     for (int i = 0; i < m_cellCount; i++) {
         
@@ -590,7 +590,7 @@ BV BV::operator ~ () {
 
 
 
-BV &BV::operator = (const BV &other) {
+BoolVector &BoolVector::operator = (const BoolVector &other) {
     
     if (this != &other) {
         
@@ -636,7 +636,7 @@ BV &BV::operator = (const BV &other) {
 
 
 
-BV::BoolRank& BV::BoolRank::operator = (const bool value) {
+BoolVector::BoolRank& BoolVector::BoolRank::operator = (const bool value) {
     
     if (value) {
         
@@ -656,7 +656,7 @@ BV::BoolRank& BV::BoolRank::operator = (const bool value) {
 
 
 
-BV::BoolRank& BV::BoolRank::operator = (const BV::BoolRank &other) {
+BoolVector::BoolRank& BoolVector::BoolRank::operator = (const BoolVector::BoolRank &other) {
     
     return *this = (bool) other;
     
@@ -664,7 +664,7 @@ BV::BoolRank& BV::BoolRank::operator = (const BV::BoolRank &other) {
 
 
 
-bool BV::BoolRank::operator | (const bool value) const {
+bool BoolVector::BoolRank::operator | (const bool value) const {
     
     return (bool) *this | value;
     
@@ -672,7 +672,7 @@ bool BV::BoolRank::operator | (const bool value) const {
 
 
 
-bool BV::BoolRank::operator & (const bool value) const {
+bool BoolVector::BoolRank::operator & (const bool value) const {
     
     return (bool) *this & value;
     
@@ -680,7 +680,7 @@ bool BV::BoolRank::operator & (const bool value) const {
 
 
 
-bool BV::BoolRank::operator ~ () const {
+bool BoolVector::BoolRank::operator ~ () const {
     
     return !this->operator bool();
     
@@ -688,7 +688,7 @@ bool BV::BoolRank::operator ~ () const {
 
 
 
-bool BV::BoolRank::operator ^ (const bool value) const {
+bool BoolVector::BoolRank::operator ^ (const bool value) const {
     
     return (bool) *this ^ value;
     
@@ -696,7 +696,7 @@ bool BV::BoolRank::operator ^ (const bool value) const {
 
 
 
-bool BV::BoolRank::operator == (const bool value) const {
+bool BoolVector::BoolRank::operator == (const bool value) const {
     
     return (bool) *this == value;
     
@@ -704,7 +704,7 @@ bool BV::BoolRank::operator == (const bool value) const {
 
 
 
-bool BV::BoolRank::operator == (const BV::BoolRank &other) const {
+bool BoolVector::BoolRank::operator == (const BoolVector::BoolRank &other) const {
     
     return (*this == (bool) other);
     
@@ -712,7 +712,7 @@ bool BV::BoolRank::operator == (const BV::BoolRank &other) const {
 
 
 
-BV::BoolRank::operator bool() const {
+BoolVector::BoolRank::operator bool() const {
     
     if (m_mask & *m_cell) {
         

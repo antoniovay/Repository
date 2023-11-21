@@ -10,13 +10,13 @@
 #include <iostream>
 #include <vector>
 
-#include "BV.hpp"
+#include "BoolVector.hpp"
 
 
 
 int main() {
     
-    BV x(10, 0);
+    BoolVector x(10, 0);
     
     std::cout << x;
     
