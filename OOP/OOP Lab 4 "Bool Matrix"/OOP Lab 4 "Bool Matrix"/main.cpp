@@ -2,13 +2,23 @@
 //  main.cpp
 //  OOP Lab 4 "Bool Matrix"
 //
-//  Created by Antony Miroshnichenko on 21.11.2023.
+//  Created by Antony Miroshnichenko on 15.11.2023.
 //
 
 #include <iostream>
+#include <vector>
+#include <assert.h>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+#include "Bool Matrix.hpp"
+
+int main() {
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

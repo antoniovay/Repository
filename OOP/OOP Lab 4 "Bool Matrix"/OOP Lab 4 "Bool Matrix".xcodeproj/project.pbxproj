@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A043897B2B0CF2EB00926282 /* BoolVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A04389792B0CF2EB00926282 /* BoolVector.cpp */; };
 		A0C98C212B0CE19E00D266B6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0C98C202B0CE19E00D266B6 /* main.cpp */; };
+		A0C98C292B0CE1C200D266B6 /* Bool Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0C98C272B0CE1C200D266B6 /* Bool Matrix.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +25,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A04389792B0CF2EB00926282 /* BoolVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoolVector.cpp; path = "../../OOP Lab 3 \"Bool Vector\"/OOP Lab 3 \"Bool Vector\"/BoolVector.cpp"; sourceTree = "<group>"; };
+		A043897A2B0CF2EB00926282 /* BoolVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BoolVector.hpp; path = "../../OOP Lab 3 \"Bool Vector\"/OOP Lab 3 \"Bool Vector\"/BoolVector.hpp"; sourceTree = "<group>"; };
 		A0C98C1D2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Lab 4 \"Bool Matrix\""; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C98C202B0CE19E00D266B6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A0C98C272B0CE1C200D266B6 /* Bool Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Bool Matrix.cpp"; sourceTree = "<group>"; };
+		A0C98C282B0CE1C200D266B6 /* Bool Matrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "Bool Matrix.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,11 @@
 		A0C98C1F2B0CE19E00D266B6 /* OOP Lab 4 "Bool Matrix" */ = {
 			isa = PBXGroup;
 			children = (
+				A04389792B0CF2EB00926282 /* BoolVector.cpp */,
+				A043897A2B0CF2EB00926282 /* BoolVector.hpp */,
 				A0C98C202B0CE19E00D266B6 /* main.cpp */,
+				A0C98C272B0CE1C200D266B6 /* Bool Matrix.cpp */,
+				A0C98C282B0CE1C200D266B6 /* Bool Matrix.hpp */,
 			);
 			path = "OOP Lab 4 \"Bool Matrix\"";
 			sourceTree = "<group>";
@@ -119,7 +129,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A043897B2B0CF2EB00926282 /* BoolVector.cpp in Sources */,
 				A0C98C212B0CE19E00D266B6 /* main.cpp in Sources */,
+				A0C98C292B0CE1C200D266B6 /* Bool Matrix.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
