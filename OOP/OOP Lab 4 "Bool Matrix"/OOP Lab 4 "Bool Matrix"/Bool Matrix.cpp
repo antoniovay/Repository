@@ -157,6 +157,8 @@ BoolVector BoolMatrix::disjunction() const {
 
 int BoolMatrix::weight (int j) const {
     
+    assert(j >= 0 && j < m_lineCount);
+    
     return m_line[j].weight();
     
 }
@@ -165,6 +167,10 @@ int BoolMatrix::weight (int j) const {
 
 void BoolMatrix::invert(int i, int j) {
     
+    assert(j >= 0 && j < m_lineCount);
+    
+    assert(i >= 0 && i < m_columnCount);
+    
     m_line[j].inverse(i);
     
 }
@@ -172,6 +178,12 @@ void BoolMatrix::invert(int i, int j) {
 
 
 void BoolMatrix::invertFrom (int i, int j, int k) {
+    
+    assert(j >= 0 && j < m_lineCount);
+    
+    assert(i >= 0 && i < m_columnCount);
+    
+    assert(i + k < m_columnCount);
     
     for (int index = i; index < i + k; index++) {
         
@@ -185,6 +197,10 @@ void BoolMatrix::invertFrom (int i, int j, int k) {
 
 void BoolMatrix::set (int i, int j, int value) {
     
+    assert(j >= 0 && j < m_lineCount);
+    
+    assert(i >= 0 && i < m_columnCount);
+    
     m_line[j].set(i, value);
     
 }
@@ -192,6 +208,12 @@ void BoolMatrix::set (int i, int j, int value) {
 
 
 void BoolMatrix::setFrom (int i, int j, int k, int value) {
+    
+    assert(j >= 0 && j < m_lineCount);
+    
+    assert(i >= 0 && i < m_columnCount);
+    
+    assert(i + k < m_columnCount);
     
     for (int index = i; index < i + k; index++) {
         
@@ -239,6 +261,8 @@ BoolMatrix &BoolMatrix::operator = (const BoolMatrix &other) {
 
 BoolVector &BoolMatrix::operator [] (const int j) {
     
+    assert(j >= 0 && j < m_lineCount);
+    
     return m_line[j];
     
 }
@@ -246,6 +270,8 @@ BoolVector &BoolMatrix::operator [] (const int j) {
 
 
 const BoolVector &BoolMatrix::operator [] (const int j) const {
+    
+    assert(j >= 0 && j < m_lineCount);
     
     return m_line[j];
     
