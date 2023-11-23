@@ -76,3 +76,243 @@ BoolMatrix::BoolMatrix (const BoolMatrix &other) {
 
 
 
+int BoolMatrix::lineCount() {
+    
+    return m_lineCount;
+    
+}
+
+
+
+int BoolMatrix::columnCount() {
+    
+    return m_columnCount;
+    
+}
+
+
+
+void BoolMatrix::swap (BoolMatrix &other) {
+    
+    std::swap(m_lineCount, other.m_lineCount);
+    std::swap(m_columnCount, other.m_columnCount);
+    
+    for (int i = 0; i < m_lineCount; i++) {
+        
+        std::swap(m_line, other.m_line);
+        
+    }
+    
+}
+
+
+
+int BoolMatrix::weight() {
+    
+    int allWeight = 0;
+    
+    for (int i = 0; i < m_lineCount; i++) {
+        
+        allWeight += m_line -> weight();
+        
+    }
+    
+    return allWeight;
+    
+}
+
+
+
+BoolVector BoolMatrix::conjunction() {
+    
+    BoolVector result = m_line[0];
+    
+    for (int i = 1; i < m_lineCount; i++) {
+        
+        result &= m_line[i];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+BoolVector BoolMatrix::disjunction() {
+    
+    BoolVector result = m_line[0];
+    
+    for (int i = 1; i < m_lineCount; i++) {
+        
+        result |= m_line[i];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+int BoolMatrix::weight (int j) {
+    
+    return m_line[j].weight();
+    
+}
+
+
+
+void BoolMatrix::invert(int i, int j) {
+    
+    m_line[j].inverse(i);
+    
+}
+
+
+
+void BoolMatrix::invertFrom (int i, int j, int k) {
+    
+    for (int index = i; index < i + k; index++) {
+        
+        m_line[j].inverse(index);
+        
+    }
+    
+}
+
+
+
+void BoolMatrix::set (int i, int j, int value) {
+    
+    m_line[j].set(i, value);
+    
+}
+
+
+
+void BoolMatrix::setFrom (int i, int j, int k, int value) {
+    
+    for (int index = i; index < i + k; index++) {
+        
+        m_line[j].set(index, value);
+        
+    }
+    
+}
+
+
+
+BoolMatrix &BoolMatrix::operator = (const BoolMatrix &other) {
+    
+    
+    
+}
+
+
+
+BoolVector &BoolMatrix::operator [] (const int j) {
+    
+    return m_line[j];
+    
+}
+
+
+
+const BoolVector &BoolMatrix::operator [] (const int j) const {
+    
+    return m_line[j];
+    
+}
+
+
+
+BoolMatrix BoolMatrix::operator & (const BoolMatrix &other) {
+    
+    BoolMatrix result(*this);
+    
+    for (int j = 0; j < m_lineCount; j++) {
+        
+        result.m_line[j] &= other.m_line[j];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+BoolMatrix &BoolMatrix::operator &= (const BoolMatrix &other) {
+    
+    *this = *this & other;
+    
+    return *this;
+    
+}
+
+BoolMatrix BoolMatrix::operator | (const BoolMatrix &other) {
+    
+    BoolMatrix result(*this);
+    
+    for (int j = 0; j < m_lineCount; j++) {
+        
+        result.m_line[j] |= other.m_line[j];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+BoolMatrix &BoolMatrix::operator |= (const BoolMatrix &other) {
+    
+    *this = *this | other;
+    
+    return *this;
+    
+}
+
+
+
+BoolMatrix BoolMatrix::operator ^ (const BoolMatrix &other) {
+    
+    BoolMatrix result(*this);
+    
+    for (int j = 0; j < m_lineCount; j++) {
+        
+        result.m_line[j] ^= other.m_line[j];
+        
+    }
+    
+    return result;
+    
+}
+
+
+
+BoolMatrix &BoolMatrix::operator ^= (const BoolMatrix &other) {
+    
+    *this = *this ^ other;
+    
+    return *this;
+    
+}
+
+
+
+BoolMatrix BoolMatrix::operator ~ () {
+    
+    BoolMatrix result(*this);
+    
+    for (int j = 0; j < m_lineCount; j++) {
+        
+        result.m_line[j]
+        
+    }
+    
+    return result;
+    
+}

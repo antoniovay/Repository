@@ -37,7 +37,7 @@ public:
     
     int lineCount(); // Получить число строк
     int columnCount(); // Получить число столбцов
-    void swap(); // Обмен содержимого с другой матрицей
+    void swap (BoolMatrix &other); // Обмен содержимого с другой матрицей
     int weight(); // Вес матрицы
     
     BoolVector conjunction(); // Конъюнкция всех строк
@@ -46,7 +46,7 @@ public:
     int weight (int j); // Вес j-й строки
     
     void invert(int i, int j); // Инверсия в i-ой компоненты j-ой строки
-    void invertFrom (int i, int j, int k, int value); // Инверсия k компонент j-ой строки, начиная с i-ой компоненты
+    void invertFrom (int i, int j, int k); // Инверсия k компонент j-ой строки, начиная с i-ой компоненты
     void set (int i, int j, int value); // Установка в 0/1 i-ой компоненты j-ой строки
     void setFrom (int i, int j, int k, int value); // Установка в 0/1 k компонент j-ой строки, начиная с i-ой компоненты
     
