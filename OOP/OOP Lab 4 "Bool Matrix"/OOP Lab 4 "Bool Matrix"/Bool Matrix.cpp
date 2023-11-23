@@ -76,7 +76,7 @@ BoolMatrix::BoolMatrix (const BoolMatrix &other) {
 
 
 
-int BoolMatrix::lineCount() {
+int BoolMatrix::lineCount() const {
     
     return m_lineCount;
     
@@ -84,7 +84,7 @@ int BoolMatrix::lineCount() {
 
 
 
-int BoolMatrix::columnCount() {
+int BoolMatrix::columnCount() const {
     
     return m_columnCount;
     
@@ -107,7 +107,7 @@ void BoolMatrix::swap (BoolMatrix &other) {
 
 
 
-int BoolMatrix::weight() {
+int BoolMatrix::weight() const {
     
     int allWeight = 0;
     
@@ -123,7 +123,7 @@ int BoolMatrix::weight() {
 
 
 
-BoolVector BoolMatrix::conjunction() {
+BoolVector BoolMatrix::conjunction() const {
     
     BoolVector result = m_line[0];
     
@@ -139,7 +139,7 @@ BoolVector BoolMatrix::conjunction() {
 
 
 
-BoolVector BoolMatrix::disjunction() {
+BoolVector BoolMatrix::disjunction() const {
     
     BoolVector result = m_line[0];
     
@@ -155,7 +155,7 @@ BoolVector BoolMatrix::disjunction() {
 
 
 
-int BoolMatrix::weight (int j) {
+int BoolMatrix::weight (int j) const {
     
     return m_line[j].weight();
     
@@ -206,6 +206,32 @@ void BoolMatrix::setFrom (int i, int j, int k, int value) {
 BoolMatrix &BoolMatrix::operator = (const BoolMatrix &other) {
     
     
+    if (this == &other) {
+        
+        return *this;
+        
+    }
+    
+    
+    delete [] m_line;
+    
+    m_line = new BoolVector [other.m_lineCount];
+    
+    
+    m_columnCount = other.m_columnCount;
+    
+    m_lineCount = other.m_lineCount;
+    
+    
+    for (int j = 0; j < m_lineCount; j++) {
+        
+        m_line[j] = other.m_line[j];
+        
+    }
+    
+    
+    return *this;
+    
     
 }
 
@@ -227,7 +253,7 @@ const BoolVector &BoolMatrix::operator [] (const int j) const {
 
 
 
-BoolMatrix BoolMatrix::operator & (const BoolMatrix &other) {
+BoolMatrix BoolMatrix::operator & (const BoolMatrix &other) const {
     
     BoolMatrix result(*this);
     
@@ -251,7 +277,7 @@ BoolMatrix &BoolMatrix::operator &= (const BoolMatrix &other) {
     
 }
 
-BoolMatrix BoolMatrix::operator | (const BoolMatrix &other) {
+BoolMatrix BoolMatrix::operator | (const BoolMatrix &other) const {
     
     BoolMatrix result(*this);
     
@@ -277,7 +303,7 @@ BoolMatrix &BoolMatrix::operator |= (const BoolMatrix &other) {
 
 
 
-BoolMatrix BoolMatrix::operator ^ (const BoolMatrix &other) {
+BoolMatrix BoolMatrix::operator ^ (const BoolMatrix &other) const {
     
     BoolMatrix result(*this);
     
@@ -309,10 +335,50 @@ BoolMatrix BoolMatrix::operator ~ () {
     
     for (int j = 0; j < m_lineCount; j++) {
         
-        result.m_line[j]
+        result.m_line[j] = ~result.m_line[j];
         
     }
     
     return result;
+    
+}
+
+
+
+
+
+std::istream &operator >> (std::istream &stream, BoolMatrix &object) {
+    
+    for (int j = 0; j < object.lineCount(); j++) {
+        
+        stream >> object.m_line[j];
+        
+    }
+    
+    return stream;
+    
+}
+
+
+
+std::ostream &operator << (std::ostream &stream, const BoolMatrix &object) {
+    
+    
+    
+    for (int j = 0; j < object.lineCount(); j++) {
+        
+        stream << "[" << object[j][0];
+        
+        for (int i = 1; i < object.lineCount(); i++) {
+            
+            stream << " " << object[j][i];
+            
+        }
+        
+        stream << "]" << std::endl;
+        
+    }
+    
+    return stream;
     
 }

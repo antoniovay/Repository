@@ -21,6 +21,11 @@
 class BoolMatrix
 {
     
+    
+    friend std::istream &operator >> (std::istream& stream, BoolMatrix &other);
+    friend std::ostream &operator << (std::ostream& stream, const BoolMatrix &other);
+    
+    
 public:
     
     // Методы //-------------------------------------------------------------------------------------------------------------------------------------
@@ -35,15 +40,15 @@ public:
         
     }
     
-    int lineCount(); // Получить число строк
-    int columnCount(); // Получить число столбцов
+    int lineCount() const; // Получить число строк
+    int columnCount() const; // Получить число столбцов
     void swap (BoolMatrix &other); // Обмен содержимого с другой матрицей
-    int weight(); // Вес матрицы
+    int weight() const; // Вес матрицы
     
-    BoolVector conjunction(); // Конъюнкция всех строк
-    BoolVector disjunction(); // Дизъюнкция всех строк
+    BoolVector conjunction() const; // Конъюнкция всех строк
+    BoolVector disjunction() const; // Дизъюнкция всех строк
 
-    int weight (int j); // Вес j-й строки
+    int weight (int j) const; // Вес j-й строки
     
     void invert(int i, int j); // Инверсия в i-ой компоненты j-ой строки
     void invertFrom (int i, int j, int k); // Инверсия k компонент j-ой строки, начиная с i-ой компоненты
@@ -58,13 +63,13 @@ public:
     BoolVector &operator [] (const int j); // Получение строки
     const BoolVector &operator [] (const int j) const; // Получение строки const
     
-    BoolMatrix operator & (const BoolMatrix &other); // Построчное побитовое умножение &
+    BoolMatrix operator & (const BoolMatrix &other) const; // Построчное побитовое умножение &
     BoolMatrix &operator &= (const BoolMatrix &other); // Построчное побитовое умножение &=
     
-    BoolMatrix operator | (const BoolMatrix &other); // Построчное побитовое сложение |
+    BoolMatrix operator | (const BoolMatrix &other) const; // Построчное побитовое сложение |
     BoolMatrix &operator |= (const BoolMatrix &other); // Построчное побитовое сложение|=
     
-    BoolMatrix operator ^ (const BoolMatrix &other); // Построчное побитовое исключающее ИЛИ ^
+    BoolMatrix operator ^ (const BoolMatrix &other) const; // Построчное побитовое исключающее ИЛИ ^
     BoolMatrix &operator ^= (const BoolMatrix &other); // Построчное побитовое исключающее ИЛИ ^=
     
     BoolMatrix operator ~ (); // Построчная побитовая инверсия
