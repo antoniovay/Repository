@@ -8,11 +8,3 @@
 
 
 #include "List.hpp"
-
-#include <iostream>
-#include <assert.h>
-#include <vector>
-
-
-
-
