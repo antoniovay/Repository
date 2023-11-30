@@ -146,43 +146,34 @@ void orderCheck (std::vector<int> array) {
 
 void bitSort(std::vector<int>& array, int l, int r, int mask) {
     
-    if (l < r || mask >= 0) {
+    if (l < r && mask > 0) {
         
         int i = l, j = r;
         
         while (i <= j) {
             
-            while (i <= j) {
+            while (i <= j && (mask & array[i]) == 0)
                 
-                while (i <= j && (mask & array[i]) == 0)
-                    
-                    i++;
+                i++;
+            
+            while (i <= j && (mask & array[j]) > 1)
                 
-                while (i <= j && (mask & array[i]) > 1)
-                    
-                    j--;
+                j--;
+            
+            if (i < j) {
                 
-                if (i < j) {
-                    
-                    std::swap(array[i], array[j]);
-                    
-                    i++;
-                    j--;
-                    
-                }
+                std::swap(array[i], array[j]);
+                
+                i++;
+                j--;
                 
             }
             
-            bitSort(array, l, j, mask >> 1);
-            bitSort(array, i, r, mask >> 1);
-            
         }
         
+        bitSort(array, l, j, mask >> 1);
+        bitSort(array, i, r, mask >> 1);
+        
     }
-    
-    
-    
-    
-    
     
 }

@@ -17,13 +17,15 @@
 
 int main() {
     
+    int size = 20;
+    
     double time;
     
     std::vector<int> array;
     
-    randomVector(array, 20, 1, 100);
+    randomVector(array, size, 1, 100);
     
-    int mask = 1 << 20;
+    int mask = 1 << size;
 
     
 
@@ -33,7 +35,7 @@ int main() {
 
     clock_t start = clock();
 
-    bitSort(array, 0, 20 - 1, mask);
+    bitSort(array, 0, size - 1, mask);
 
     clock_t end = clock();
 
