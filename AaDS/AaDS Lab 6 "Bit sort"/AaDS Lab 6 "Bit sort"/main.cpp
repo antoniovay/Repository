@@ -21,7 +21,7 @@ int main() {
     
     std::vector<int> array;
     
-    randomVector(array, 20, 0, 100);
+    randomVector(array, 20, 1, 100);
     
     int mask = 1 << 20;
 
