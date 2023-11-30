@@ -8,7 +8,6 @@
 
 
 #include <iostream>
-#include <assert.h>
 
 #include "List.hpp"
 
