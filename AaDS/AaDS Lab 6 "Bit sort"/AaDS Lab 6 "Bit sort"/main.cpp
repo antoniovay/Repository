@@ -23,9 +23,7 @@ int main() {
     
     randomVector(array, 20, 0, 100);
     
-    int k = (int) array.size();
-    
-    
+    int mask = 1 << 20;
 
     
 
@@ -35,7 +33,7 @@ int main() {
 
     clock_t start = clock();
 
-    bitSort(array, 0, k - 1, k);
+    bitSort(array, 0, 20 - 1, mask);
 
     clock_t end = clock();
 
