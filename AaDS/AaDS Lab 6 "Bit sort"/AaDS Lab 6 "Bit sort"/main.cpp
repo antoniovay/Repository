@@ -17,13 +17,15 @@
 
 int main() {
     
-    int size = 20;
+    int size = 20000;
+    
+    int range = 100;
     
     double time;
     
     std::vector<int> array;
     
-    randomVector(array, size, -100, 100);
+    randomVector(array, size, -range, range);
 
     
 
@@ -33,7 +35,7 @@ int main() {
 
     clock_t start = clock();
 
-    bitSort(array);
+    bitSort(array, range);
 
     clock_t end = clock();
 

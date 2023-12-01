@@ -28,4 +28,4 @@ void orderCheck (const std::vector<int> array); // Проверка на упо�
 
 void bitSortReq(std::vector<int>& array, int l, int r, int mask);
 
-void bitSort(std::vector<int>& array);
+void bitSort(std::vector<int>& array, int range);
