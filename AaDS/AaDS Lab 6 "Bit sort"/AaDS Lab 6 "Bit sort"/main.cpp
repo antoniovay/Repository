@@ -23,9 +23,7 @@ int main() {
     
     std::vector<int> array;
     
-    randomVector(array, size, 1, 100);
-    
-    int mask = 1 << size;
+    randomVector(array, size, -100, 100);
 
     
 
@@ -35,7 +33,7 @@ int main() {
 
     clock_t start = clock();
 
-    bitSort(array, 0, size - 1, mask);
+    bitSort(array);
 
     clock_t end = clock();
 

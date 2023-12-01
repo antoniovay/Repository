@@ -26,4 +26,6 @@ void orderCheck (const std::vector<int> array); // Проверка на упо�
 
 
 
-void bitSort(std::vector<int>& array, int l, int r, int mask);
+void bitSortReq(std::vector<int>& array, int l, int r, int mask);
+
+void bitSort(std::vector<int>& array);

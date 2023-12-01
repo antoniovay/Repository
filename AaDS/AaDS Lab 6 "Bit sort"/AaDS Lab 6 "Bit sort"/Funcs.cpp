@@ -144,7 +144,7 @@ void orderCheck (std::vector<int> array) {
 
 
 
-void bitSort(std::vector<int>& array, int l, int r, int mask) {
+void bitSortReq(std::vector<int>& array, int l, int r, int mask) {
     
     if (l < r && mask > 0) {
         
@@ -171,9 +171,45 @@ void bitSort(std::vector<int>& array, int l, int r, int mask) {
             
         }
         
-        bitSort(array, l, j, mask >> 1);
-        bitSort(array, i, r, mask >> 1);
+        bitSortReq(array, l, j, mask >> 1);
+        bitSortReq(array, i, r, mask >> 1);
         
     }
+    
+}
+
+
+
+void bitSort(std::vector<int>& array) {
+    
+    int size = (int) array.size() - 1;
+        
+    int i = 0, j = (int) array.size() - 1;
+    
+    int mask = 1 << size;
+    
+    while (i <= j) {
+        
+        while (array[i] < 0)
+            
+            i++;
+        
+        while (array[j] >= 0)
+            
+            j--;
+        
+        if (i < j) {
+            
+            std::swap(array[i], array[j]);
+            
+            i++;
+            j--;
+            
+        }
+        
+    }
+    
+    bitSortReq(array, 0, j, mask);
+    bitSortReq(array, i, (int) array.size() - 1, mask);
     
 }
