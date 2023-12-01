@@ -181,13 +181,15 @@ void bitSortReq(std::vector<int>& array, int l, int r, int mask) {
 
 
 void bitSort(std::vector<int>& array, int range) {
-    
-    int size = (int) array.size() - 1;
         
     int i = 0, j = (int) array.size() - 1;
     
+    
     int mask = 1 << 30;
     
+    while ((mask & range) == 0)
+        
+        mask >>= 1;
     
     
     while (i <= j) {
