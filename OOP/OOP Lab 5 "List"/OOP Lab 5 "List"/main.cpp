@@ -15,6 +15,6 @@
 
 int main() {
     
-    
+    List<int> list(10, 10);
     
 }
