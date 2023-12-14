@@ -19,17 +19,7 @@
 
 
 
-template <typename ItemType>
 
-class Node
-{
-    
-    
-    
-    ItemType key;
-    Node *next = nullptr;
-    
-};
 
 
 
@@ -40,6 +30,10 @@ class List
     
 public:
     
+    class Node;
+    
+    friend std::ostream &operator << (std::ostream &stream, const List<ItemType> &other);
+    friend std::istream &operator >> (std::istream &stream, List<ItemType> &other);
     
     
     // Методы //-------------------------------------------------------------------------------------------------------------------------------------
@@ -61,17 +55,17 @@ public:
     
     void swap(List &other);
     
-    Node<ItemType> *findKey(ItemType key); // Поиск в списке по ключу.
-    Node<ItemType> *findPos(int pos); // Поиск в списке по позиции pos
+    Node *findKey(ItemType key); // Поиск в списке по ключу.
+    Node *findPos(int pos); // Поиск в списке по позиции pos
     
     void addToHead (ItemType key); // Добавление элемента в голову списка
     void addToTail (ItemType key); // Добавление элемента в хвост списка
-    void addAfter (ItemType key, Node<ItemType> *pos); // Добавление элемента после заданного
+    void addAfter (ItemType key, Node *pos); // Добавление элемента после заданного
     void addAfterValue (ItemType key); // Добавление элемента после равного key
     
     void delHead (); // Удаление головы
     void delTail (); // Удаление хвоста
-    void delAfter (Node<ItemType> *pos) ; // Удаление элемента после заданного узла
+    void delAfter (Node *pos) ; // Удаление элемента после заданного узла
     void delFirstValue(ItemType key); // Удаление элемента равного key
     
     int maxElement();
@@ -87,10 +81,25 @@ public:
     
 private:
     
-    Node<ItemType> *m_head;
+    Node *m_head;
     
 };
 
+
+
+
+
+template <typename ItemType>
+
+class List<ItemType>::Node
+{
+    
+    friend class List;
+    
+    ItemType m_key;
+    Node *m_next = nullptr;
+    
+};
 
 
 
@@ -103,9 +112,9 @@ template <typename ItemType>
 
 List<ItemType>::List() {
     
-    m_head = new Node<ItemType>;
+    m_head = new Node;
     
-    m_head->next = 0;
+    m_head->m_next = 0;
     
 }
 
@@ -115,9 +124,9 @@ template <typename ItemType>
 
 List<ItemType>::List(const int size, const ItemType value) {
     
-    m_head = new Node<ItemType>;
+    m_head = new Node;
     
-    for (int i = size; i > 0; i++) {
+    for (int i = size; i > 0; i--) {
         
         addAfter(value, m_head);
         
@@ -153,9 +162,9 @@ int List<ItemType>::size() {
     
     int size = 0;
     
-    Node<ItemType> *p = m_head;
+    Node *p = m_head;
     
-    while (p->next)
+    while (p->m_next)
         
         size++;
     
@@ -173,24 +182,24 @@ void List<ItemType>::swap(List &other) {
     
 }
 
-
+/*
 
 template <typename ItemType>
 
-Node<ItemType> *List<ItemType>::findKey(ItemType key) {
+Node *List<ItemType>::findKey(ItemType key) {
     
-    if (m_head->next->key == key) 
+    if (m_head->m_next->m_key == key)
         
         return m_head;
     
     
-    Node<ItemType> *p=m_head->next;
+    Node *p=m_head->m_next;
     
-    while (p->next != nullptr && p->next->key != key)
+    while (p->m_next != nullptr && p->m_next->m_key != key)
         
-        p=p->next;
+        p=p->m_next;
     
-    if (p->next == nullptr)
+    if (p->m_next == nullptr)
         
         return nullptr;
     
@@ -202,27 +211,27 @@ Node<ItemType> *List<ItemType>::findKey(ItemType key) {
 
 template <typename ItemType>
 
-Node<ItemType> *List<ItemType>::findPos(int pos) {
+Node *List<ItemType>::findPos(int pos) {
     
-    Node<ItemType> *p = m_head->next;
+    Node *p = m_head->m_next;
     
     int i = 1;
     
-    while ((p->next != nullptr) && (i < pos-1)) {
+    while ((p->m_next != nullptr) && (i < pos-1)) {
         
         i++;
         
-        p=p->next;
+        p=p->m_next;
         
     }
     
-    assert(p->next != nullptr);
+    assert(p->m_next != nullptr);
     
     return p;
     
 }
 
-
+*/
 
 template <typename ItemType>
 
@@ -238,11 +247,11 @@ template <typename ItemType>
 
 void List<ItemType>::addToTail (ItemType key) {
     
-    Node<ItemType> *p = m_head;
+    Node *p = m_head;
     
-    while (p->next) 
+    while (p->m_next)
         
-        p=p->next;
+        p=p->m_next;
     
     AddAfter(key, p);
     
@@ -252,15 +261,15 @@ void List<ItemType>::addToTail (ItemType key) {
 
 template <typename ItemType>
 
-void List<ItemType>::addAfter (ItemType key, Node<ItemType> *pos) {
+void List<ItemType>::addAfter (ItemType key, Node *pos) {
     
-    Node<ItemType> *q = new Node<ItemType>;
+    Node *q = new Node;
     
-    q->key = key;
+    q->m_key = key;
     
-    q->next = pos->next;
+    q->m_next = pos->m_next;
     
-    pos->next = q;
+    pos->m_next = q;
     
 }
 
@@ -290,12 +299,12 @@ template <typename ItemType>
 
 void List<ItemType>::delTail () {
     
-    assert(m_head->next != nullptr);
+    assert(m_head->m_next != nullptr);
     
     
-    Node<ItemType> *p = m_head;
+    Node *p = m_head;
             
-    while (p->next->next != 0) p = p->next;
+    while (p->m_next->m_next != 0) p = p->m_next;
     
     delAfter (p);
     
@@ -305,14 +314,14 @@ void List<ItemType>::delTail () {
 
 template <typename ItemType>
 
-void List<ItemType>::delAfter (Node<ItemType> *pos) {
+void List<ItemType>::delAfter (Node *pos) {
     
-    assert(pos->next != nullptr);
+    assert(pos->m_next != nullptr);
     
     
-    Node<ItemType> *q = pos->next;
+    Node *q = pos->m_next;
     
-    pos->next = q->next;
+    pos->m_next = q->m_next;
     
     delete q;
     
@@ -334,15 +343,15 @@ template <typename ItemType>
 
 int List<ItemType>::maxElement() {
     
-    ItemType maxElem = m_head->key;
+    ItemType maxElem = m_head->m_key;
     
-    Node<ItemType> *p = m_head->next;
+    Node *p = m_head->m_next;
     
-    while (p->next != nullptr) {
+    while (p->m_next != nullptr) {
         
-        if (p->key > maxElem)
+        if (p->m_key > maxElem)
             
-            maxElem = p->key;
+            maxElem = p->m_key;
         
     }
     
@@ -354,15 +363,15 @@ template <typename ItemType>
 
 int List<ItemType>::minElement() {
     
-    ItemType maxElem = m_head->key;
+    ItemType maxElem = m_head->m_key;
     
-    Node<ItemType> *p = m_head->next;
+    Node *p = m_head->m_next;
     
-    while (p->next != nullptr) {
+    while (p->m_next != nullptr) {
         
-        if (p->key < maxElem)
+        if (p->m_key < maxElem)
             
-            maxElem = p->key;
+            maxElem = p->m_key;
         
     }
     
@@ -374,7 +383,7 @@ template <typename ItemType>
 
 bool List<ItemType>::isEmpty() {
     
-    if (m_head->next == nullptr)
+    if (m_head->m_next == nullptr)
         
         return true;
     
@@ -388,8 +397,52 @@ template <typename ItemType>
 
 void List<ItemType>::clear() {
     
-    while (m_head->next) 
+    while (m_head->m_next)
         
         delHead ();
+    
+}
+
+
+
+
+
+template <typename ItemType>
+
+std::ostream &List<ItemType>::operator << (std::ostream &stream, const List<ItemType> &other) {
+    
+    stream << "[";
+    
+    Node *p = m_head->m_next;
+    
+    while (p->next != nullptr) {
+        
+        stream << p->m_key;
+        
+        p = p->m_next;
+        
+    }
+    
+    stream << "]";
+    
+    return stream;
+    
+}
+
+
+
+template <typename ItemType>
+
+std::istream &operator >> (std::istream &stream, List<ItemType> &other) {
+    
+    Node *p = m_head->m_next;
+    
+    while (p->m_next != nullptr) {
+        
+        
+        
+    }
+    
+    return stream;
     
 }

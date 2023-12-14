@@ -17,4 +17,6 @@ int main() {
     
     List<int> list(10, 10);
     
+    std::cout << list;
+    
 }
