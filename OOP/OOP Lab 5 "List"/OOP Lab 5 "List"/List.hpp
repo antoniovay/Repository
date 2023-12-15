@@ -55,8 +55,8 @@ public:
     
     void swap(List &other);
     
-    Node *findKey(ItemType key); // Поиск в списке по ключу.
-    Node *findPos(int pos); // Поиск в списке по позиции pos
+    List<ItemType>::Node *findKey(ItemType key); // Поиск в списке по ключу.
+    List<ItemType>::Node *findPos(int pos); // Поиск в списке по позиции pos
     
     void addToHead (ItemType key); // Добавление элемента в голову списка
     void addToTail (ItemType key); // Добавление элемента в хвост списка
@@ -68,8 +68,8 @@ public:
     void delAfter (Node *pos) ; // Удаление элемента после заданного узла
     void delFirstValue(ItemType key); // Удаление элемента равного key
     
-    int maxElement();
-    int minElement();
+    ItemType maxElement();
+    ItemType minElement();
     
     bool isEmpty(); // Проверка пустоты списка
     
@@ -94,6 +94,9 @@ template <typename ItemType>
 class List<ItemType>::Node
 {
     
+    friend std::ostream &operator << (std::ostream &stream, const List<ItemType> &other);
+    friend std::istream &operator >> (std::istream &stream, List<ItemType> &other);
+    
     friend class List;
     
     ItemType m_key;
@@ -114,6 +117,8 @@ List<ItemType>::List() {
     
     m_head = new Node;
     
+    
+    
     m_head->m_next = 0;
     
 }
@@ -128,7 +133,7 @@ List<ItemType>::List(const int size, const ItemType value) {
     
     for (int i = size; i > 0; i--) {
         
-        addAfter(value, m_head);
+        addToTail(value);
         
     }
     
@@ -164,9 +169,13 @@ int List<ItemType>::size() {
     
     Node *p = m_head;
     
-    while (p->m_next)
+    while (p->m_next) {
         
         size++;
+        
+        p = p->m_next;
+        
+    }
     
     return size;
     
@@ -178,15 +187,15 @@ template <typename ItemType>
 
 void List<ItemType>::swap(List &other) {
     
-    std::swap(m_head, other.head);
+    std::swap(m_head, other.m_head);
     
 }
 
-/*
+
 
 template <typename ItemType>
 
-Node *List<ItemType>::findKey(ItemType key) {
+List<ItemType>::Node *List<ItemType>::findKey(ItemType key) {
     
     if (m_head->m_next->m_key == key)
         
@@ -211,7 +220,7 @@ Node *List<ItemType>::findKey(ItemType key) {
 
 template <typename ItemType>
 
-Node *List<ItemType>::findPos(int pos) {
+List<ItemType>::Node *List<ItemType>::findPos(int pos) {
     
     Node *p = m_head->m_next;
     
@@ -231,7 +240,7 @@ Node *List<ItemType>::findPos(int pos) {
     
 }
 
-*/
+
 
 template <typename ItemType>
 
@@ -253,7 +262,7 @@ void List<ItemType>::addToTail (ItemType key) {
         
         p=p->m_next;
     
-    AddAfter(key, p);
+    addAfter(key, p);
     
 }
 
@@ -341,7 +350,11 @@ void List<ItemType>::delFirstValue(ItemType key) {
 
 template <typename ItemType>
 
-int List<ItemType>::maxElement() {
+ItemType List<ItemType>::maxElement() {
+    
+    if (m_head->m_next == nullptr)
+        
+        return 404;
     
     ItemType maxElem = m_head->m_key;
     
@@ -353,7 +366,11 @@ int List<ItemType>::maxElement() {
             
             maxElem = p->m_key;
         
+        p = p->m_next;
+        
     }
+    
+    return maxElem;
     
 }
 
@@ -361,19 +378,27 @@ int List<ItemType>::maxElement() {
 
 template <typename ItemType>
 
-int List<ItemType>::minElement() {
+ItemType List<ItemType>::minElement() {
     
-    ItemType maxElem = m_head->m_key;
+    if (m_head->m_next == nullptr)
+        
+        return 404;
+    
+    ItemType minElem = m_head->m_key;
     
     Node *p = m_head->m_next;
     
     while (p->m_next != nullptr) {
         
-        if (p->m_key < maxElem)
+        if (p->m_key < minElem)
             
-            maxElem = p->m_key;
+            minElem = p->m_key;
+        
+        p = p->m_next;
         
     }
+    
+    return minElem;
     
 }
 
@@ -405,11 +430,11 @@ void List<ItemType>::clear() {
 
 
 
-
+/*
 
 template <typename ItemType>
 
-std::ostream &List<ItemType>::operator << (std::ostream &stream, const List<ItemType> &other) {
+std::ostream &operator << (std::ostream &stream, const List<ItemType> &other) {
     
     stream << "[";
     
@@ -446,3 +471,7 @@ std::istream &operator >> (std::istream &stream, List<ItemType> &other) {
     return stream;
     
 }
+
+
+
+*/
