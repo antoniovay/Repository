@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0AC0D652B323ACA00EAEA1D /* BoolVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0D632B323ACA00EAEA1D /* BoolVector.cpp */; };
 		A0F3269B2B183BE40074CB3F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0F3269A2B183BE40074CB3F /* main.cpp */; };
 		A0F326A32B183BEF0074CB3F /* Set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0F326A12B183BEF0074CB3F /* Set.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A0AC0D632B323ACA00EAEA1D /* BoolVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoolVector.cpp; path = "../../OOP Lab 3 \"Bool Vector\"/OOP Lab 3 \"Bool Vector\"/BoolVector.cpp"; sourceTree = "<group>"; };
+		A0AC0D642B323ACA00EAEA1D /* BoolVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BoolVector.hpp; path = "../../OOP Lab 3 \"Bool Vector\"/OOP Lab 3 \"Bool Vector\"/BoolVector.hpp"; sourceTree = "<group>"; };
 		A0F326972B183BE40074CB3F /* OOP Lab 6 "Set" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Lab 6 \"Set\""; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0F3269A2B183BE40074CB3F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A0F326A12B183BEF0074CB3F /* Set.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Set.cpp; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				A0F3269A2B183BE40074CB3F /* main.cpp */,
 				A0F326A12B183BEF0074CB3F /* Set.cpp */,
 				A0F326A22B183BEF0074CB3F /* Set.hpp */,
+				A0AC0D632B323ACA00EAEA1D /* BoolVector.cpp */,
+				A0AC0D642B323ACA00EAEA1D /* BoolVector.hpp */,
 			);
 			path = "OOP Lab 6 \"Set\"";
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0AC0D652B323ACA00EAEA1D /* BoolVector.cpp in Sources */,
 				A0F326A32B183BEF0074CB3F /* Set.cpp in Sources */,
 				A0F3269B2B183BE40074CB3F /* main.cpp in Sources */,
 			);
