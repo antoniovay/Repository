@@ -38,7 +38,6 @@ public:
     
     // Методы //-------------------------------------------------------------------------------------------------------------------------------------
     
-    List(); // Конструктор пустого списка
     List(const int size = 10, const ItemType value = 0); // Конструктор по умолчанию
     List(Array<ItemType> &other); // Конструктор из Array
     List(const List &other); // Конструктор копирования
@@ -55,33 +54,39 @@ public:
     
     void swap(List &other);
     
-    List<ItemType>::Node *findKey(ItemType key); // Поиск в списке по ключу.
-    List<ItemType>::Node *findPos(int pos); // Поиск в списке по позиции pos
+    List<ItemType>::Node *find_key(ItemType key); // Поиск в списке по ключу.
+    List<ItemType>::Node *find_pos(int pos); // Поиск в списке по позиции pos
     
-    void addToHead (ItemType key); // Добавление элемента в голову списка
-    void addToTail (ItemType key); // Добавление элемента в хвост списка
-    void addAfter (ItemType key, Node *pos); // Добавление элемента после заданного
-    void addAfterValue (ItemType key); // Добавление элемента после равного key
+    void push_front (ItemType key); // Добавление элемента в голову списка
+    void push_back (ItemType key); // Добавление элемента в хвост списка
+    void insert_after (ItemType key, Node *pos); // Добавление элемента после заданного
+    void insert_after_key (ItemType key); // Добавление элемента после равного key
     
-    void delHead (); // Удаление головы
-    void delTail (); // Удаление хвоста
-    void delAfter (Node *pos) ; // Удаление элемента после заданного узла
-    void delFirstValue(ItemType key); // Удаление элемента равного key
+    void pop_front (); // Удаление головы
+    void pop_back (); // Удаление хвоста
+    void pop_after (Node *pos) ; // Удаление элемента после заданного узла
+    void pop_after (ItemType key); // Удаление элемента равного key
     
-    ItemType maxElement();
-    ItemType minElement();
+    ItemType max();
+    ItemType min();
     
-    bool isEmpty(); // Проверка пустоты списка
+    bool empty(); // Проверка пустоты списка
     
     void clear(); // Очистка списка
+    
+    void print(); // Вывод списка
+    void enter(); // Ввод списка
     
     
     // Перегрузки //---------------------------------------------------------------------------------------------------------------------------------
     
     
+    
+    
 private:
     
     Node *m_head;
+    int m_size;
     
 };
 
@@ -111,19 +116,6 @@ class List<ItemType>::Node
 
 
 
-template <typename ItemType>
-
-List<ItemType>::List() {
-    
-    m_head = new Node;
-    
-    
-    
-    m_head->m_next = 0;
-    
-}
-
-
 
 template <typename ItemType>
 
@@ -133,9 +125,11 @@ List<ItemType>::List(const int size, const ItemType value) {
     
     for (int i = size; i > 0; i--) {
         
-        addToTail(value);
+        push_back(value);
         
     }
+    
+    m_size = size;
     
 }
 
@@ -155,7 +149,9 @@ template <typename ItemType>
 
 List<ItemType>::List(const List &other) {
     
+    m_size = other.m_size;
     
+    std::swap(m_head, other.m_head);
     
 }
 
@@ -165,6 +161,7 @@ template <typename ItemType>
 
 int List<ItemType>::size() {
     
+/*                   // Если без m_size
     int size = 0;
     
     Node *p = m_head;
@@ -176,8 +173,8 @@ int List<ItemType>::size() {
         p = p->m_next;
         
     }
-    
-    return size;
+*/
+    return m_size;
     
 }
 
@@ -188,6 +185,7 @@ template <typename ItemType>
 void List<ItemType>::swap(List &other) {
     
     std::swap(m_head, other.m_head);
+    std::swap(m_size, other.m_size);
     
 }
 
@@ -195,7 +193,7 @@ void List<ItemType>::swap(List &other) {
 
 template <typename ItemType>
 
-List<ItemType>::Node *List<ItemType>::findKey(ItemType key) {
+List<ItemType>::Node *List<ItemType>::find_key(ItemType key) {
     
     if (m_head->m_next->m_key == key)
         
@@ -220,7 +218,7 @@ List<ItemType>::Node *List<ItemType>::findKey(ItemType key) {
 
 template <typename ItemType>
 
-List<ItemType>::Node *List<ItemType>::findPos(int pos) {
+List<ItemType>::Node *List<ItemType>::find_pos(int pos) {
     
     Node *p = m_head->m_next;
     
@@ -244,9 +242,9 @@ List<ItemType>::Node *List<ItemType>::findPos(int pos) {
 
 template <typename ItemType>
 
-void List<ItemType>::addToHead (ItemType key) {
+void List<ItemType>::push_front (ItemType key) {
     
-    addAfter (key, m_head);
+    insert_after (key, m_head);
     
 }
 
@@ -254,7 +252,7 @@ void List<ItemType>::addToHead (ItemType key) {
 
 template <typename ItemType>
 
-void List<ItemType>::addToTail (ItemType key) {
+void List<ItemType>::push_back (ItemType key) {
     
     Node *p = m_head;
     
@@ -262,7 +260,7 @@ void List<ItemType>::addToTail (ItemType key) {
         
         p=p->m_next;
     
-    addAfter(key, p);
+    insert_after(key, p);
     
 }
 
@@ -270,7 +268,7 @@ void List<ItemType>::addToTail (ItemType key) {
 
 template <typename ItemType>
 
-void List<ItemType>::addAfter (ItemType key, Node *pos) {
+void List<ItemType>::insert_after (ItemType key, Node *pos) {
     
     Node *q = new Node;
     
@@ -280,15 +278,7 @@ void List<ItemType>::addAfter (ItemType key, Node *pos) {
     
     pos->m_next = q;
     
-}
-
-
-
-template <typename ItemType>
-
-void List<ItemType>::addAfterValue (ItemType key) {
-    
-    addAfter(key, findKey(key));
+    m_size++;
     
 }
 
@@ -296,9 +286,9 @@ void List<ItemType>::addAfterValue (ItemType key) {
 
 template <typename ItemType>
 
-void List<ItemType>::delHead () {
+void List<ItemType>::insert_after_key (ItemType key) {
     
-    delAfter (m_head);
+    insert_after(key, find_key(key));
     
 }
 
@@ -306,16 +296,28 @@ void List<ItemType>::delHead () {
 
 template <typename ItemType>
 
-void List<ItemType>::delTail () {
+void List<ItemType>::pop_front () {
+    
+    pop_after (m_head);
+    
+}
+
+
+
+template <typename ItemType>
+
+void List<ItemType>::pop_back () {
     
     assert(m_head->m_next != nullptr);
     
     
     Node *p = m_head;
             
-    while (p->m_next->m_next != 0) p = p->m_next;
+    while (p->m_next->m_next != 0)
+        
+        p = p->m_next;
     
-    delAfter (p);
+    pop_after (p);
     
 }
 
@@ -323,7 +325,7 @@ void List<ItemType>::delTail () {
 
 template <typename ItemType>
 
-void List<ItemType>::delAfter (Node *pos) {
+void List<ItemType>::pop_after (Node *pos) {
     
     assert(pos->m_next != nullptr);
     
@@ -334,15 +336,7 @@ void List<ItemType>::delAfter (Node *pos) {
     
     delete q;
     
-}
-
-
-
-template <typename ItemType>
-
-void List<ItemType>::delFirstValue(ItemType key) {
-    
-    delAfter(findKey(key));
+    m_size--;
     
 }
 
@@ -350,21 +344,34 @@ void List<ItemType>::delFirstValue(ItemType key) {
 
 template <typename ItemType>
 
-ItemType List<ItemType>::maxElement() {
+void List<ItemType>::pop_after(ItemType key) {
     
-    if (m_head->m_next == nullptr)
+    pop_after(find_key(key));
+    
+}
+
+
+
+template <typename ItemType>
+
+ItemType List<ItemType>::max() {
+    
+    assert(!empty());
+    
+    
+    ItemType maxElem = m_head->m_next->m_key;
+    
+    if (m_head->m_next->m_next == nullptr)
         
-        return 404;
+        return maxElem;
     
-    ItemType maxElem = m_head->m_key;
-    
-    Node *p = m_head->m_next;
+    Node *p = m_head->m_next->m_next;
     
     while (p->m_next != nullptr) {
         
-        if (p->m_key > maxElem)
+        if (p->m_next->m_key > maxElem)
             
-            maxElem = p->m_key;
+            maxElem = p->m_next->m_key;
         
         p = p->m_next;
         
@@ -378,21 +385,24 @@ ItemType List<ItemType>::maxElement() {
 
 template <typename ItemType>
 
-ItemType List<ItemType>::minElement() {
+ItemType List<ItemType>::min() {
     
-    if (m_head->m_next == nullptr)
+    assert(!empty());
+    
+    
+    ItemType minElem = m_head->m_next->m_key;
+    
+    if (m_head->m_next->m_next == nullptr)
         
-        return 404;
+        return minElem;
     
-    ItemType minElem = m_head->m_key;
-    
-    Node *p = m_head->m_next;
+    Node *p = m_head->m_next->m_next;
     
     while (p->m_next != nullptr) {
         
-        if (p->m_key < minElem)
+        if (p->m_next->m_key < minElem)
             
-            minElem = p->m_key;
+            minElem = p->m_next->m_key;
         
         p = p->m_next;
         
@@ -406,11 +416,13 @@ ItemType List<ItemType>::minElement() {
 
 template <typename ItemType>
 
-bool List<ItemType>::isEmpty() {
+bool List<ItemType>::empty() {
     
     if (m_head->m_next == nullptr)
         
         return true;
+    
+    //if (!m_size) return true;
     
     return false;
     
@@ -424,7 +436,73 @@ void List<ItemType>::clear() {
     
     while (m_head->m_next)
         
-        delHead ();
+        pop_front();
+    
+}
+
+
+
+template <typename ItemType>
+
+void List<ItemType>::print() {
+    
+    if (empty()) {
+        
+        std::cerr << "Error in print(): list is empty" << std::endl;
+        
+        return;
+        
+    }
+    
+    std::cout << "[ ";
+    
+    Node *p = m_head;
+    
+    while (p->m_next != nullptr) {
+        
+        std::cout << p->m_next->m_key << " ";
+        
+        p = p->m_next;
+        
+    }
+    
+    std::cout << "]" << std::endl;
+    
+}
+
+
+
+template <typename ItemType>
+
+void List<ItemType>::enter() {
+    
+    std::cout << "Введите размер списка >> ";
+    
+    int sizeCopy;
+    
+    std::cin >> sizeCopy;
+    
+    if (sizeCopy < 0)
+        
+        return;
+    
+    clear();
+    
+    if (sizeCopy)
+        
+        std::cout << "Введите элементы списка >> ";
+    
+    ItemType value;
+    
+    for (int i = 0; i < sizeCopy; i++) {
+        
+        std::cin >> value;
+        
+        //print();
+        
+        push_back(value);
+        
+    }
     
 }
 

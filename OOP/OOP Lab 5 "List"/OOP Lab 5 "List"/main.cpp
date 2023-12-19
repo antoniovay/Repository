@@ -15,28 +15,19 @@
 
 int main() {
     
-    List<int> list(23, 10000);
-    List<int> list2(2, 1);
+    List<int> list = List<int>(1, 10000);
+    
+    list.enter();
     
     
-    std::cout << "list:" << std::endl;
-    std::cout << list.size() << std::endl << list.maxElement() << std::endl << list.isEmpty() << std::endl << std::endl;
-    std::cout << "list2:" << std::endl;
-    std::cout << list2.size() << std::endl << list2.maxElement() << std::endl << list2.isEmpty() << std::endl << std::endl;
-    
-    //list.clear();
-    
-    //list.swap(list2);
+    std::cout << "LIST_DATA:" << std::endl;
+    std::cout << "size: " << list.size() << std::endl;
+    std::cout << "max: " << list.max() << std::endl;
+    std::cout << "min: " << list.min() << std::endl;
+    std::cout << "empty?: " << list.empty() << std::endl;
     
     std::cout << std::endl;
     
-    
-    
-    
-    std::cout << "list:" << std::endl;
-    std::cout << list.size() << std::endl << list.maxElement() << std::endl << list.isEmpty() << std::endl << std::endl;
-    std::cout << "list2:" << std::endl;
-    std::cout << list2.size() << std::endl << list2.maxElement() << std::endl << list2.isEmpty() << std::endl << std::endl;
-    
+    list.print();
     
 }
