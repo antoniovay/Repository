@@ -7,9 +7,6 @@
 
 
 
-#include <iostream>
-#include <assert.h>
-
 #include "Set.hpp"
 
 
