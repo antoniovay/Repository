@@ -38,8 +38,8 @@ public:
     
     // Методы //-------------------------------------------------------------------------------------------------------------------------------------
     
-    List(const int size = 10, const ItemType value = 0); // Конструктор по умолчанию
-    List(Array<ItemType> &other); // Конструктор из Array
+    List(const int size = 0, const ItemType value = 0); // Конструктор по умолчанию
+    List(Array<ItemType> &array); // Конструктор из Array
     List(const List &other); // Конструктор копирования
     
     ~List() { // Деструктор
@@ -60,7 +60,7 @@ public:
     void push_front (ItemType key); // Добавление элемента в голову списка
     void push_back (ItemType key); // Добавление элемента в хвост списка
     void insert_after (ItemType key, Node *pos); // Добавление элемента после заданного
-    void insert_after_key (ItemType key); // Добавление элемента после равного key
+    void insert_after (ItemType key); // Добавление элемента после равного key
     
     void pop_front (); // Удаление головы
     void pop_back (); // Удаление хвоста
@@ -77,10 +77,23 @@ public:
     void print(); // Вывод списка
     void enter(); // Ввод списка
     
+    void info(); // Информация о списке
+    
+    void sort(); // Сортировка
+    
     
     // Перегрузки //---------------------------------------------------------------------------------------------------------------------------------
     
+    List<ItemType> &operator = (const List<ItemType> &other);
     
+    List<ItemType>::Node &operator [] (int i);
+    const List<ItemType>::Node &operator [] (int i) const;
+    
+    bool operator == (const List<ItemType> &other);
+    bool operator != (const List<ItemType> &other);
+    
+    List<ItemType> operator + (const List<ItemType> &list);
+    List<ItemType> &operator += (const List<ItemType> &list);
     
     
 private:
@@ -137,9 +150,17 @@ List<ItemType>::List(const int size, const ItemType value) {
 
 template <typename ItemType>
 
-List<ItemType>::List(Array<ItemType> &other) {
+List<ItemType>::List(Array<ItemType> &array) {
     
+    m_head = new Node;
     
+    m_size = 0;
+    
+    for (int i = 0; i < array.size(); i++) {
+        
+        push_back(array[i]);
+        
+    }
     
 }
 
@@ -149,9 +170,21 @@ template <typename ItemType>
 
 List<ItemType>::List(const List &other) {
     
-    m_size = other.m_size;
+    //m_head = new Node;
     
-    std::swap(m_head, other.m_head);
+    m_size = 0;
+    
+    m_head = new Node;
+    
+    Node *p = other.m_head;
+    
+    while (p->m_next) {
+        
+        push_back(p->m_next->m_key);
+        
+        p = p->m_next;
+        
+    }
     
 }
 
@@ -286,7 +319,7 @@ void List<ItemType>::insert_after (ItemType key, Node *pos) {
 
 template <typename ItemType>
 
-void List<ItemType>::insert_after_key (ItemType key) {
+void List<ItemType>::insert_after (ItemType key) {
     
     insert_after(key, find_key(key));
     
@@ -508,6 +541,171 @@ void List<ItemType>::enter() {
 
 
 
+template <typename ItemType>
+
+void List<ItemType>::info() {
+    
+    std::cout << "LIST_DATA:" << std::endl;
+    std::cout << "size: " << size() << std::endl;
+    std::cout << "max: " << max() << std::endl;
+    std::cout << "min: " << min() << std::endl;
+    std::cout << "empty?: " << empty() << std::endl;
+    std::cout << std::endl;
+    
+}
+
+
+
+template <typename ItemType>
+
+void List<ItemType>::sort() {
+    
+    List<ItemType> newList;
+    
+    while (!empty()) {
+        
+        newList.push_back(min());
+        
+        pop_after(find_key(min()));
+        
+    }
+    
+    *this = newList;
+    
+}
+
+
+
+// Перегрузки //--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+template <typename ItemType>
+
+List<ItemType> &List<ItemType>::operator = (const List<ItemType> &other) {
+    
+    clear();
+    
+    m_size = 0;
+    
+    Node *p = other.m_head;
+    
+    while (p->m_next) {
+        
+        push_back(p->m_next->m_key);
+        
+        p = p->m_next;
+        
+    }
+    
+    return *this;
+    
+}
+
+
+
+template <typename ItemType>
+
+List<ItemType>::Node &List<ItemType>::operator [] (int i) {
+    
+    return find_pos(i)->m_key;
+    
+}
+
+
+
+template <typename ItemType>
+
+const List<ItemType>::Node &List<ItemType>::operator [] (int i) const {
+    
+    return find_pos(i)->m_key;
+    
+}
+
+
+
+template <typename ItemType>
+
+bool List<ItemType>::operator == (const List<ItemType> &other) {
+    
+    if (m_size != other.m_size)
+        
+        return false;
+    
+    if (m_head == other.m_head)
+        
+        return true;
+    
+    Node *p = m_head;
+    Node *po = other.m_head;
+    
+    while (p->m_next) {
+        
+        if (p->m_next->m_key != other.p->m_next->m_key)
+            
+            return false;
+        
+        p = p->m_next;
+        po = po->m_next;
+        
+    }
+    
+    return true;
+    
+}
+
+
+
+template <typename ItemType>
+
+bool List<ItemType>::operator != (const List<ItemType> &other) {
+    
+    return !(*this == other);
+    
+}
+
+
+
+template <typename ItemType>
+
+List<ItemType> List<ItemType>::operator + (const List<ItemType> &other) {
+    
+    List<ItemType> result = List(*this);
+    
+    result += other;
+    
+    return result;
+    
+}
+
+
+
+template <typename ItemType>
+
+List<ItemType> &List<ItemType>::operator += (const List<ItemType> &other) {
+    
+    Node *p = other.m_head;
+    
+    while (p->m_next) {
+        
+        this->push_back(p->m_next->m_key);
+        
+        p = p->m_next;
+        
+    }
+    
+    return *this;
+    
+}
+
+
+
+
+
+
+
+
+
 /*
 
 template <typename ItemType>
@@ -550,6 +748,6 @@ std::istream &operator >> (std::istream &stream, List<ItemType> &other) {
     
 }
 
-
-
 */
+
+
