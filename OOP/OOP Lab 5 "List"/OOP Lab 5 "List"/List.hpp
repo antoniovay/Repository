@@ -573,7 +573,7 @@ void List<ItemType>::sort() {
         
     }
     
-    *this = newList;
+    this->swap(newList);
     
 }
 
@@ -586,6 +586,10 @@ void List<ItemType>::sort() {
 template <typename ItemType>
 
 List<ItemType> &List<ItemType>::operator = (const List<ItemType> &other) {
+    
+    if (this == &other)
+        
+        return *this;
     
     clear();
     
@@ -709,7 +713,7 @@ List<ItemType> &List<ItemType>::operator += (const List<ItemType> &other) {
 
 
 
-/*
+
 
 template <typename ItemType>
 
@@ -717,7 +721,7 @@ std::ostream &operator << (std::ostream &stream, const List<ItemType> &other) {
     
     stream << "[";
     
-    Node *p = m_head->m_next;
+    typename List<ItemType>::Node *p = other.m_head->m_next;
     
     while (p->next != nullptr) {
         
@@ -739,7 +743,7 @@ template <typename ItemType>
 
 std::istream &operator >> (std::istream &stream, List<ItemType> &other) {
     
-    Node *p = m_head->m_next;
+    typename List<ItemType>::Node *p = other.m_head->m_next;
     
     while (p->m_next != nullptr) {
         
@@ -751,6 +755,6 @@ std::istream &operator >> (std::istream &stream, List<ItemType> &other) {
     
 }
 
-*/
+
 
 
