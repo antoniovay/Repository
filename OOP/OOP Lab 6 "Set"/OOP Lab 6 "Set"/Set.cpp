@@ -19,9 +19,25 @@ Set::Set (const char value) {
     
     assert(value >= 32 && value <= 127);
     
-    m_size = 0;
+    char valueCopy = value;
+    
+    m_size = 1;
     
     m_set = new BoolVector[100];
+    
+    for (int i = 0; i < 100; i++)
+    
+        m_set[i] = BoolVector(7);
+    
+    for (int i = 6; i > 0; i--) {
+        
+        bool x = valueCopy / pow (2, i);
+        
+        m_set[0].set(i, x);
+        
+        //valueCopy = (char) ((unsigned int) valueCopy % pow (2, i));
+        
+    }
     
     
     
@@ -49,7 +65,7 @@ Set::Set (const Set &other) {
 
 
 
-bool is_in_set(const char ch) {
+bool Set::is_in_set(const char ch) {
     
     
     
@@ -57,7 +73,7 @@ bool is_in_set(const char ch) {
 
 
 
-char max() {
+char Set::max() {
     
     
     
@@ -65,7 +81,7 @@ char max() {
 
 
 
-char min() {
+char Set::min() {
     
     
     
@@ -73,9 +89,9 @@ char min() {
 
 
 
-int size() {
+int Set::size() {
     
-    
+    return m_size;
     
 }
 
@@ -85,7 +101,7 @@ int size() {
 
 
 
-Set &operator = (const Set &other) {
+Set &Set::operator = (const Set &other) {
     
     
     
@@ -94,7 +110,7 @@ Set &operator = (const Set &other) {
 
 
 
-bool operator == (const Set &other) {
+bool Set::operator == (const Set &other) {
     
     
     
@@ -103,7 +119,7 @@ bool operator == (const Set &other) {
 
 
 
-bool operator != (const Set &other) {
+bool Set::operator != (const Set &other) {
     
     
     
@@ -112,7 +128,105 @@ bool operator != (const Set &other) {
 
 
 
-Set operator | (const Set &other) {
+Set Set::operator | (const Set &other) {
+    
+    Set result(*this);
+    
+    result |= other;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator |= (const Set &other) {
+    
+    
+    
+    return *this;
+    
+}
+
+
+
+
+Set Set::operator & (const Set &other) {
+    
+    Set result(*this);
+    
+    result &= other;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator &= (const Set &other) {
+    
+    
+    
+    return *this;
+    
+}
+
+
+
+
+Set Set::operator / (const Set &other) {
+    
+    Set result(*this);
+    
+    result /= other;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator /= (const Set &other) {
+    
+    
+    
+    return *this;
+    
+}
+
+
+
+
+Set Set::operator ~ () {
+    
+    Set result(*this);
+    
+    
+    
+    return result;
+
+}
+
+
+
+
+Set Set::operator + (const Set &other) {
+    
+    Set result(*this);
+    
+    result += other;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator += (const Set &other) {
     
     
     
@@ -121,7 +235,20 @@ Set operator | (const Set &other) {
 
 
 
-Set &operator |= (const Set &other) {
+Set Set::operator - (const Set &other) {
+    
+    Set result(*this);
+    
+    result -= other;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator -= (const Set &other) {
     
     
     
@@ -130,84 +257,37 @@ Set &operator |= (const Set &other) {
 
 
 
-Set operator & (const Set &other) {
-    
-    
-    
-}
 
 
 
 
-Set &operator &= (const Set &other) {
-    
-    
-    
-}
 
-
-
-
-Set operator / (const Set &other) {
+std::istream &operator >> (std::istream &stream, Set &object) {
     
+    for (int i = 0; i < object.m_size; i++) {
+        
+        
+        
+    }
     
+    return stream;
     
 }
 
 
 
-
-Set &operator /= (const Set &other) {
+std::ostream &operator << (std::ostream &stream, const Set &object) {
     
+    stream << "[ ";
     
+    for (int i = 0; i < object.m_size; i++) {
+        
+        stream << object[i] << " ";
+        
+    }
     
-}
-
-
-
-
-Set operator ~ () {
+    stream << "]" << std::endl;
     
-    
-    
-}
-
-
-
-
-Set operator + (const Set &other) {
-    
-    
+    return stream;
     
 }
-
-
-
-
-Set &operator += (const Set &other) {
-    
-    
-    
-}
-
-
-
-
-Set operator - (const Set &other) {
-    
-    
-    
-}
-
-
-
-
-Set &operator -= (const Set &other) {
-    
-    
-    
-}
-
-
-
-

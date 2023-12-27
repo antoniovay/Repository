@@ -16,9 +16,9 @@
 
 int main() {
     
-    BoolVector x(10, 0);
+    //BoolVector x(10, 0);
     
-    std::cout << x;
+    //std::cout << x;
     
     
     

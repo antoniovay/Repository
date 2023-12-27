@@ -25,6 +25,9 @@ class Set: public BoolVector
     
 public:
     
+    friend std::istream &operator >> (std::istream &stream, Set &object);
+    friend std::ostream &operator << (std::ostream &stream, const Set &object);
+    
     // Конструкторы //------------------------------------------------------------------------------------------------------------------------------
     
     Set (const char value = 32);
