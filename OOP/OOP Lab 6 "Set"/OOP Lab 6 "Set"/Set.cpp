@@ -17,7 +17,7 @@
 
 Set::Set (const char value) {
     
-    assert(value >= 32 && value <= 127);
+    assert(value >= MIN_CODE && value <= MAX_CODE);
     
     char valueCopy = value;
     
@@ -53,11 +53,9 @@ Set::Set (const char* arr) {
 
 
 
-Set::Set (const Set &other) {
-    
-    
-    
-}
+Set::Set (const Set &other) : BoolVector(other)
+
+{}
 
 
 
@@ -75,7 +73,7 @@ bool Set::is_in_set(const char ch) {
 
 char Set::max() {
     
-    
+    char maxElem = 
     
 }
 
@@ -263,6 +261,11 @@ Set &Set::operator -= (const Set &other) {
 
 
 std::istream &operator >> (std::istream &stream, Set &object) {
+    
+    std::string string;
+    
+    std::getline(stream, string);
+    
     
     for (int i = 0; i < object.m_size; i++) {
         

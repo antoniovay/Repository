@@ -7,9 +7,7 @@
 
 
 
-#include <iostream>
-#include <vector>
-#include <assert.h>
+
 
 #include "BoolVector.hpp"
 

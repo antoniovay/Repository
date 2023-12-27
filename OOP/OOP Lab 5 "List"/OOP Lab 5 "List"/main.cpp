@@ -29,11 +29,11 @@ int main() {
     list.enter();
     
     list.info();
-    list.print();
+    //list.print();
     
     list.sort();
     
     list.info();
-    list.print();
+    //list.print();
     
 }

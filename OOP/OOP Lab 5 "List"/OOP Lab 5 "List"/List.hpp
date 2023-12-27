@@ -391,22 +391,17 @@ ItemType List<ItemType>::max() {
     
     assert(!empty());
     
+    if (m_size == 1)
+        
+        return m_head->m_next->m_key;
     
     ItemType maxElem = m_head->m_next->m_key;
     
-    if (m_head->m_next->m_next == nullptr)
+    for (auto it = m_head->m_next; it; it = it->m_next) {
         
-        return maxElem;
-    
-    Node *p = m_head->m_next->m_next;
-    
-    while (p->m_next != nullptr) {
-        
-        if (p->m_next->m_key > maxElem)
+        if (it->m_key > maxElem)
             
-            maxElem = p->m_next->m_key;
-        
-        p = p->m_next;
+            maxElem = it->m_key;
         
     }
     
@@ -422,22 +417,17 @@ ItemType List<ItemType>::min() {
     
     assert(!empty());
     
+    if (m_size == 1)
+        
+        return m_head->m_next->m_key;
     
     ItemType minElem = m_head->m_next->m_key;
     
-    if (m_head->m_next->m_next == nullptr)
+    for (auto it = m_head->m_next; it; it = it->m_next) {
         
-        return minElem;
-    
-    Node *p = m_head->m_next->m_next;
-    
-    while (p->m_next != nullptr) {
-        
-        if (p->m_next->m_key < minElem)
+        if (it->m_key < minElem)
             
-            minElem = p->m_next->m_key;
-        
-        p = p->m_next;
+            minElem = it->m_key;
         
     }
     
@@ -499,7 +489,7 @@ void List<ItemType>::print() {
         
     }
     
-    std::cout << "]" << std::endl;
+    std::cout << "]" << std::endl << std::endl;
     
 }
 
@@ -514,6 +504,16 @@ void List<ItemType>::enter() {
     int sizeCopy;
     
     std::cin >> sizeCopy;
+    
+    /*
+    if (sizeCopy < 0) {
+        
+        std::cerr << "Отрицательный размер - изменён на положительный" << std::endl;
+        
+        sizeCopy = -sizeCopy;
+        
+    }
+    */
     
     if (sizeCopy < 0)
         
@@ -550,7 +550,8 @@ void List<ItemType>::info() {
     std::cout << "max: " << max() << std::endl;
     std::cout << "min: " << min() << std::endl;
     std::cout << "empty?: " << empty() << std::endl;
-    std::cout << std::endl;
+    print();
+    //std::cout << std::endl;
     
 }
 
@@ -565,6 +566,8 @@ void List<ItemType>::sort() {
     while (!empty()) {
         
         newList.push_back(min());
+        
+        //std::cout << min() << std::endl;
         
         pop_after(find_key(min()));
         

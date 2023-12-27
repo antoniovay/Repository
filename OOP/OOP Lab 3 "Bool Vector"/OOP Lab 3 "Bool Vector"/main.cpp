@@ -7,8 +7,6 @@
 
 
 
-#include <iostream>
-#include <vector>
 
 #include "BoolVector.hpp"
 
@@ -16,7 +14,7 @@
 
 int main() {
     
-    //BoolVector x(10, 0);
+    BoolVector x;
     
     //std::cout << x;
     
