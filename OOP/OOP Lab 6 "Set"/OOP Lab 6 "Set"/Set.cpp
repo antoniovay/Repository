@@ -11,44 +11,30 @@
 
 
 
+// Символы с кодами до 31 //--------------------------------------------------------------------------------------------------------------------------
+
+const std::vector<std::string> Set::SPECIAL_SYMBOLS
+{
+    "NUL", "SOH", "STX", "ETX", "EOT", "ENQ", "ACK", "BEL",
+    "BS", "TAB", "LF", "VT", "FF", "CR", "SO", "SI",
+    "DLE", "DC1", "DC2", "DC3", "DC4", "NAK", "SYN", "ETB",
+    "CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US"
+};
+
+
+
 // Конструкторы //------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-Set::Set (const char value) {
+Set::Set (const char* arr) : BoolVector(MAX_CODE) {
     
-    assert(value >= MIN_CODE && value <= MAX_CODE);
-    
-    char valueCopy = value;
-    
-    m_size = 1;
-    
-    m_set = new BoolVector[100];
-    
-    for (int i = 0; i < 100; i++)
-    
-        m_set[i] = BoolVector(7);
-    
-    for (int i = 6; i > 0; i--) {
+    for (int i = 0; arr[i] != '\0'; i++) {
         
-        bool x = valueCopy / pow (2, i);
-        
-        m_set[0].set(i, x);
-        
-        //valueCopy = (char) ((unsigned int) valueCopy % pow (2, i));
+        *this += arr[i];
         
     }
-    
-    
-    
-}
 
-
-
-Set::Set (const char* arr) {
-    
-    
-    
 }
 
 
@@ -63,33 +49,53 @@ Set::Set (const Set &other) : BoolVector(other)
 
 
 
-bool Set::is_in_set(const char ch) {
+bool Set::is_in_set(const char value) const {
     
+    if ((unsigned int) value >= MAX_CODE)
+        
+        return false;
     
-    
-}
-
-
-
-char Set::max() {
-    
-    char maxElem = 
+    return operator [] ((int) value);
     
 }
 
 
 
-char Set::min() {
+char Set::max()  const {
     
+    for (int i = MAX_CODE - 1; i >= 0; i--) {
+        
+        if (operator[](i))
+            
+            return (char) i;
+        
+    }
     
+    return (char) 0;
     
 }
 
 
 
-int Set::size() {
+char Set::min() const {
     
-    return m_size;
+    for (int i = 0; i < MAX_CODE; i++) {
+        
+        if (operator[](i))
+            
+            return (char) i;
+        
+    }
+    
+    return (char) 0;
+    
+}
+
+
+
+int Set::power() {
+    
+    return weight();
     
 }
 
@@ -101,47 +107,7 @@ int Set::size() {
 
 Set &Set::operator = (const Set &other) {
     
-    
-    
-}
-
-
-
-
-bool Set::operator == (const Set &other) {
-    
-    
-    
-}
-
-
-
-
-bool Set::operator != (const Set &other) {
-    
-    
-    
-}
-
-
-
-
-Set Set::operator | (const Set &other) {
-    
-    Set result(*this);
-    
-    result |= other;
-    
-    return result;
-    
-}
-
-
-
-
-Set &Set::operator |= (const Set &other) {
-    
-    
+    BoolVector::operator = (other);
     
     return *this;
     
@@ -150,11 +116,29 @@ Set &Set::operator |= (const Set &other) {
 
 
 
-Set Set::operator & (const Set &other) {
+bool Set::operator == (const Set &other) const {
+    
+    return BoolVector::operator == (other);
+    
+}
+
+
+
+
+bool Set::operator != (const Set &other) const {
+    
+    return !(*this == other);
+    
+}
+
+
+
+
+Set Set::operator | (const Set &object) const {
     
     Set result(*this);
     
-    result &= other;
+    result |= object;
     
     return result;
     
@@ -163,9 +147,9 @@ Set Set::operator & (const Set &other) {
 
 
 
-Set &Set::operator &= (const Set &other) {
+Set &Set::operator |= (const Set &object) {
     
-    
+    BoolVector::operator |= (object);
     
     return *this;
     
@@ -174,11 +158,11 @@ Set &Set::operator &= (const Set &other) {
 
 
 
-Set Set::operator / (const Set &other) {
+Set Set::operator & (const Set &object) const {
     
     Set result(*this);
     
-    result /= other;
+    result &= object;
     
     return result;
     
@@ -187,9 +171,9 @@ Set Set::operator / (const Set &other) {
 
 
 
-Set &Set::operator /= (const Set &other) {
+Set &Set::operator &= (const Set &object) {
     
-    
+    BoolVector::operator &= (object);
     
     return *this;
     
@@ -198,24 +182,11 @@ Set &Set::operator /= (const Set &other) {
 
 
 
-Set Set::operator ~ () {
+Set Set::operator / (const Set &object) const {
     
     Set result(*this);
     
-    
-    
-    return result;
-
-}
-
-
-
-
-Set Set::operator + (const Set &other) {
-    
-    Set result(*this);
-    
-    result += other;
+    result /= object;
     
     return result;
     
@@ -224,54 +195,118 @@ Set Set::operator + (const Set &other) {
 
 
 
-Set &Set::operator += (const Set &other) {
+Set &Set::operator /= (const Set &object) {
     
+    BoolVector::operator &= (~object);
     
+    return *this;
     
 }
 
 
 
 
-Set Set::operator - (const Set &other) {
+Set Set::operator ~ () const {
     
     Set result(*this);
     
-    result -= other;
-    
-    return result;
-    
-}
-
-
-
-
-Set &Set::operator -= (const Set &other) {
-    
-    
-    
-}
-
-
-
-
-
-
-
-
-
-std::istream &operator >> (std::istream &stream, Set &object) {
-    
-    std::string string;
-    
-    std::getline(stream, string);
-    
-    
-    for (int i = 0; i < object.m_size; i++) {
+    result.inverse();
         
+    return result;
+
+}
+
+
+
+
+Set Set::operator + (const char value) const {
+    
+    Set result(*this);
+    
+    result += value;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator += (const char value) {
+    
+    if (value >= 0 && value < MAX_CODE)
+                
+        operator [] ((int) value) = true;
         
+    return *this;
+    
+}
+
+
+
+
+Set Set::operator - (const char value) const {
+    
+    Set result(*this);
+    
+    result -= value;
+    
+    return result;
+    
+}
+
+
+
+
+Set &Set::operator -= (const char value) {
+    
+    if (value >= 0 && value < MAX_CODE)
+                
+        operator [] ((int) value) = false;
+        
+    return *this;
+    
+}
+
+
+
+
+// Потоковый ввод-вывод //----------------------------------------------------------------------------------------------------------------------------
+
+
+
+std::ostream &operator << (std::ostream& stream, const Set &other) {
+    
+    stream << "{";
+    
+    bool wasPrint = false;
+    
+    for (int i = 0; i < Set::MAX_CODE; i++) {
+        
+        if ( other.is_in_set((char) i) ) 
+        
+        {
+            
+            stream << (wasPrint ? ", " : "");
+            
+            
+            if (i < Set::SPECIAL_SYMBOLS.size())
+                
+                stream << Set::SPECIAL_SYMBOLS[i];
+            
+            else
+                
+                stream << (char) i;
+            
+            
+            wasPrint = true;
+            
+        }
         
     }
+    
+    stream << "}";
+    stream << std::endl;
     
     return stream;
     
@@ -279,18 +314,10 @@ std::istream &operator >> (std::istream &stream, Set &object) {
 
 
 
-std::ostream &operator << (std::ostream &stream, const Set &object) {
+
+std::istream& operator >> (std::istream& stream, Set& other) {
     
-    stream << "[ ";
     
-    for (int i = 0; i < object.m_size; i++) {
-        
-        stream << object[i] << " ";
-        
-    }
-    
-    stream << "]" << std::endl;
-    
-    return stream;
     
 }
+

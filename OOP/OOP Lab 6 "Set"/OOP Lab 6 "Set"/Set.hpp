@@ -15,6 +15,7 @@
 #include <assert.h>
 #include <string>
 #include <algorithm>
+#include <vector>
 
 #include "BoolVector.hpp"
 
@@ -27,65 +28,63 @@ class Set: public BoolVector
     
 public:
     
-    const int MAX_CODE = 127;
-    const int MIN_CODE = 32;
+    static const int MAX_CODE = 127;
+    static const std::vector<std::string> SPECIAL_SYMBOLS;
     
     friend std::istream &operator >> (std::istream &stream, Set &object);
     friend std::ostream &operator << (std::ostream &stream, const Set &object);
     
     // Конструкторы //------------------------------------------------------------------------------------------------------------------------------
     
-    Set (const char value = MAX_CODE);
+    Set (const char value = (char) MAX_CODE) : BoolVector(MAX_CODE) {
+        
+        if (value < MAX_CODE) {
+            
+            set((int) value, 1);
+            
+        }
+        
+    }
+    
     Set (const char* arr);
     Set (const Set &other);
     
-    ~Set() {
-        
-        delete [] m_set;
-        
-    }
+    ~Set() {}
     
     
     // Методы //------------------------------------------------------------------------------------------------------------------------------------
     
-    bool is_in_set (const char ch);
+    bool is_in_set (const char value) const;
     
-    char max();
-    char min();
+    char max() const;
+    char min() const;
     
-    int size();
+    int power();
     
     
     // Перегрузки //--------------------------------------------------------------------------------------------------------------------------------
     
     Set &operator = (const Set &other);
     
-    bool operator == (const Set &other);
-    bool operator != (const Set &other);
+    bool operator == (const Set &other) const;
+    bool operator != (const Set &other) const;
     
-    Set operator | (const Set &other);
-    Set &operator |= (const Set &other);
+    Set operator | (const Set &object) const;
+    Set &operator |= (const Set &object);
     
-    Set operator & (const Set &other);
-    Set &operator &= (const Set &other);
+    Set operator & (const Set &object) const;
+    Set &operator &= (const Set &object);
     
-    Set operator / (const Set &other);
-    Set &operator /= (const Set &other);
+    Set operator / (const Set &object) const;
+    Set &operator /= (const Set &object);
     
-    Set operator ~ ();
+    Set operator ~ () const;
     
-    Set operator + (const Set &other);
-    Set &operator += (const Set &other);
+    Set operator + (const char value) const;
+    Set &operator += (const char value);
     
-    Set operator - (const Set &other);
-    Set &operator -= (const Set &other);
-    
-    
-private:
-    
-    int m_size;
-    BoolVector* m_set = nullptr;
-    
+    Set operator - (const char value) const;
+    Set &operator -= (const char value);
     
 };
 
