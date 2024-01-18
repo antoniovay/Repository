@@ -24,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A097913C2B5546A0000290BC /* List.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = List.hpp; path = "../../../OOP/OOP Lab 5 \"List\"/OOP Lab 5 \"List\"/List.hpp"; sourceTree = "<group>"; };
 		A0FE96C82B1A08D40089AFEE /* AaDS Lab 7 "Topological sort" */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AaDS Lab 7 \"Topological sort\""; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FE96CB2B1A08D40089AFEE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A0FE96D22B1A08EB0089AFEE /* Funcs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Funcs.cpp; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 				A0FE96CB2B1A08D40089AFEE /* main.cpp */,
 				A0FE96D22B1A08EB0089AFEE /* Funcs.cpp */,
 				A0FE96D32B1A08EB0089AFEE /* Funcs.hpp */,
+				A097913C2B5546A0000290BC /* List.hpp */,
 			);
 			path = "AaDS Lab 7 \"Topological sort\"";
 			sourceTree = "<group>";
