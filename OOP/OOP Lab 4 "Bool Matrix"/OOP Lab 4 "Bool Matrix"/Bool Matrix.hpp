@@ -30,7 +30,7 @@ public:
     
     // Методы //-------------------------------------------------------------------------------------------------------------------------------------
     
-    BoolMatrix (int lineCount = 5, int columnCount = 5, int value = 0); // Конструктор по умолчанию
+    BoolMatrix (const int columnCount = 5, const int lineCount = 5, const bool value = 0); // Конструктор по умолчанию
     BoolMatrix (char** matrix, int lineCount, int columnCount); // Конструктор из матрицы char
     BoolMatrix (const BoolMatrix &other); // Конструктор копирования
     
@@ -50,10 +50,10 @@ public:
 
     int weight (int j) const; // Вес j-й строки
     
-    void invert(int i, int j); // Инверсия в i-ой компоненты j-ой строки
-    void invertFrom (int i, int j, int k); // Инверсия k компонент j-ой строки, начиная с i-ой компоненты
-    void set (int i, int j, int value); // Установка в 0/1 i-ой компоненты j-ой строки
-    void setFrom (int i, int j, int k, int value); // Установка в 0/1 k компонент j-ой строки, начиная с i-ой компоненты
+    void invert (const int row, const int column); // Инверсия в i-ой компоненты j-ой строки
+    void invert (const int row, const int start, const int k); // Инверсия k компонент j-ой строки, начиная с i-ой компоненты
+    void set (const int row, const int column, const int value); // Установка в 0/1 i-ой компоненты j-ой строки
+    void set (const int row, const int start, const int k, const int value); // Установка в 0/1 k компонент j-ой строки, начиная с i-ой компоненты
     
     
     // Перегрузки //---------------------------------------------------------------------------------------------------------------------------------
@@ -72,12 +72,12 @@ public:
     BoolMatrix operator ^ (const BoolMatrix &other) const; // Построчное побитовое исключающее ИЛИ ^
     BoolMatrix &operator ^= (const BoolMatrix &other); // Построчное побитовое исключающее ИЛИ ^=
     
-    BoolMatrix operator ~ (); // Построчная побитовая инверсия
+    BoolMatrix operator ~ () const; // Построчная побитовая инверсия
     
     
 private:
     
-    BoolVector* m_line;
+    BoolVector* m_line = nullptr;
     int m_lineCount;
     int m_columnCount;
     

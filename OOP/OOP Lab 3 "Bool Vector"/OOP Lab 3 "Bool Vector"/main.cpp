@@ -14,10 +14,14 @@
 
 int main() {
     
-    BoolVector x;
+    BoolVector x(30, 1);
     
-    //std::cout << x;
+    std::cout << x;
     
+    std::cout << x.length() << std::endl;
     
+    x.setAfterK(5, 4, 0);
+    
+    std::cout << x;
     
 }

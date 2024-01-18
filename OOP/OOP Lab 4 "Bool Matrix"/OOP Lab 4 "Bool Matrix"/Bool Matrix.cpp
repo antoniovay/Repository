@@ -17,18 +17,18 @@
 
 
 
-BoolMatrix::BoolMatrix (int lineCount, int columnCount, int value) {
+BoolMatrix::BoolMatrix (const int columnCount, const int lineCount, const bool value) {
     
     assert(lineCount >= 0 && columnCount >= 0);
         
-    m_line = new BoolVector [lineCount];
+    m_line = new BoolVector [columnCount];
     
-    m_lineCount = lineCount;
-    m_columnCount = columnCount;
+    m_lineCount = columnCount;
+    m_columnCount = lineCount;
     
-    BoolVector line (columnCount, value);
+    BoolVector line (lineCount, value);
     
-    for (int i = 0; i < lineCount; i++) {
+    for (int i = 0; i < columnCount; i++) {
         
         m_line[i] = line;
         
@@ -38,18 +38,18 @@ BoolMatrix::BoolMatrix (int lineCount, int columnCount, int value) {
 
 
 
-BoolMatrix::BoolMatrix (char** matrix, const int lineCount, int columnCount) {
+BoolMatrix::BoolMatrix (char** matrix, const int columnCount, int lineCount) {
     
     assert(columnCount >= 0 && lineCount >= 0);
     
-    m_line = new BoolVector [lineCount];
+    m_line = new BoolVector [columnCount];
     
-    m_lineCount = lineCount;
-    m_columnCount = columnCount;
+    m_lineCount = columnCount;
+    m_columnCount = lineCount;
     
     for (int i = 0; i < m_lineCount; i++) {
         
-        BoolVector line (columnCount, matrix[i]);
+        BoolVector line (matrix[i]);
         
         m_line[i] = line;
         
@@ -78,7 +78,7 @@ BoolMatrix::BoolMatrix (const BoolMatrix &other) {
 
 int BoolMatrix::lineCount() const {
     
-    return m_lineCount;
+    return m_columnCount;
     
 }
 
@@ -86,7 +86,7 @@ int BoolMatrix::lineCount() const {
 
 int BoolMatrix::columnCount() const {
     
-    return m_columnCount;
+    return m_lineCount;
     
 }
 
@@ -97,11 +97,7 @@ void BoolMatrix::swap (BoolMatrix &other) {
     std::swap(m_lineCount, other.m_lineCount);
     std::swap(m_columnCount, other.m_columnCount);
     
-    for (int i = 0; i < m_lineCount; i++) {
-        
-        std::swap(m_line, other.m_line);
-        
-    }
+    std::swap(m_line, other.m_line);
     
 }
 
@@ -125,6 +121,8 @@ int BoolMatrix::weight() const {
 
 BoolVector BoolMatrix::conjunction() const {
     
+    assert(m_lineCount > 0);
+    
     BoolVector result = m_line[0];
     
     for (int i = 1; i < m_lineCount; i++) {
@@ -140,6 +138,8 @@ BoolVector BoolMatrix::conjunction() const {
 
 
 BoolVector BoolMatrix::disjunction() const {
+    
+    assert(m_lineCount > 0);
     
     BoolVector result = m_line[0];
     
@@ -165,29 +165,29 @@ int BoolMatrix::weight (int j) const {
 
 
 
-void BoolMatrix::invert(int i, int j) {
+void BoolMatrix::invert(const int row, const int column) {
     
-    assert(j >= 0 && j < m_lineCount);
+    assert(row >= 0 && row < m_lineCount);
     
-    assert(i >= 0 && i < m_columnCount);
+    assert(column >= 0 && column < m_columnCount);
     
-    m_line[j].inverse(i);
+    m_line[row].inverse(column);
     
 }
 
 
 
-void BoolMatrix::invertFrom (int i, int j, int k) {
+void BoolMatrix::invert (const int row, const int start, const int k) {
     
-    assert(j >= 0 && j < m_lineCount);
+    assert(row >= 0 && row < m_lineCount);
     
-    assert(i >= 0 && i < m_columnCount);
+    assert(start >= 0 && start < m_columnCount);
     
-    assert(i + k < m_columnCount);
+    assert(start + k < m_columnCount);
     
-    for (int index = i; index < i + k; index++) {
+    for (int i = start; i < start + k - 1; i++) {
         
-        m_line[j].inverse(index);
+        m_line[row].inverse(i);
         
     }
     
@@ -195,31 +195,27 @@ void BoolMatrix::invertFrom (int i, int j, int k) {
 
 
 
-void BoolMatrix::set (int i, int j, int value) {
+void BoolMatrix::set (const int row, const int column, const int value) {
     
-    assert(j >= 0 && j < m_lineCount);
+    assert(row >= 0 && row < m_lineCount);
     
-    assert(i >= 0 && i < m_columnCount);
+    assert(column >= 0 && column < m_columnCount);
     
-    m_line[j].set(i, value);
+    m_line[row].set(column, value);
     
 }
 
 
 
-void BoolMatrix::setFrom (int i, int j, int k, int value) {
+void BoolMatrix::set (const int row, const int start, const int k, const int value) {
     
-    assert(j >= 0 && j < m_lineCount);
+    assert(row >= 0 && row < m_lineCount);
     
-    assert(i >= 0 && i < m_columnCount);
+    assert(start >= 0 && start < m_columnCount);
     
-    assert(i + k < m_columnCount);
+    assert(start + k < m_columnCount);
     
-    for (int index = i; index < i + k; index++) {
-        
-        m_line[j].set(index, value);
-        
-    }
+    m_line[row].setAfterK(start, k, value);
     
 }
 
@@ -355,7 +351,7 @@ BoolMatrix &BoolMatrix::operator ^= (const BoolMatrix &other) {
 
 
 
-BoolMatrix BoolMatrix::operator ~ () {
+BoolMatrix BoolMatrix::operator ~ () const {
     
     BoolMatrix result(*this);
     

@@ -43,15 +43,23 @@ BoolVector::BoolVector (const int length) {
 
 BoolVector::BoolVector (const int length, const int value) {
     
+    assert(length >= 0);
+    
     m_cellCount = length / 8 + (length % 8 != 0);
     
     
     m_cells = new uint8_t [m_cellCount];
     
     
-    for (int i = 0; i < m_cellCount; i++) {
+    for (unsigned int i = 0; i < m_cellCount; i++) {
         
-        m_cells[i] = value;
+        if (value)
+            
+            m_cells[i] = 255;
+        
+        else
+            
+            m_cells[i] = 0;
         
     }
     
@@ -69,7 +77,7 @@ BoolVector::BoolVector (const int length, const int value) {
 
 
 
-BoolVector::BoolVector (const int length, const char* array) {
+BoolVector::BoolVector (const char* array) {
     
     assert (strlen(array) >= 0);
     
@@ -123,7 +131,7 @@ BoolVector::BoolVector (const BoolVector &other) {
 
 
 
-int BoolVector::length () {
+int BoolVector::length () const {
     
     return m_length;
     
@@ -210,44 +218,13 @@ void BoolVector::set (const int i, const bool x) {
 
 
 
-void BoolVector::setAfterK (const int k, const bool x) {
+void BoolVector::setAfterK (const int i, const int k, const bool x) {
     
-    assert(k >= 0 && k < m_length);
+    assert(i >= 0 && i + k < m_length && k > 0);
     
-    int currentUnit = k / 8, currentI = k % 8;
-    
-    uint8_t mask = 1;
-    
-    mask <<= 7 - currentI;
-    
-    for (; mask <= 128; mask >>= 1) {
+    for (int it = i; it <= i + k - 1; it++) {
         
-        if (x) {
-            
-            m_cells[currentUnit] |= mask;
-        }
-        
-        else {
-            
-            m_cells[currentUnit] &= ~mask;
-            
-        }
-        
-    }
-    
-    for (int i = currentUnit; i < m_cellCount; i++) {
-        
-        if (x) {
-            
-            m_cells[i] = 255;
-            
-        }
-        
-        else {
-            
-            m_cells[i] = 0;
-            
-        }
+            (*this)[it] = x;
         
     }
     
@@ -279,28 +256,23 @@ void BoolVector::setAll (const bool x) {
 
 
 
-int BoolVector::weight () {
+int BoolVector::weight() const {
     
-    uint8_t mask;
-    
-    int weightCounter = 0;
+    int weight = 0;
     
     for (int i = 0; i < m_cellCount; i++) {
         
-        mask = 1;
-        
-        for (; mask <= 128; mask <<= 1) {
+        for (uint8_t mask = 1 << 7; mask != 0; mask >>= 1) {
             
-            if (m_cells[i] & mask) {
+            if(m_cells[i] & mask)
                 
-                weightCounter++;
-                
-            }
+                weight++;
             
         }
+        
     }
     
-    return weightCounter;
+    return weight;
     
 }
 
@@ -359,7 +331,7 @@ const BoolVector::BoolRank BoolVector::operator [] (const int i) const {
 
 
 
-BoolVector BoolVector::operator & (const BoolVector &other) {
+BoolVector BoolVector::operator & (const BoolVector &other) const {
     
     assert (m_length == other.m_length);
         
@@ -389,7 +361,7 @@ BoolVector &BoolVector::operator &= (const BoolVector &other) {
 
 
 
-BoolVector BoolVector::operator | (const BoolVector &other) {
+BoolVector BoolVector::operator | (const BoolVector &other) const {
     
     assert(m_length == other.m_length);
         
@@ -417,7 +389,7 @@ BoolVector &BoolVector::operator |= (const BoolVector &other) {
 
 
 
-BoolVector BoolVector::operator ^ (const BoolVector &other) {
+BoolVector BoolVector::operator ^ (const BoolVector &other) const {
     
     assert(m_length == other.m_length);
         
@@ -445,7 +417,7 @@ BoolVector &BoolVector::operator ^= (const BoolVector &other) {
 
 
 
-BoolVector BoolVector::operator << (const int value) {
+BoolVector BoolVector::operator << (const int value) const {
     
     BoolVector result(*this);
     
@@ -506,7 +478,7 @@ BoolVector &BoolVector::operator <<= (int value) {
 
 
 
-BoolVector BoolVector::operator >> (const int value) {
+BoolVector BoolVector::operator >> (const int value) const {
     
     BoolVector result(*this);
     
@@ -572,7 +544,7 @@ BoolVector &BoolVector::operator >>= (int value) {
 
 
 
-BoolVector BoolVector::operator ~ () {
+BoolVector BoolVector::operator ~ () const {
     
     BoolVector result (*this);
         
@@ -624,6 +596,28 @@ BoolVector &BoolVector::operator = (const BoolVector &other) {
         return *this;
     
 }
+
+
+
+bool BoolVector::operator == (const BoolVector& other) const {
+    if(m_length != other.m_length)
+        return false;
+    
+    for(int i = 0; i < m_cellCount; ++i)
+        if(m_cells[i] != other.m_cells[i]) {
+            return false;
+        }
+    return true;
+}
+
+
+
+bool BoolVector::operator != (const BoolVector& other) const {
+    
+    return !(*this == other);
+    
+}
+
 
 
 
@@ -723,4 +717,83 @@ BoolVector::BoolRank::operator bool() const {
         return false;
         
     }
+}
+
+
+
+
+
+// Потоковые ввод и вывод //--------------------------------------------------------------------------------------------------------------------------
+
+
+
+std::istream &operator >> (std::istream &stream, BoolVector& bv) { // Потоковый ввод
+    
+    char* string = new char [bv.m_length];
+    
+        for (int i = 0; i < bv.m_length; ++i) {
+            
+            stream >> string[i];
+            
+        }
+        
+        for (unsigned int i = 0; i < bv.m_length; ++i) {
+            
+            if (string[i] != '0')
+                
+                bv.set(i, 1);
+            
+            else
+            
+                bv.set(i, 0);
+            
+        }
+        
+        delete [] string;
+    
+        return stream;
+    
+}
+
+
+
+std::ostream &operator << (std::ostream &stream, const BoolVector& bv) { // Потоковый вывод
+    
+    for (int i = 0; i < bv.m_cellCount; ++i) {
+        
+            stream << "[";
+        
+            for (uint8_t j = 1 << 7; j > 0; j >>= 1) {
+                
+                if (bv.m_cells[i] & j) {
+                    
+                    stream << "1";
+                    
+                    if ((j >> 1) > 0)
+                        
+                        stream << " ";
+                    
+                }
+                
+                else {
+                    
+                    stream << "0";
+                    
+                    if ((j >> 1) > 0)
+                        
+                        stream << " ";
+                    
+                }
+                
+            }
+        
+            stream << "] ";
+        
+        }
+    
+        stream << std::endl;
+        
+        return stream;
+    
+    
 }

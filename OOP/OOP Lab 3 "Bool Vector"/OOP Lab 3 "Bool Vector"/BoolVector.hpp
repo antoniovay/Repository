@@ -24,7 +24,7 @@ class BoolVector
 {
     
     friend std::istream &operator >> (std::istream &stream, BoolVector& bv);
-    friend std::ostream &operator << (std::ostream &stream, BoolVector& bv);
+    friend std::ostream &operator << (std::ostream &stream, const BoolVector& bv);
     
     class BoolRank;
     
@@ -35,7 +35,7 @@ public:
     BoolVector (const int length = 10); // Конструктор по умолчанию
     
     BoolVector (const int length, const int value); // Конструктор с параметром (размер и значение - одно и то же для всех разрядов)
-    BoolVector (const int length, const char* array); // Конструктор с параметром (из массива const char *)
+    BoolVector (const char* array); // Конструктор с параметром (из массива const char *)
     
     BoolVector (const BoolVector &bv); // Конструктор копирования
     
@@ -50,7 +50,7 @@ public:
     
     // Другие методы
     
-    int length (); // Длина (кол-во битов вектора)
+    int length () const; // Длина (кол-во битов вектора)
     
     void swap (BoolVector &bv); // Обмен содержимого с другим вектором
     
@@ -62,10 +62,10 @@ public:
     
     
     
-    void setAfterK (const int i, const bool x); // Установка в 0/1 k компонент, начиная с i-ой
+    void setAfterK (const int i, const int k, const bool x); // Установка в 0/1 k компонент, начиная с i-ой
     void setAll (const bool x); // Установка в 0/1 всех компонент вектора
     
-    int weight (); // Вес вектора (количество единичных компонент)
+    int weight () const; // Вес вектора (количество единичных компонент)
     
     
     
@@ -75,25 +75,27 @@ public:
     BoolRank operator [] (const int i); // Получение компоненты
     const BoolRank operator [] (const int i) const; // Получение компоненты
     
-    BoolVector operator & (const BoolVector &other);  // Побитовое умножение &
+    BoolVector operator & (const BoolVector &other) const;  // Побитовое умножение &
     BoolVector &operator &= (const BoolVector &other); // Побитовое умножение &=
     
-    BoolVector operator | (const BoolVector &other); // Побитовое сложение |
+    BoolVector operator | (const BoolVector &other) const; // Побитовое сложение |
     BoolVector &operator |= (const BoolVector &other); // Побитовое сложение |=
     
-    BoolVector operator ^ (const BoolVector &other); // Побитовое исключающее ИЛИ ^
+    BoolVector operator ^ (const BoolVector &other) const; // Побитовое исключающее ИЛИ ^
     BoolVector &operator ^= (const BoolVector &other); // Побитовое исключающее ИЛИ ^=
     
-    BoolVector operator << (const int value); // Побитовый сдвиг <<
+    BoolVector operator << (const int value) const; // Побитовый сдвиг <<
     BoolVector &operator <<= (const int value); // Побитовый сдвиг <<=
     
-    BoolVector operator >> (const int value); // Побитовый сдвиг >>
+    BoolVector operator >> (const int value) const; // Побитовый сдвиг >>
     BoolVector &operator >>= (const int value); // Побитовый сдвиг >>=
     
-    BoolVector operator ~ (); // Побитовая инверсия
+    BoolVector operator ~ () const; // Побитовая инверсия
     
     BoolVector &operator = (const BoolVector &other); // Оператор присваивания
     
+    bool operator == (const BoolVector& other) const;
+    bool operator != (const BoolVector& other) const;
     
     
 private:
@@ -160,74 +162,5 @@ private:
 // Потоковые ввод и вывод //--------------------------------------------------------------------------------------------------------------------------
 
 
-
-std::istream &operator >> (std::istream &stream, BoolVector& bv) { // Потоковый ввод
-    
-    char* string = new char [bv.m_length];
-    
-        for (int i = 0; i < bv.m_length; ++i) {
-            
-            stream >> string[i];
-            
-        }
-        
-        for (unsigned int i = 0; i < bv.m_length; ++i) {
-            
-            if (string[i] != '0')
-                
-                bv.set(i, 1);
-            
-            else
-            
-                bv.set(i, 0);
-            
-        }
-        
-        delete [] string;
-    
-        return stream;
-    
-}
-
-
-
-std::ostream &operator << (std::ostream &stream, BoolVector& bv) { // Потоковый вывод
-    
-    for (int i = 0; i < bv.m_cellCount; ++i) {
-        
-            stream << "[";
-        
-            for (uint8_t j = 1 << 7; j > 0; j >>= 1) {
-                
-                if (bv.m_cells[i] & j) {
-                    
-                    stream << "1";
-                    
-                    if ((j >> 1) > 0)
-                        
-                        stream << " ";
-                    
-                }
-                
-                else {
-                    
-                    stream << "0";
-                    
-                    if ((j >> 1) > 0)
-                        
-                        stream << " ";
-                    
-                }
-                
-            }
-        
-            stream << "] ";
-        
-        }
-    
-        stream << std::endl;
-        
-        return stream;
-    
-    
-}
+std::istream &operator >> (std::istream &stream, BoolVector& bv);
+std::ostream &operator << (std::ostream &stream, const BoolVector& bv);

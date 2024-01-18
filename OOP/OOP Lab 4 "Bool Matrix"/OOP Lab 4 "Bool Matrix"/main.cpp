@@ -13,12 +13,12 @@
 
 int main() {
     
+    BoolMatrix matrix1(10, 5, 1);
     
+    std::cout << matrix1 << std::endl;
     
+    //matrix1.invert(4, 9);
     
-    
-    
-    
-    
+    std::cout << matrix1 << std::endl;
     
 }
