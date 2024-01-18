@@ -275,7 +275,7 @@ Set &Set::operator -= (const char value) {
 
 
 
-std::ostream &operator << (std::ostream& stream, const Set &other) {
+std::ostream &operator << (std::ostream& stream, const Set &object) {
     
     stream << "{";
     
@@ -283,7 +283,7 @@ std::ostream &operator << (std::ostream& stream, const Set &other) {
     
     for (int i = 0; i < Set::MAX_CODE; i++) {
         
-        if ( other.is_in_set((char) i) ) 
+        if ( object.is_in_set((char) i) )
         
         {
             
@@ -315,9 +315,78 @@ std::ostream &operator << (std::ostream& stream, const Set &other) {
 
 
 
-std::istream& operator >> (std::istream& stream, Set& other) {
+std::istream& operator >> (std::istream& stream, Set& object) {
     
+    object = Set();
     
+    std::string string;
+    
+    std::getline(stream, string);
+    
+    std::cout << string << std::endl;
+    
+    for (int i = 0; i < string.size(); i++) {
+        
+        if (string[i] == '/') {
+            
+            if (string[i + 1] >= 'A' && string[i + 1] <= 'Z') {
+                
+                for (int j = 0; j < Set::SPECIAL_SYMBOLS.size(); j++) {
+                    
+                    bool isFound;
+                    
+                    if (i + Set::SPECIAL_SYMBOLS[j].size() > string.size())
+                        
+                        isFound = false;
+                            
+                    const int subStrSize = (int) Set::SPECIAL_SYMBOLS[j].size();
+                    
+                    for (int k = i, j = 0; k < i + subStrSize && j < subStrSize; k++, j++) {
+                                
+                        if(string[k] != Set::SPECIAL_SYMBOLS[j][j]) {
+                                    
+                            isFound = false;
+                                    
+                        }
+                                
+                    }
+                            
+                    isFound = true;
+                    
+                    
+                    if (isFound) {
+                        
+                        object += (char) j;
+                        
+                        i += Set::SPECIAL_SYMBOLS[j].size();
+                        
+                        continue;
+                        
+                    }
+                    
+                }
+                
+                object += string[i];
+                
+            }
+            
+            else {
+                
+                if(string[i] != (char) 0)
+                    
+                    object += string[i];
+                
+            }
+            
+        } 
+        
+        else
+            
+            string[i] += '/';
+        
+    }
+    
+    return stream;
     
 }
 
