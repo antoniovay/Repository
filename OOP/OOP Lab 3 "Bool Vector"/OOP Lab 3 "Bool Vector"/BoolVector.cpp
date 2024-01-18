@@ -554,6 +554,9 @@ BoolVector BoolVector::operator ~ () const {
         
     }
     
+    result.m_cells[m_cellCount - 1] >>= result.m_unsignificantRankCount;
+    result.m_cells[m_cellCount - 1] <<= result.m_unsignificantRankCount;
+    
     return result;
     
 }

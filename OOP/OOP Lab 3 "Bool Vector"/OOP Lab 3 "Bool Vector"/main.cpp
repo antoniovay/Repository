@@ -24,4 +24,8 @@ int main() {
     
     std::cout << x;
     
+    x.inverse();
+    
+    std::cout << x;
+    
 }

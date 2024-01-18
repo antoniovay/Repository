@@ -28,6 +28,8 @@ class BoolVector
     
     class BoolRank;
     
+    friend class Set;
+    
 public:
     
     // Конструкторы
