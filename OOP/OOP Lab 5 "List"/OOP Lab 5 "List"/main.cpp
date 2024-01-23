@@ -45,28 +45,25 @@ int main() {
     List<int> list3(10, 1);
     List<int> list4(5, 1);
     
-    std::vector<int> result;
-    
-    for (int i = 0; i < 4; i++)
-        
-        result.push_back(0);
-    
-    if (list1 == list1) result[0] = 1;
-    if (list1 == list2) result[1] = 1;
-    if (list1 == list3) result[2] = 1;
-    if (list1 == list4) result[3] = 1;
-
-    for (int i = 0; i < 4; i++)
-        
-        std::cout << result[i];
-    
-    std::cout << std::endl;
+     std::cout << (list1 == list1);
+     std::cout << (list1 == list2);
+     std::cout << (list1 == list3);
+     std::cout << (list1 == list4);
+     std::cout << (list1 == list1);
+     std::cout << (list2 == list1);
+     std::cout << (list3 == list1);
+     std::cout << (list4 == list1);
+     std::cout << std::endl;
     */
     
     
     
-    List<int> list1;
+    List<std::string> list1(3);
     
+    std::cout << list1.size();
     std::cin >> list1;
+    
+    std::cout << list1;
+    
     
 }

@@ -20,7 +20,7 @@ int main() {
     
     std::cout << x.length() << std::endl;
     
-    x.setAfterK(5, 4, 0);
+    x.setAfterK(5, 10, 0);
     
     std::cout << x;
     

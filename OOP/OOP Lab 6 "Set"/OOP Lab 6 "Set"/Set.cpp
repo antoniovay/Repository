@@ -18,7 +18,7 @@ const std::vector<std::string> Set::SPECIAL_SYMBOLS
     "NUL", "SOH", "STX", "ETX", "EOT", "ENQ", "ACK", "BEL",
     "BS", "TAB", "LF", "VT", "FF", "CR", "SO", "SI",
     "DLE", "DC1", "DC2", "DC3", "DC4", "NAK", "SYN", "ETB",
-    "CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US"
+    "CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US", "SPACE"
 };
 
 
@@ -314,6 +314,31 @@ std::ostream &operator << (std::ostream& stream, const Set &object) {
 
 
 
+bool is_found(const std::string& string, const std::string& pattern, const int k) {
+
+    if (k + pattern.size() > string.size())
+        
+        return false;
+    
+    int patternSize = (int) pattern.size();
+
+    for (int i = k, j = 0; i < k + patternSize && j < patternSize; i++, j++) {
+        
+        if (string[i] != pattern[j]) {
+            
+            return false;
+            
+        }
+        
+    }
+    
+    return true;
+    
+}
+
+
+
+
 
 std::istream& operator >> (std::istream& stream, Set& object) {
     
@@ -323,8 +348,6 @@ std::istream& operator >> (std::istream& stream, Set& object) {
     
     std::getline(stream, string);
     
-    std::cout << string << std::endl;
-    
     for (int i = 0; i < string.size(); i++) {
         
         if (string[i] == '/') {
@@ -333,32 +356,12 @@ std::istream& operator >> (std::istream& stream, Set& object) {
                 
                 for (int j = 0; j < Set::SPECIAL_SYMBOLS.size(); j++) {
                     
-                    bool isFound;
                     
-                    if (i + Set::SPECIAL_SYMBOLS[j].size() > string.size())
-                        
-                        isFound = false;
-                            
-                    const int subStrSize = (int) Set::SPECIAL_SYMBOLS[j].size();
-                    
-                    for (int k = i, j = 0; k < i + subStrSize && j < subStrSize; k++, j++) {
-                                
-                        if(string[k] != Set::SPECIAL_SYMBOLS[j][j]) {
-                                    
-                            isFound = false;
-                                    
-                        }
-                                
-                    }
-                            
-                    isFound = true;
-                    
-                    
-                    if (isFound) {
+                    if (is_found(string, Set::SPECIAL_SYMBOLS[j], i + 1)) {
                         
                         object += (char) j;
                         
-                        i += Set::SPECIAL_SYMBOLS[j].size();
+                        i += Set::SPECIAL_SYMBOLS[j].size() + 1;
                         
                         continue;
                         
@@ -372,17 +375,17 @@ std::istream& operator >> (std::istream& stream, Set& object) {
             
             else {
                 
-                if(string[i] != (char) 0)
+                if (string[i] != (char) 0)
                     
                     object += string[i];
                 
             }
             
-        } 
+        }
         
         else
             
-            string[i] += '/';
+            object += string[i];
         
     }
     
@@ -390,3 +393,26 @@ std::istream& operator >> (std::istream& stream, Set& object) {
     
 }
 
+
+
+
+
+/*
+std::istream& operator >> (std::istream& stream, Set& object) {
+    
+    object = Set();
+    
+    std::string string;
+    
+    std::getline(stream, string);
+    
+    for (int i = 0; i < string.size(); i++) {
+        
+        object += string[i];
+        
+    }
+    
+    return stream;
+    
+}
+*/

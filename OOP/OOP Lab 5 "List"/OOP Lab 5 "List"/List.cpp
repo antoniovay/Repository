@@ -18,7 +18,7 @@
 
 template <typename ItemType>
 
-List<ItemType>::List(const int size, const ItemType value) {
+List<ItemType>::List(const int size, const ItemType &value) {
     
     m_head = new Node;
     
@@ -621,12 +621,13 @@ std::ostream &operator << (std::ostream &stream, const List<ItemType> &other) {
     
     typename List<ItemType>::Node *p = other.m_head->m_next;
     
-    while (p->m_next) {
+    while (p) {
         
         stream << p->m_key;
         
         p = p->m_next;
         
+        stream << (p ? " " : "");
     }
     
     stream << "]";
@@ -643,7 +644,7 @@ std::istream &operator >> (std::istream &stream, List<ItemType> &other) {
     
     typename List<ItemType>::Node *p = other.m_head->m_next;
     
-    while (p->m_next) {
+    while (p) {
         
         stream >> p->m_key;
         

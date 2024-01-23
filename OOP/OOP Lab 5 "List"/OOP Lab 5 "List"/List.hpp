@@ -33,13 +33,16 @@ public:
     
     class Node;
     
-    friend std::ostream &operator << (std::ostream &stream, const List<ItemType> &other);
-    friend std::istream &operator >> (std::istream &stream, List<ItemType> &other);
+    template <typename Foo>
+    friend std::ostream &operator << (std::ostream &stream, const List<Foo> &other);
+    
+    template <typename Foo>
+    friend std::istream &operator >> (std::istream &stream, List<Foo> &other);
     
     
     // Методы //-------------------------------------------------------------------------------------------------------------------------------------
     
-    List(const int size = 0, const ItemType value = 0); // Конструктор по умолчанию
+    List(const int size = 0, const ItemType &value = ItemType()); // Конструктор по умолчанию
     List(const Array<ItemType> &array); // Конструктор из Array
     List(const List &other); // Конструктор копирования
     
@@ -113,8 +116,11 @@ template <typename ItemType>
 class List<ItemType>::Node
 {
     
-    friend std::ostream &operator << (std::ostream &stream, const List<ItemType> &other);
-    friend std::istream &operator >> (std::istream &stream, List<ItemType> &other);
+    template <typename Foo>
+    friend std::ostream &operator << (std::ostream &stream, const List<Foo> &other);
+    
+    template <typename Foo>
+    friend std::istream &operator >> (std::istream &stream, List<Foo> &other);
     
     friend class List;
     

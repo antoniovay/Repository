@@ -14,6 +14,7 @@
 int main() {
     
     
+    
     Set set1, set2;
     
     set1 += 'a';
@@ -31,8 +32,8 @@ int main() {
     std::cout << set1.power() << std::endl;
     
     set2 &= set1;
-    */
-    std::cout << set1; /*
+    
+    std::cout << set1;
     std::cout << set2;
     
     std::cout << std::endl;
@@ -54,12 +55,15 @@ int main() {
     set3.inverse();
     
     std::cout << set3;
-    */
+    
      
     //Set set5;
-    
+    */
     std::cin >> set1;
     
     std::cout << set1;
+    
+    std::cout << set1.power() << std::endl;
+    
     
 }
