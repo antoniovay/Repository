@@ -112,7 +112,7 @@ void List<ItemType>::swap(List &other) {
 
 template <typename ItemType>
 
-List<ItemType>::Node *List<ItemType>::find_key(ItemType key) {
+List<ItemType>::Node *List<ItemType>::find_key_prev(const ItemType &key) {
     
     if (m_head->m_next->m_key == key)
         
@@ -137,7 +137,7 @@ List<ItemType>::Node *List<ItemType>::find_key(ItemType key) {
 
 template <typename ItemType>
 
-List<ItemType>::Node *List<ItemType>::find_pos(int pos) {
+List<ItemType>::Node *List<ItemType>::find_pos_prev(int pos) {
     
     Node *p = m_head->m_next;
     
@@ -161,7 +161,27 @@ List<ItemType>::Node *List<ItemType>::find_pos(int pos) {
 
 template <typename ItemType>
 
-void List<ItemType>::push_front (ItemType key) {
+List<ItemType>::Node *List<ItemType>::find_key(const ItemType &key) {
+    
+    return find_key_prev(key)->m_next;
+    
+}
+
+
+
+template <typename ItemType>
+
+List<ItemType>::Node *List<ItemType>::find_pos(int pos) {
+    
+    return find_pos_prev(pos)->m_next;
+    
+}
+
+
+
+template <typename ItemType>
+
+void List<ItemType>::push_front (const ItemType &key) {
     
     insert_after (key, m_head);
     
@@ -171,7 +191,7 @@ void List<ItemType>::push_front (ItemType key) {
 
 template <typename ItemType>
 
-void List<ItemType>::push_back (ItemType key) {
+void List<ItemType>::push_back (const ItemType &key) {
     
     Node *p = m_head;
     
@@ -187,7 +207,7 @@ void List<ItemType>::push_back (ItemType key) {
 
 template <typename ItemType>
 
-void List<ItemType>::insert_after (ItemType key, Node *pos) {
+void List<ItemType>::insert_after (const ItemType &key, Node *pos) {
     
     Node *q = new Node;
     
@@ -205,9 +225,9 @@ void List<ItemType>::insert_after (ItemType key, Node *pos) {
 
 template <typename ItemType>
 
-void List<ItemType>::insert_after (ItemType key) {
+void List<ItemType>::insert_after (const ItemType &key) {
     
-    insert_after(key, find_key(key));
+    insert_after(key, find_key_prev(key));
     
 }
 
@@ -263,9 +283,9 @@ void List<ItemType>::pop_after (Node *pos) {
 
 template <typename ItemType>
 
-void List<ItemType>::pop_after(ItemType key) {
+void List<ItemType>::pop_after(const ItemType &key) {
     
-    pop_after(find_key(key));
+    pop_after(find_key_prev(key));
     
 }
 
@@ -463,7 +483,7 @@ void List<ItemType>::sort() {
         
         //std::cout << min() << std::endl;
         
-        pop_after(find_key(min()));
+        pop_after(find_key_prev(min()));
         
     }
     
@@ -511,7 +531,7 @@ List<ItemType>::Node &List<ItemType>::operator [] (int i) {
     
     assert(i >= 0 && i < m_size);
     
-    return find_pos(i)->m_key;
+    return find_pos_prev(i)->m_key;
     
 }
 
@@ -523,7 +543,7 @@ const List<ItemType>::Node &List<ItemType>::operator [] (int i) const {
     
     assert(i >= 0 && i < m_size);
     
-    return find_pos(i)->m_key;
+    return find_pos_prev(i)->m_key;
     
 }
 

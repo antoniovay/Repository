@@ -58,18 +58,20 @@ public:
     
     void swap(List &other);
     
-    List<ItemType>::Node *find_key(ItemType key); // Поиск в списке по ключу.
+    List<ItemType>::Node *find_key_prev(const ItemType &key); // Поиск в списке по ключу.
+    List<ItemType>::Node *find_pos_prev(int pos); // Поиск в списке по позиции pos
+    List<ItemType>::Node *find_key(const ItemType &key); // Поиск в списке по ключу.
     List<ItemType>::Node *find_pos(int pos); // Поиск в списке по позиции pos
     
-    void push_front (ItemType key); // Добавление элемента в голову списка
-    void push_back (ItemType key); // Добавление элемента в хвост списка
-    void insert_after (ItemType key, Node *pos); // Добавление элемента после заданного
-    void insert_after (ItemType key); // Добавление элемента после равного key
+    void push_front (const ItemType &key); // Добавление элемента в голову списка
+    void push_back (const ItemType &key); // Добавление элемента в хвост списка
+    void insert_after (const ItemType &key, Node *pos); // Добавление элемента после заданного
+    void insert_after (const ItemType &key); // Добавление элемента после равного key
     
     void pop_front (); // Удаление головы
     void pop_back (); // Удаление хвоста
     void pop_after (Node *pos) ; // Удаление элемента после заданного узла
-    void pop_after (ItemType key); // Удаление элемента равного key
+    void pop_after (const ItemType &key); // Удаление элемента равного key
     
     ItemType max() const;
     ItemType min() const;
@@ -125,7 +127,7 @@ class List<ItemType>::Node
     friend class List;
     
     
-    Node (const ItemType& key = ItemType(), Node* next = nullptr, Node* prev = nullptr) : m_next(next) {
+    Node (const ItemType &key = ItemType(), Node* next = nullptr, Node* prev = nullptr) : m_next(next) {
         
         m_key = *new ItemType(key);
         

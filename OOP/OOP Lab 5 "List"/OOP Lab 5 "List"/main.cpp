@@ -62,8 +62,8 @@ int main() {
     
     std::cout << list1.size();
     std::cin >> list1;
-    
+
     std::cout << list1;
-    
+
     
 }
